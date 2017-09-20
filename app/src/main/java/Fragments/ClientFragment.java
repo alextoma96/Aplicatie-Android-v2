@@ -28,7 +28,7 @@ public class ClientFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Client");
         Bundle bundle = this.getArguments();
-        Factura factura = bundle.getParcelable("object");
+        Factura factura = bundle.getParcelable("objectt");
 
         TextView numComp = (TextView) getActivity().findViewById(R.id.numClient);
         TextView codIn = (TextView) getActivity().findViewById(R.id.codInC);

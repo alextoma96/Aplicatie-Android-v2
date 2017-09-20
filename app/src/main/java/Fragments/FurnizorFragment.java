@@ -28,7 +28,7 @@ public class FurnizorFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Furnizor");
         Bundle bundle = this.getArguments();
-        Factura factura = bundle.getParcelable("object");
+        Factura factura = bundle.getParcelable("objectt");
 
         TextView numComp = (TextView) getActivity().findViewById(R.id.numComp);
         TextView codIn = (TextView) getActivity().findViewById(R.id.codIn);
