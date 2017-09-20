@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.intern.myapplication.FacturiActivity;
 import com.example.intern.myapplication.MainActivity;
 import com.example.intern.myapplication.R;
+import com.example.intern.myapplication.StatusActivity;
 
 import java.text.DateFormat;
 
@@ -41,8 +43,8 @@ public class DateGeneraleFragment extends Fragment {
        
 
         getActivity().setTitle("Date Generale");
-        Bundle bundle = this.getArguments();
-        Factura factura = bundle.getParcelable("object");
+        final Bundle bundle = this.getArguments();
+        final Factura factura = bundle.getParcelable("object");
 
         TextView dtEst = (TextView) getActivity().findViewById(R.id.dtEst);
         TextView dtEm = (TextView) getActivity().findViewById(R.id.dtEm);
@@ -71,12 +73,25 @@ public class DateGeneraleFragment extends Fragment {
         validatDe.setText(vValidatDe(factura));
         emisDe.setText(vEmisDe(factura));
 
-        Button buton = (Button) getActivity().findViewById(R.id.flow_clienti);
+        Button butonClienti = (Button) getActivity().findViewById(R.id.flow_clienti);
 
-        buton.setOnClickListener(new View.OnClickListener() {
+        butonClienti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new ClientFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_main, fragment);
+                fragment.setArguments(bundle);
+                ft.commit();
+            }
+        });
+
+        Button butonFacturi = (Button) getActivity().findViewById(R.id.flow_facturi);
+
+        butonFacturi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new StatusActivity();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.content_main, fragment);
                 ft.commit();

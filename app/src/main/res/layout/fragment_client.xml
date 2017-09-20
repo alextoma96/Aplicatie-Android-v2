@@ -116,5 +116,25 @@
         android:layout_marginTop="15dp"
         android:text="Adresa" />
 
+    <Button
+        android:id="@+id/flow_date_gen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/adresaC"
+        android:layout_marginBottom="48dp"
+        android:text="◀ Date generale" />
+
+    <Button
+        android:id="@+id/flow_furnizor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/flow_date_gen"
+        android:layout_alignStart="@+id/codIBANC"
+        android:layout_marginBottom="0dp"
+        android:layout_marginStart="24dp"
+        android:text="Furnizor ▶" />
+
+
 </RelativeLayout>
 

@@ -3,12 +3,15 @@ package Fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.intern.myapplication.R;
+import com.example.intern.myapplication.StatusActivity;
 
 import Commons.Factura;
 
@@ -24,7 +27,7 @@ public class ClientFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Client");
-        Bundle bundle = this.getArguments();
+        final Bundle bundle = this.getArguments();
         Factura factura = bundle.getParcelable("object");
 
         TextView numComp = (TextView) getActivity().findViewById(R.id.numClient);
@@ -40,6 +43,32 @@ public class ClientFragment extends Fragment {
         banca.setText(vBanca(factura));
         codIBAN.setText(vIBAN(factura));
         adresa.setText(vAdresa(factura));
+
+        Button butonDateGen = (Button) getActivity().findViewById(R.id.flow_date_gen);
+
+        butonDateGen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new DateGeneraleFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_main, fragment);
+                fragment.setArguments(bundle);
+                ft.commit();
+            }
+        });
+
+        Button butonFurnizori = (Button) getActivity().findViewById(R.id.flow_furnizor);
+
+        butonFurnizori.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new FurnizorFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_main, fragment);
+                fragment.setArguments(bundle);
+                ft.commit();
+            }
+        });
     }
     private String vNumComp(Factura factura){
         if (factura.getClient() != null && factura.getClient().getNume() != null)
