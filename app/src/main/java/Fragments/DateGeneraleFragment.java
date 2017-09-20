@@ -1,13 +1,18 @@
 package Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.intern.myapplication.MainActivity;
 import com.example.intern.myapplication.R;
 
 import java.text.DateFormat;
@@ -65,6 +70,18 @@ public class DateGeneraleFragment extends Fragment {
         creatDe.setText(vCreatDe(factura));
         validatDe.setText(vValidatDe(factura));
         emisDe.setText(vEmisDe(factura));
+
+        Button buton = (Button) getActivity().findViewById(R.id.flow_clienti);
+
+        buton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new ClientFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_main, fragment);
+                ft.commit();
+            }
+        });
     }
 
     private String vDtEst(Factura factura){
