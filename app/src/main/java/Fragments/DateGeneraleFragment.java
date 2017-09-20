@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckedTextView;
+import android.widget.RelativeLayout;
 
 import com.example.intern.myapplication.R;
 
@@ -33,6 +34,8 @@ public class DateGeneraleFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+       // RelativeLayout buttons = (RelativeLayout) getActivity().findViewById(R.layout.bottom_buttons);
+
         getActivity().setTitle("Date Generale");
         Bundle bundle = this.getArguments();
         Factura factura = bundle.getParcelable("object");

@@ -37,6 +37,7 @@
         <fragment android:name=".UtilizatoriActivity" />
 
         <activity android:name=".ThemeSettingsActivity" />
+        <activity android:name=".BottomButtonsActivity"></activity>
     </application>
 
 </manifest>

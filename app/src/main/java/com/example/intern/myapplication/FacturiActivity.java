@@ -63,6 +63,7 @@ public class FacturiActivity extends Fragment implements Constant{
                 bundle.putParcelable("object", listaFacturi.get(position));
                 fragment.setArguments(bundle);
                 ft.replace(R.id.content_main, fragment);
+
                 ft.commit();
             }
         });
