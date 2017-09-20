@@ -34,12 +34,47 @@ public class ClientFragment extends Fragment {
         TextView codIBAN = (TextView) getActivity().findViewById(R.id.codIBANC);
         TextView adresa = (TextView) getActivity().findViewById(R.id.adresaC);
 
-        numComp.setText(String.valueOf(factura.getClient().getNume()));
-        codIn.setText(String.valueOf(factura.getClient().getCodInregistrare()));
-        codFis.setText(String.valueOf(factura.getClient().getCodFiscal()));
-        banca.setText(String.valueOf(factura.getClient().getBanca()));
-        codIBAN.setText(String.valueOf(factura.getClient().getIban()));
-        adresa.setText(String.valueOf(factura.getClient().getAdresa()));
+        numComp.setText(vNumComp(factura));
+        codIn.setText(vCodIn(factura));
+        codFis.setText(vCodFis(factura));
+        banca.setText(vBanca(factura));
+        codIBAN.setText(vIBAN(factura));
+        adresa.setText(vAdresa(factura));
     }
-
+    private String vNumComp(Factura factura){
+        if (factura.getClient() != null && factura.getClient().getNume() != null)
+            return String.valueOf(factura.getClient().getNume());
+        else
+            return "Nu exista inregistrare";
+    }
+    private String vCodIn(Factura factura){
+        if (factura.getClient() != null && factura.getClient().getCodInregistrare() != null)
+            return String.valueOf(factura.getClient().getCodInregistrare());
+        else
+            return "Nu exista inregistrare";
+    }
+    private String vCodFis(Factura factura){
+        if (factura.getClient() != null && factura.getClient().getCodFiscal() != null)
+            return String.valueOf(factura.getClient().getCodFiscal());
+        else
+            return "Nu exista inregistrare";
+    }
+    private String vBanca(Factura factura){
+        if (factura.getClient() != null && factura.getClient().getBanca() != null)
+            return String.valueOf(factura.getClient().getBanca());
+        else
+            return "Nu exista inregistrare";
+    }
+    private String vIBAN(Factura factura){
+        if (factura.getClient() != null && factura.getClient().getIban() != null)
+            return String.valueOf(factura.getClient().getIban());
+        else
+            return "Nu exista inregistrare";
+    }
+    private String vAdresa(Factura factura){
+        if (factura.getClient() != null && factura.getClient().getAdresa() != null)
+            return String.valueOf(factura.getClient().getAdresa());
+        else
+            return "Nu exista inregistrare";
+    }
 }
