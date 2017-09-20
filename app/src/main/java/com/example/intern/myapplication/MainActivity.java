@@ -1,6 +1,7 @@
 package com.example.intern.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
@@ -69,6 +70,10 @@ public class MainActivity extends AppCompatActivity
     public void displaySelectedScreen(int id){
         Fragment fragment = null;
         switch (id){
+            case R.id.nav_home:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                break;
             case R.id.nav_facturi:
                 fragment = new StatusActivity();
                 break;

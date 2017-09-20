@@ -1,11 +1,9 @@
 package com.example.intern.myapplication;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +18,7 @@ import Commons.Utilizator;
 import Networking.HttpConnectionUtilizatori;
 import Utils.Constant;
 
-public class LoginActivity extends AppCompatActivity implements Constant{
+public class LoginActivity extends FragmentActivity implements Constant{
 
     private EditText etusername;
     private EditText etpassword;
@@ -30,7 +28,7 @@ public class LoginActivity extends AppCompatActivity implements Constant{
     String pass=null;
     Integer id=null;
 
-    List<Utilizator> userList = null;
+    List<Utilizator> userList = new ArrayList<>();
 
     private SharedPreferences preferenceSettings;
     private SharedPreferences.Editor preferenceEditor;
@@ -48,6 +46,7 @@ public class LoginActivity extends AppCompatActivity implements Constant{
     }
 
     private void init() {
+        consumeHttpConnection();
         etusername = (EditText) findViewById(R.id.et_login_username);
         etpassword = (EditText) findViewById(R.id.et_login_password);
         cbrmbrcred = (CheckBox) findViewById(R.id.cb_login_remember);
@@ -83,7 +82,7 @@ public class LoginActivity extends AppCompatActivity implements Constant{
             final String username=etusername.getText().toString();
             final String password=etpassword.getText().toString();
             if(validation(username, password)){
-                Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 preferenceEditor.putBoolean(CHECKBOX_PREFERENCE_KEY, cb);
                 preferenceEditor.putString(USERNAME_PREFERENCE_KEY, username);
@@ -96,7 +95,6 @@ public class LoginActivity extends AppCompatActivity implements Constant{
     }
 
     public boolean validation(String u, String p) {
-        consumeHttpConnection();
         for (Utilizator user : userList) {
             if (u.equals(user.getUsername()) && p.equals(user.getParola())) {
                 users=user.getUsername();
@@ -124,6 +122,6 @@ public class LoginActivity extends AppCompatActivity implements Constant{
                 }
             }
         };
-        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.8.98") + "/kepres203/api/rs/utilizator/list");
+        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.196.2:8080") + "/kepres2Web/api/rs/utilizator/list");
     }
 }

@@ -59,15 +59,15 @@ public class DetailsActivity extends Fragment {
             initCampuri();
             setDateGenerale();
             mTextMessage.setText(R.string.title_dateGenerale);
-            switch (item.getItemId()) {
-                case R.id.navigation_furnizori:
-                    setFurnizori();
-                    mTextMessage.setText(R.string.title_furnizor);
-                    return true;
-                case R.id.navigation_client:
-                    mTextMessage.setText(R.string.title_client);
-                    return true;
-            }
+//            switch (item.getItemId()) {
+//                case R.id.navigation_furnizori:
+//                    setFurnizori();
+//                    mTextMessage.setText(R.string.title_furnizor);
+//                    return true;
+//                case R.id.navigation_client:
+//                    mTextMessage.setText(R.string.title_client);
+//                    return true;
+          //  }
             return false;
         }
 

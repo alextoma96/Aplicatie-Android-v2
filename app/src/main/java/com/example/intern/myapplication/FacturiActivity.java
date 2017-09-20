@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class FacturiActivity extends Fragment implements Constant{
 
     private String STATUS_PREFERENCE_KEY = "status";
     private String CLIENT_PREFERENCE_KEY = "client";
+    TextView tvNoInvoice;
 
     @Nullable
     @Override
@@ -48,16 +50,18 @@ public class FacturiActivity extends Fragment implements Constant{
 
 
     public void initComponents() {
+        tvNoInvoice = (TextView) getActivity().findViewById(R.id.textNoInvoice);
         lvFacturi = (ListView) getActivity().findViewById(R.id.lista_lv_facturi);
-        ArrayAdapter<Factura> adapter = new ArrayAdapter<Factura>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaFacturi);
-        lvFacturi.setAdapter(adapter);
-        lvFacturi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (listaFacturi != null) {
+            ArrayAdapter<Factura> adapter = new ArrayAdapter<Factura>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaFacturi);
+            lvFacturi.setAdapter(adapter);
+            lvFacturi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Fragment fragment = new DateGeneraleFragment();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                Bundle bundle = new Bundle();
+                    Fragment fragment = new DateGeneraleFragment();
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    Bundle bundle = new Bundle();
 
                 /*bundle.putString("dtEstEm", listaFacturi.get((int) id).getDtEstimata().toString().substring(0,10));
                 bundle.putString("dtEm", listaFacturi.get((int) id).getDtEmitere().toString().substring(0,10));
@@ -66,13 +70,15 @@ public class FacturiActivity extends Fragment implements Constant{
                 bundle.putString("moneda", listaFacturi.get((int) id).getMoneda().getNume());
                 bundle.putString("TVA", listaFacturi.get((int) id).getCotaTVA().getNume());*/
 
-                bundle.putParcelable("object", listaFacturi.get(position));
-                fragment.setArguments(bundle);
-                ft.replace(R.id.content_main, fragment);
-
-                ft.commit();
-            }
-        });
+                    bundle.putParcelable("object", listaFacturi.get(position));
+                    fragment.setArguments(bundle);
+                    ft.replace(R.id.content_main, fragment);
+                    ft.commit();
+                }
+            });
+        } else {
+            tvNoInvoice.setText(getResources().getString(R.string.toast_lvfacturi));
+        }
     }
 
     public void consumeHttpConnection() {
@@ -83,8 +89,6 @@ public class FacturiActivity extends Fragment implements Constant{
                 super.onPostExecute(facturas);
                 if(facturas != null) {
                     listaFacturi.addAll(facturas);
-                } else {
-                    Toast.makeText(getActivity().getApplicationContext(), getResources().getString(R.string.toast_lvfacturi), Toast.LENGTH_LONG).show();
                 }
             }
         };
