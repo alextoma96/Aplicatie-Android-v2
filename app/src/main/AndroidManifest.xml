@@ -36,9 +36,9 @@
 
         <fragment android:name=".UtilizatoriActivity" />
 
-        <activity android:name=".ThemeSettingsActivity" />
-        <activity android:name=".StatusActivity" />
-        <activity android:name=".ClientActivity"></activity>
+        <fragment android:name=".ThemeSettingsActivity" />
+        <fragment android:name=".StatusActivity" />
+        <fragment android:name=".ClientActivity"></fragment>
     </application>
 
 </manifest>

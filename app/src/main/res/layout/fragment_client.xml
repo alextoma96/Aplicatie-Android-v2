@@ -6,97 +6,115 @@
     android:background="#FFFFFF">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"
-        android:id="@+id/textView2" />
-
-    <CheckedTextView
-        android:id="@+id/checkedTextView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="73dp"
-        android:text="CheckedTextView"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/checkedTextView3" />
-
-    <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/c1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/checkedTextView2"
-        android:layout_marginStart="17dp"
-        android:text="Nume client" />
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Nume client:" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/c2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:text="Cod inregistrare"
-        android:layout_below="@+id/textView3"
-        android:layout_alignStart="@+id/textView3" />
-
-    <CheckedTextView
-        android:id="@+id/checkedTextView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView4"
-        android:layout_centerHorizontal="true"
-        android:text="CheckedTextView" />
+        android:layout_alignStart="@+id/c1"
+        android:layout_below="@+id/c1"
+        android:layout_marginTop="15dp"
+        android:text="Cod inregistrare:" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/c3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView4"
-        android:layout_below="@+id/textView4"
-        android:layout_marginTop="28dp"
-        android:text="Cod fiscal" />
+        android:layout_alignStart="@+id/c2"
+        android:layout_below="@+id/c2"
+        android:layout_marginTop="15dp"
+        android:text="Cod fiscal:" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/c4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView5"
-        android:layout_below="@+id/textView5"
-        android:layout_marginTop="28dp"
+        android:layout_alignStart="@+id/c3"
+        android:layout_below="@+id/c3"
+        android:layout_marginTop="15dp"
+        android:text="Banca:" />
+
+    <TextView
+        android:id="@+id/c5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/c4"
+        android:layout_below="@+id/c4"
+        android:layout_marginTop="15dp"
+        android:text="Cod IBAN:" />
+
+    <TextView
+        android:id="@+id/c6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/c5"
+        android:layout_below="@+id/c5"
+        android:layout_marginTop="15dp"
+        android:text="Adresa:" />
+
+
+    <TextView
+        android:id="@+id/numClient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="30dp"
+        android:text="Nume companie" />
+
+    <TextView
+        android:id="@+id/codInC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/numClient"
+        android:layout_below="@+id/numClient"
+        android:layout_marginTop="15dp"
+        android:text="Cod Inregistrare" />
+
+    <TextView
+        android:id="@+id/codFisC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/codInC"
+        android:layout_below="@+id/codInC"
+        android:layout_marginTop="15dp"
+        android:text="Cod Fiscal" />
+
+    <TextView
+        android:id="@+id/bancaC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/codFisC"
+        android:layout_below="@+id/codFisC"
+        android:layout_marginTop="15dp"
         android:text="Banca" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/codIBANC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView2"
-        android:layout_alignStart="@+id/textView6"
+        android:layout_alignStart="@+id/bancaC"
+        android:layout_below="@+id/bancaC"
+        android:layout_marginTop="15dp"
         android:text="Cod IBAN" />
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView4"
+    <TextView
+        android:id="@+id/adresaC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView5"
-        android:layout_centerHorizontal="true"
-        android:text="CheckedTextView" />
-
-    <CheckedTextView
-        android:id="@+id/checkedTextView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/checkedTextView4"
-        android:layout_alignTop="@+id/textView6"
-        android:text="CheckedTextView" />
-
-    <CheckedTextView
-        android:id="@+id/checkedTextView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/checkedTextView5"
-        android:layout_alignTop="@+id/textView8"
-        android:text="CheckedTextView" />
+        android:layout_alignStart="@+id/c6"
+        android:layout_below="@+id/c6"
+        android:layout_marginTop="15dp"
+        android:text="Adresa" />
 
 </RelativeLayout>
 

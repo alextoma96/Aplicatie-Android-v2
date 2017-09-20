@@ -26,29 +26,27 @@ public class DetailsActivity extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Details");
-       /* mTextMessage = (TextView) getActivity().findViewById(R.id.message);
+        mTextMessage = (TextView) getActivity().findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) getActivity().findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);*/
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
     }
-/*
     private TextView mTextMessage;
 
     private void initCampuri(){
-        TextView dt = (TextView) getActivity().findViewById(R.id.dtEstEm);
+        TextView dt = (TextView) getActivity().findViewById(R.id.dtEstEm1);
         dt.setVisibility(View.INVISIBLE);
     }
 
     private void setDateGenerale(){
-        TextView dt = (TextView) getActivity().findViewById(R.id.dtEstEm);
-        Bundle bundle = this.getArguments();
+        TextView dt = (TextView) getActivity().findViewById(R.id.dtEstEm1);
         dt.setVisibility(View.VISIBLE);
-        dt.setText(bundle.getString("ceva"));
+        dt.setText("14/09/2017");
     }
 
     private void setFurnizori(){
-        TextView dt = (TextView) getActivity().findViewById(R.id.dtEstEm);
+        TextView dt = (TextView) getActivity().findViewById(R.id.dtEstEm1);
         dt.setVisibility(View.VISIBLE);
         dt.setText("15/09/2017");
     }
@@ -59,13 +57,9 @@ public class DetailsActivity extends Fragment {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             initCampuri();
-
+            setDateGenerale();
+            mTextMessage.setText(R.string.title_dateGenerale);
             switch (item.getItemId()) {
-                case R.id.navigation_dateGenerale:
-                    setDateGenerale();
-
-                    mTextMessage.setText(R.string.title_dateGenerale);
-                    return true;
                 case R.id.navigation_furnizori:
                     setFurnizori();
                     mTextMessage.setText(R.string.title_furnizor);
@@ -77,6 +71,6 @@ public class DetailsActivity extends Fragment {
             return false;
         }
 
-    };*/
+    };
 
 }
