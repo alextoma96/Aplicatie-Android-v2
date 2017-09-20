@@ -15,7 +15,10 @@ import android.widget.CheckedTextView;
 
 import com.example.intern.myapplication.R;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import Commons.Factura;
 
@@ -41,8 +44,9 @@ public class DateGeneraleFragment extends Fragment {
         CheckedTextView moneda = (CheckedTextView) getActivity().findViewById(R.id.checkedTextView11);
         CheckedTextView TVA = (CheckedTextView) getActivity().findViewById(R.id.checkedTextView12);
 
-        dtEst.setText(String.valueOf(factura.getDtEstimata()));
-        dtEm.setText(String.valueOf(factura.getDtEmitere()));
+
+        dtEst.setText(DateFormat.getDateInstance().format(factura.getDtEstimata()));
+        dtEm.setText(DateFormat.getDateInstance().format(factura.getDtEmitere()));
         serieFac.setText(String.valueOf(factura.getSerieFactura().getCod()) + String.valueOf(factura.getSerieFactura().getSecventa()));
         responsabil.setText(String.valueOf(factura.getAngajat().getNume()));
         moneda.setText(String.valueOf(factura.getMoneda().getNume()));
