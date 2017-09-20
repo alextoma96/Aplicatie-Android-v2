@@ -6,114 +6,211 @@
     android:background="#FFFFFF">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"
-        android:id="@+id/textView11" />
-
-    <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/dg1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="82dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Dt. est. emitere:" />
+
+    <TextView
+        android:id="@+id/dg2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dg1"
+        android:layout_below="@+id/dg1"
+        android:layout_marginTop="15dp"
+        android:text="Dt. emitere:" />
+
+    <TextView
+        android:id="@+id/dg3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dg2"
+        android:layout_below="@+id/dg2"
+        android:layout_marginTop="15dp"
+        android:text="Serie factura:" />
+
+    <TextView
+        android:id="@+id/dg4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dg3"
+        android:layout_below="@+id/dg3"
+        android:layout_marginTop="15dp"
+        android:text="Responsabil:" />
+
+    <TextView
+        android:id="@+id/dg5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dg4"
+        android:layout_below="@+id/dg4"
+        android:layout_marginTop="15dp"
+        android:text="Moneda:" />
+
+    <TextView
+        android:id="@+id/dg6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dg5"
+        android:layout_below="@+id/dg5"
+        android:layout_marginTop="15dp"
+        android:text="Cota TVA:" />
+
+    <TextView
+        android:id="@+id/dg7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dg6"
+        android:layout_below="@+id/dg6"
+        android:layout_marginTop="15dp"
+        android:text="Status factura:" />
+
+    <TextView
+        android:id="@+id/dg8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dg7"
+        android:layout_below="@+id/dg7"
+        android:layout_marginTop="15dp"
+        android:text="Dt. scadenta:" />
+
+    <TextView
+        android:id="@+id/dg9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dg8"
+        android:layout_below="@+id/dg8"
+        android:layout_marginTop="15dp"
+        android:text="Creat de:" />
+
+    <TextView
+        android:id="@+id/dg10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dg9"
+        android:layout_below="@+id/dg9"
+        android:layout_marginTop="15dp"
+        android:text="Validat de:" />
+
+    <TextView
+        android:id="@+id/dg11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dg10"
+        android:layout_below="@+id/dg10"
+        android:layout_marginTop="15dp"
+        android:text="Emis de:" />
+
+    <TextView
+        android:id="@+id/dtEst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="30dp"
         android:text="Dt. est. emitere" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/dtEm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="Data emitere"
-        android:layout_below="@+id/textView9"
-        android:layout_alignStart="@+id/textView9" />
+        android:layout_alignStart="@+id/dtEst"
+        android:layout_below="@+id/dtEst"
+        android:layout_marginTop="15dp"
+        android:text="Dt. emitere" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/serieCod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="33dp"
-        android:text="Serie factura"
-        android:layout_above="@+id/textView11"
-        android:layout_alignStart="@+id/textView10" />
+        android:layout_alignStart="@+id/dtEm"
+        android:layout_below="@+id/dtEm"
+        android:layout_marginTop="15dp"
+        android:text="Cod" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/serieSec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Responsabil"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/textView12" />
+        android:layout_alignBottom="@+id/serieCod"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/serieCod"
+        android:text="sec" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/responsabil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
-        android:text="Moneda"
-        android:layout_below="@+id/textView13"
-        android:layout_alignStart="@+id/textView17" />
+        android:layout_alignStart="@+id/serieCod"
+        android:layout_below="@+id/serieCod"
+        android:layout_marginTop="15dp"
+        android:text="responsabil" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/moneda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView13"
-        android:layout_below="@+id/textView16"
-        android:layout_marginTop="42dp"
-        android:text="Cota TVA" />
+        android:layout_alignStart="@+id/responsabil"
+        android:layout_below="@+id/responsabil"
+        android:layout_marginTop="15dp"
+        android:text="moneda" />
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView"
+    <TextView
+        android:id="@+id/tva"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView9"
-        android:layout_marginStart="70dp"
-        android:layout_toEndOf="@+id/textView9"
-        android:text="CheckedTextView" />
+        android:layout_alignStart="@+id/moneda"
+        android:layout_below="@+id/moneda"
+        android:layout_marginTop="15dp"
+        android:text="TVA" />
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView7"
+    <TextView
+        android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/checkedTextView"
-        android:layout_alignTop="@+id/textView10"
-        android:text="CheckedTextView" />
+        android:layout_alignStart="@+id/tva"
+        android:layout_below="@+id/tva"
+        android:layout_marginTop="15dp"
+        android:text="status" />
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView9"
+    <TextView
+        android:id="@+id/dtScad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView12"
-        android:layout_alignEnd="@+id/checkedTextView7"
-        android:text="CheckedTextView" />
+        android:layout_alignStart="@+id/status"
+        android:layout_below="@+id/status"
+        android:layout_marginTop="15dp"
+        android:text="dtScad" />
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView10"
+    <TextView
+        android:id="@+id/creatDe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/checkedTextView9"
-        android:layout_alignTop="@+id/textView13"
-        android:text="CheckedTextView" />
+        android:layout_alignStart="@+id/dtScad"
+        android:layout_below="@+id/dtScad"
+        android:layout_marginTop="15dp"
+        android:text="creatDe" />
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView11"
+    <TextView
+        android:id="@+id/validatDe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/checkedTextView10"
-        android:layout_alignTop="@+id/textView16"
-        android:text="CheckedTextView" />
+        android:layout_alignStart="@+id/creatDe"
+        android:layout_below="@+id/creatDe"
+        android:layout_marginTop="15dp"
+        android:text="validatDe" />
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView12"
+    <TextView
+        android:id="@+id/emisDe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView17"
-        android:layout_alignEnd="@+id/checkedTextView11"
-        android:text="CheckedTextView" />
-
+        android:layout_alignStart="@+id/validatDe"
+        android:layout_below="@+id/validatDe"
+        android:layout_marginTop="15dp"
+        android:text="emisDe" />
 </RelativeLayout>
