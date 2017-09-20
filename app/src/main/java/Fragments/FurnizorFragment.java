@@ -28,7 +28,7 @@ public class FurnizorFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Furnizor");
         Bundle bundle = this.getArguments();
-        IdentitateCompanie companie = bundle.getParcelable("object");
+        Factura factura = bundle.getParcelable("object");
 
         TextView numComp = (TextView) getActivity().findViewById(R.id.numComp);
         TextView codIn = (TextView) getActivity().findViewById(R.id.codIn);
@@ -37,12 +37,12 @@ public class FurnizorFragment extends Fragment {
         TextView codIBAN = (TextView) getActivity().findViewById(R.id.codIBAN);
         TextView adresa = (TextView) getActivity().findViewById(R.id.adresa);
 
-        numComp.setText(String.valueOf(companie.getNume()));
-        codIn.setText(String.valueOf(companie.getCodInregistrare()));
-        codFis.setText(String.valueOf(companie.getCodFiscal()));
-        banca.setText(String.valueOf(companie.getBanca()));
-        codIBAN.setText(String.valueOf(companie.getIban()));
-        adresa.setText(String.valueOf(companie.getAdresa()));
+        numComp.setText(String.valueOf(factura.getIdentitateCompanie().getNume()));
+        codIn.setText(String.valueOf(factura.getIdentitateCompanie().getCodInregistrare()));
+        codFis.setText(String.valueOf(factura.getIdentitateCompanie().getCodFiscal()));
+        banca.setText(String.valueOf(factura.getIdentitateCompanie().getBanca()));
+        codIBAN.setText(String.valueOf(factura.getIdentitateCompanie().getBanca()));
+        adresa.setText(String.valueOf(factura.getIdentitateCompanie().getAdresa()));
 
     }
 }

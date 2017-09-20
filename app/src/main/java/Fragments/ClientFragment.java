@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.intern.myapplication.R;
 
 import Commons.Client;
+import Commons.Factura;
 
 public class ClientFragment extends Fragment {
 
@@ -27,7 +28,7 @@ public class ClientFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Client");
         Bundle bundle = this.getArguments();
-        Client client = bundle.getParcelable("object");
+        Factura factura = bundle.getParcelable("object");
 
         TextView numComp = (TextView) getActivity().findViewById(R.id.numClient);
         TextView codIn = (TextView) getActivity().findViewById(R.id.codInC);
@@ -36,12 +37,12 @@ public class ClientFragment extends Fragment {
         TextView codIBAN = (TextView) getActivity().findViewById(R.id.codIBANC);
         TextView adresa = (TextView) getActivity().findViewById(R.id.adresaC);
 
-        numComp.setText(String.valueOf(client.getNume()));
-        codIn.setText(String.valueOf(client.getCodInregistrare()));
-        codFis.setText(String.valueOf(client.getCodFiscal()));
-        banca.setText(String.valueOf(client.getBanca()));
-        codIBAN.setText(String.valueOf(client.getIban()));
-        adresa.setText(String.valueOf(client.getAdresa()));
+        numComp.setText(String.valueOf(factura.getClient().getNume()));
+        codIn.setText(String.valueOf(factura.getClient().getCodInregistrare()));
+        codFis.setText(String.valueOf(factura.getClient().getCodFiscal()));
+        banca.setText(String.valueOf(factura.getClient().getBanca()));
+        codIBAN.setText(String.valueOf(factura.getClient().getIban()));
+        adresa.setText(String.valueOf(factura.getClient().getAdresa()));
     }
 
 }
