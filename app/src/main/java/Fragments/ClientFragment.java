@@ -1,7 +1,5 @@
 package Fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.intern.myapplication.R;
 
-import Commons.Client;
 import Commons.Factura;
 
 public class ClientFragment extends Fragment {
@@ -28,7 +25,7 @@ public class ClientFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Client");
         Bundle bundle = this.getArguments();
-        Factura factura = bundle.getParcelable("objectt");
+        Factura factura = bundle.getParcelable("object");
 
         TextView numComp = (TextView) getActivity().findViewById(R.id.numClient);
         TextView codIn = (TextView) getActivity().findViewById(R.id.codInC);

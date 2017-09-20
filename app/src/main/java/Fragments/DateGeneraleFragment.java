@@ -1,35 +1,33 @@
 package Fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.DragEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckedTextView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.intern.myapplication.R;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 import Commons.Factura;
 
 public class DateGeneraleFragment extends Fragment {
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_date_generale, container, false);
+    }
+
+    @Override
+    public void onCreate(Bundle saveInstancesState){
+        super.onCreate(saveInstancesState);
+        //setContentView(R.id.fragment_date_generale);
+
     }
 
     @Override
@@ -68,6 +66,7 @@ public class DateGeneraleFragment extends Fragment {
         validatDe.setText(String.valueOf(factura.getValidatDe().getNume()));
         emisDe.setText(String.valueOf(factura.getEmisDe()));
     }
+
 
 }
 
