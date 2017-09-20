@@ -37,12 +37,48 @@ public class FurnizorFragment extends Fragment {
         TextView codIBAN = (TextView) getActivity().findViewById(R.id.codIBAN);
         TextView adresa = (TextView) getActivity().findViewById(R.id.adresa);
 
-        numComp.setText(String.valueOf(factura.getIdentitateCompanie().getNume()));
-        codIn.setText(String.valueOf(factura.getIdentitateCompanie().getCodInregistrare()));
-        codFis.setText(String.valueOf(factura.getIdentitateCompanie().getCodFiscal()));
-        banca.setText(String.valueOf(factura.getIdentitateCompanie().getBanca()));
-        codIBAN.setText(String.valueOf(factura.getIdentitateCompanie().getBanca()));
-        adresa.setText(String.valueOf(factura.getIdentitateCompanie().getAdresa()));
+        numComp.setText(vNumComp(factura));
+        codIn.setText(vCodIn(factura));
+        codFis.setText(vCodFis(factura));
+        banca.setText(vBanca(factura));
+        codIBAN.setText(vIBAN(factura));
+        adresa.setText(vAdresa(factura));
 
+    }
+    private String vNumComp(Factura factura){
+        if (factura.getIdentitateCompanie() != null && factura.getIdentitateCompanie().getNume() != null)
+            return String.valueOf(factura.getIdentitateCompanie().getNume());
+        else
+            return "Nu exista inregistrare";
+    }
+    private String vCodIn(Factura factura){
+        if (factura.getIdentitateCompanie() != null && factura.getIdentitateCompanie().getCodInregistrare() != null)
+            return String.valueOf(factura.getIdentitateCompanie().getCodInregistrare());
+        else
+            return "Nu exista inregistrare";
+    }
+    private String vCodFis(Factura factura){
+        if (factura.getIdentitateCompanie() != null && factura.getIdentitateCompanie().getCodFiscal() != null)
+            return String.valueOf(factura.getIdentitateCompanie().getCodFiscal());
+        else
+            return "Nu exista inregistrare";
+    }
+    private String vBanca(Factura factura){
+        if (factura.getIdentitateCompanie() != null && factura.getIdentitateCompanie().getBanca() != null)
+            return String.valueOf(factura.getIdentitateCompanie().getBanca());
+        else
+            return "Nu exista inregistrare";
+    }
+    private String vIBAN(Factura factura){
+        if (factura.getIdentitateCompanie() != null && factura.getIdentitateCompanie().getIban() != null)
+            return String.valueOf(factura.getIdentitateCompanie().getIban());
+        else
+            return "Nu exista inregistrare";
+    }
+    private String vAdresa(Factura factura){
+        if (factura.getIdentitateCompanie() != null && factura.getIdentitateCompanie().getAdresa() != null)
+            return String.valueOf(factura.getIdentitateCompanie().getAdresa());
+        else
+            return "Nu exista inregistrare";
     }
 }
