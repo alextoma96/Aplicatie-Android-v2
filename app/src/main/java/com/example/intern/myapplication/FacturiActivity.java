@@ -1,10 +1,12 @@
 package com.example.intern.myapplication;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,10 @@ import Utils.Constant;
 
 
 public class FacturiActivity extends Fragment implements Constant{
+
+    private String STATUS_PREFERENCE_KEY = "status";
+    private String CLIENT_PREFERENCE_KEY = "client";
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -77,11 +83,11 @@ public class FacturiActivity extends Fragment implements Constant{
                 if(facturas != null) {
                     listaFacturi.addAll(facturas);
                 } else {
-                    Toast.makeText(getActivity().getApplicationContext(), getResources().getString(R.string.toast_lvfacturi), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(), getResources().getString(R.string.toast_lvfacturi), Toast.LENGTH_LONG).show();
                 }
             }
         };
-        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "192.168.8.98") + "/kepres203/api/rs/factura/list");
+        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "192.168.196.2:8080") + "/kepres2Web/api/rs/factura/list");
     }
 
 }

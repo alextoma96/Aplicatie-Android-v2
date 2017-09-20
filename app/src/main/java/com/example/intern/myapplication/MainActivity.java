@@ -66,13 +66,11 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
-
     public void displaySelectedScreen(int id){
         Fragment fragment = null;
         switch (id){
             case R.id.nav_facturi:
-                fragment = new FacturiActivity();
+                fragment = new StatusActivity();
                 break;
             case R.id.nav_aboutUs:
                fragment = new ArticoleFragment();

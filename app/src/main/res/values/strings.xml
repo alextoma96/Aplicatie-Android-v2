@@ -5,8 +5,11 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="toast_lvfacturi">Nu exista nici o factura!</string>
-    <string name="toast_lvUtilizatori">Nu exista nici un utilizator!</string>
+    <string name="toast_lvfacturi">Nu exista facturi!</string>
+    <string name="toast_lvUtilizatori">Nu exista utilizatori!</string>
+    <string name="toast_lvStatus">Nu exista statusuri!</string>
+    <string name="toast_lvClient">Nu exista clienti!</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->

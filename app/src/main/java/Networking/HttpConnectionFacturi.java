@@ -4,6 +4,9 @@ import android.icu.text.DateTimePatternGenerator;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.intern.myapplication.ClientActivity;
+import com.example.intern.myapplication.StatusActivity;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -152,7 +155,10 @@ public class HttpConnectionFacturi extends AsyncTask <String, Void, ArrayList<Fa
             Factura factura = new Factura(serieFactura, numar, dtEstimata, dtEmitere, dtScadenta, suma, tva, total,
                                           memo, responsabil, creatDe, validatDe, emisDe, moneda, statusFactura, client,
                                           identitateCompanie, cotaTVA, observatii);
-            listaFacturi.add(factura);
+            if((factura.getStatusFactura().getStatus().equals(StatusActivity.status)) && (factura.getClient().getNume().equals(ClientActivity.client))) {
+                listaFacturi.add(factura);
+            }
+
         }
         return listaFacturi;
 }
@@ -164,9 +170,8 @@ public class HttpConnectionFacturi extends AsyncTask <String, Void, ArrayList<Fa
     }
 
     private StatusFactura parseStatusFactura(JSONObject object) throws JSONException {
-        Integer id = object.getInt("id");
         String status = object.getString("status");
-        return new StatusFactura(id, status);
+        return new StatusFactura(status);
     }
 
     private Angajat parseAngajat(JSONObject object) throws JSONException {
