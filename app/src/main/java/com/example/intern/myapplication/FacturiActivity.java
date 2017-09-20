@@ -48,21 +48,19 @@ public class FacturiActivity extends Fragment implements Constant{
         lvFacturi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*Intent intent = new Intent(getActivity().getApplicationContext(), FacturaDetailsActivity.class);
-                intent.putExtra(FACTURA_KEY, position);
-                startActivity(intent);*/
+
                 Fragment fragment = new DateGeneraleFragment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 Bundle bundle = new Bundle();
-                //int idd = (int) id;
-                //bundle.putParcelableArray("factura", listaFacturi.get((int) id));
-                bundle.putString("dtEstEm", listaFacturi.get((int) id).getDtEstimata().toString().substring(0,10));
+
+                /*bundle.putString("dtEstEm", listaFacturi.get((int) id).getDtEstimata().toString().substring(0,10));
                 bundle.putString("dtEm", listaFacturi.get((int) id).getDtEmitere().toString().substring(0,10));
                 bundle.putString("serieFac", listaFacturi.get((int) id).getSerieFactura().getCod().toString() + listaFacturi.get((int) id).getSerieFactura().getSecventa().toString());
                 bundle.putString("responsabil", listaFacturi.get((int) id).getAngajat().getNume());
                 bundle.putString("moneda", listaFacturi.get((int) id).getMoneda().getNume());
-                bundle.putString("TVA", listaFacturi.get((int) id).getCotaTVA().getNume());
-                //bundle.putString("ceva", listaFacturi.get(idd).getClient().getNume().toString());
+                bundle.putString("TVA", listaFacturi.get((int) id).getCotaTVA().getNume());*/
+
+                bundle.putParcelable("object", listaFacturi.get(position));
                 fragment.setArguments(bundle);
                 ft.replace(R.id.content_main, fragment);
                 ft.commit();
