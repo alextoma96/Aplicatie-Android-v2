@@ -155,7 +155,7 @@ public class HttpConnectionFacturi extends AsyncTask <String, Void, ArrayList<Fa
             Factura factura = new Factura(serieFactura, numar, dtEstimata, dtEmitere, dtScadenta, suma, tva, total,
                                           memo, responsabil, creatDe, validatDe, emisDe, moneda, statusFactura, client,
                                           identitateCompanie, cotaTVA, observatii);
-            if((factura.getStatusFactura().getStatus().equals(StatusActivity.status)) && (factura.getClient().getNume().equals(ClientActivity.client))) {
+            if((factura.getStatusFactura().getStatus().equals(StatusActivity.status))) {
                 listaFacturi.add(factura);
             }
 

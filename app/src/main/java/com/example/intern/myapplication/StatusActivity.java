@@ -46,7 +46,7 @@ public class StatusActivity extends Fragment implements Constant {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 StatusCount statusObj = adapter.getItem(position);
                 status = statusObj.getStatus();
-                Fragment fragment = new ClientActivity();
+                Fragment fragment = new FacturiActivity();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.content_main, fragment);
                 ft.commit();
