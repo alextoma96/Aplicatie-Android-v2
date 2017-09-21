@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,10 +70,9 @@ public class DateGeneraleFragment extends Fragment {
         validatDe.setText(vValidatDe(factura));
         emisDe.setText(vEmisDe(factura));
 
+        Button butonDateGen = (Button) getActivity().findViewById(R.id.flow_date_gen);
 
-        Button butonFacturi = (Button) getActivity().findViewById(R.id.flow_date_gen);
-
-       butonFacturi.setOnClickListener(new View.OnClickListener() {
+       butonDateGen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new DateGeneraleFragment();
@@ -84,7 +85,7 @@ public class DateGeneraleFragment extends Fragment {
 
         Button butonFurizor = (Button) getActivity().findViewById(R.id.flow_furnizor);
 
-        butonFacturi.setOnClickListener(new View.OnClickListener() {
+        butonFurizor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new FurnizorFragment();

@@ -43,9 +43,9 @@ public class FurnizorFragment extends Fragment {
         codIBAN.setText(vIBAN(factura));
         adresa.setText(vAdresa(factura));
 
-        Button butonFacturi = (Button) getActivity().findViewById(R.id.flow_date_gen);
+        Button butonDateGen = (Button) getActivity().findViewById(R.id.flow_date_gen);
 
-        butonFacturi.setOnClickListener(new View.OnClickListener() {
+        butonDateGen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new DateGeneraleFragment();
