@@ -49,7 +49,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/til_login_password"
         android:id="@+id/cb_login_remember"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"/>
 
     <Button
         android:text="@string/login_btn_login"
@@ -60,6 +60,8 @@
         android:layout_below="@+id/cb_login_remember"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="#1565C0"/>
+        android:background="@layout/button_shape"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"/>
 
 </RelativeLayout>

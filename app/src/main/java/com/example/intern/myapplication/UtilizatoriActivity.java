@@ -64,6 +64,7 @@ public class UtilizatoriActivity extends Fragment implements Constant {
                 }
             }
         };
-        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/utilizator/list");
+        connection.execute("https://api.myjson.com/bins/8q0ll");
+        //connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/utilizator/list");
     }
 }
