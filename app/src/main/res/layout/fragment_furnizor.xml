@@ -129,14 +129,38 @@
         android:theme="@style/TextDreapta"/>
 
     <Button
-        android:id="@+id/flow_back_client"
+        android:id="@+id/flow_clienti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Clienti"
+        android:theme="@style/MyButton"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp"
-        android:layout_marginLeft="30dp"
-        android:text="◀ Clienti"
-        android:theme="@style/MyButton"/>
+        android:layout_alignParentEnd="true"
+        />
+
+
+    <Button
+        android:id="@+id/flow_date_gen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/MyButton"
+        android:text="Date generale"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+
+        android:layout_alignTop="@+id/button6"
+        android:layout_toStartOf="@+id/button6"
+        android:layout_alignEnd="@+id/f2" />
+
+    <Button
+        android:id="@+id/flow_furnizor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/MyButton"
+        android:text="Furnizor"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/flow_clienti"
+        android:layout_marginEnd="20dp" />
 
 
 </RelativeLayout>

@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.intern.myapplication.R;
-import com.example.intern.myapplication.StatusActivity;
 
 import Commons.Factura;
 
@@ -44,9 +43,10 @@ public class ClientFragment extends Fragment {
         codIBAN.setText(vIBAN(factura));
         adresa.setText(vAdresa(factura));
 
-        Button butonDateGen = (Button) getActivity().findViewById(R.id.flow_date_gen);
 
-        butonDateGen.setOnClickListener(new View.OnClickListener() {
+        Button butonFacturi = (Button) getActivity().findViewById(R.id.flow_date_gen);
+
+        butonFacturi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new DateGeneraleFragment();
@@ -57,12 +57,25 @@ public class ClientFragment extends Fragment {
             }
         });
 
-        Button butonFurnizori = (Button) getActivity().findViewById(R.id.flow_furnizor);
+        Button butonFurizor = (Button) getActivity().findViewById(R.id.flow_furnizor);
 
-        butonFurnizori.setOnClickListener(new View.OnClickListener() {
+        butonFacturi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new FurnizorFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_main, fragment);
+                fragment.setArguments(bundle);
+                ft.commit();
+            }
+        });
+
+        Button butonClienti = (Button) getActivity().findViewById(R.id.flow_clienti);
+
+        butonClienti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new ClientFragment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.content_main, fragment);
                 fragment.setArguments(bundle);
