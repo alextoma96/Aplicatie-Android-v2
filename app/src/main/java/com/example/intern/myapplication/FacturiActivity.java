@@ -19,6 +19,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import Commons.Factura;
+import CustomAdapters.FacturaAdapter;
+import CustomAdapters.UserAdapter;
 import Fragments.ArticoleFragment;
 import Fragments.DateGeneraleFragment;
 import Networking.HttpConnectionFacturi;
@@ -30,7 +32,7 @@ public class FacturiActivity extends Fragment implements Constant{
 
     private String STATUS_PREFERENCE_KEY = "status";
     private String CLIENT_PREFERENCE_KEY = "client";
-    TextView tvNoInvoice;
+    Integer imgid = R.drawable.factura;
 
     @Nullable
     @Override
@@ -50,11 +52,11 @@ public class FacturiActivity extends Fragment implements Constant{
 
 
     public void initComponents() {
-        tvNoInvoice = (TextView) getActivity().findViewById(R.id.textNoInvoice);
         lvFacturi = (ListView) getActivity().findViewById(R.id.lista_lv_facturi);
         if (listaFacturi != null) {
-            ArrayAdapter<Factura> adapter = new ArrayAdapter<Factura>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaFacturi);
-            lvFacturi.setAdapter(adapter);
+            //ArrayAdapter<Factura> adapter = new ArrayAdapter<Factura>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaFacturi);
+            final FacturaAdapter facturaAdapter = new FacturaAdapter(this.getActivity(), listaFacturi, imgid);
+            lvFacturi.setAdapter(facturaAdapter);
             lvFacturi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -76,8 +78,6 @@ public class FacturiActivity extends Fragment implements Constant{
                     ft.commit();
                 }
             });
-        } else {
-            tvNoInvoice.setText(getResources().getString(R.string.toast_lvfacturi));
         }
     }
 
@@ -92,7 +92,7 @@ public class FacturiActivity extends Fragment implements Constant{
                 }
             }
         };
-        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/factura/list");
+        //connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/factura/list");
+        connection.execute("https://api.myjson.com/bins/dhhft");
     }
-
 }
