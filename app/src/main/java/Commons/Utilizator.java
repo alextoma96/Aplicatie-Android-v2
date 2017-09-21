@@ -60,9 +60,13 @@ public class Utilizator implements Parcelable{
 
     @Override
     public String toString() {
-        return  "Nume: " + nume +
-                ", username: " + username +
-                ", parola: " + parola +
-                ", angajat: " + angajat.getNume();
+        String utilizator = "Nume: " + nume +
+                ", \nUsername: " + username +
+                ", \nAngajat: ";
+        if (angajat != null && angajat.getNume() != null)
+            utilizator = utilizator + angajat.getNume();
+        else
+            utilizator = utilizator + "null";
+        return   utilizator;
     }
 }
