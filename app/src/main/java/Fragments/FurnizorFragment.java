@@ -1,7 +1,5 @@
 package Fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,7 +13,6 @@ import android.widget.TextView;
 import com.example.intern.myapplication.R;
 
 import Commons.Factura;
-import Commons.IdentitateCompanie;
 
 public class FurnizorFragment extends Fragment {
 
@@ -46,9 +43,35 @@ public class FurnizorFragment extends Fragment {
         codIBAN.setText(vIBAN(factura));
         adresa.setText(vAdresa(factura));
 
-        Button butonClient = (Button) getActivity().findViewById(R.id.flow_back_client);
+        Button butonFacturi = (Button) getActivity().findViewById(R.id.flow_date_gen);
 
-        butonClient.setOnClickListener(new View.OnClickListener() {
+        butonFacturi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new DateGeneraleFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_main, fragment);
+                fragment.setArguments(bundle);
+                ft.commit();
+            }
+        });
+
+        Button butonFurizor = (Button) getActivity().findViewById(R.id.flow_furnizor);
+
+        butonFurizor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new FurnizorFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_main, fragment);
+                fragment.setArguments(bundle);
+                ft.commit();
+            }
+        });
+
+        Button butonClienti = (Button) getActivity().findViewById(R.id.flow_clienti);
+
+        butonClienti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new ClientFragment();

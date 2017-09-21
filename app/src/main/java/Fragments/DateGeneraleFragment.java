@@ -1,8 +1,6 @@
 package Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,10 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.intern.myapplication.FacturiActivity;
-import com.example.intern.myapplication.MainActivity;
 import com.example.intern.myapplication.R;
-import com.example.intern.myapplication.StatusActivity;
 
 import java.text.DateFormat;
 
@@ -73,6 +68,33 @@ public class DateGeneraleFragment extends Fragment {
         validatDe.setText(vValidatDe(factura));
         emisDe.setText(vEmisDe(factura));
 
+
+        Button butonFacturi = (Button) getActivity().findViewById(R.id.flow_date_gen);
+
+       butonFacturi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new DateGeneraleFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_main, fragment);
+                fragment.setArguments(bundle);
+                ft.commit();
+            }
+        });
+
+        Button butonFurizor = (Button) getActivity().findViewById(R.id.flow_furnizor);
+
+        butonFacturi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new FurnizorFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_main, fragment);
+                fragment.setArguments(bundle);
+                ft.commit();
+            }
+        });
+
         Button butonClienti = (Button) getActivity().findViewById(R.id.flow_clienti);
 
         butonClienti.setOnClickListener(new View.OnClickListener() {
@@ -86,17 +108,6 @@ public class DateGeneraleFragment extends Fragment {
             }
         });
 
-        Button butonFacturi = (Button) getActivity().findViewById(R.id.flow_facturi);
-
-        butonFacturi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new StatusActivity();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.content_main, fragment);
-                ft.commit();
-            }
-        });
     }
 
     private String vDtEst(Factura factura){
