@@ -3,6 +3,7 @@ package Commons;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 /**
@@ -140,7 +141,7 @@ public class Factura implements Parcelable{
     @Override
     public String toString() {
         return  "Client: " + client.getNume()+
-                ", dată emitere: '" + dtEmitere +
+                ", dată emitere: " + DateFormat.getDateInstance().format(dtEmitere) +
                 ", serie/nr.: " + serieFactura.getCod() + " " + numar +
                 ", total: " + total +
                 ", moneda: " + moneda.getCod() +
