@@ -13,7 +13,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
-        android:text="Nume client:" />
+        android:text="Nume client:"
+        android:theme="@style/TextStanga"/>
 
     <TextView
         android:id="@+id/c2"
@@ -22,7 +23,8 @@
         android:layout_alignStart="@+id/c1"
         android:layout_below="@+id/c1"
         android:layout_marginTop="15dp"
-        android:text="Cod inregistrare:" />
+        android:text="Cod inregistrare:"
+        android:theme="@style/TextStanga"/>
 
     <TextView
         android:id="@+id/c3"
@@ -31,7 +33,8 @@
         android:layout_alignStart="@+id/c2"
         android:layout_below="@+id/c2"
         android:layout_marginTop="15dp"
-        android:text="Cod fiscal:" />
+        android:text="Cod fiscal:"
+        android:theme="@style/TextStanga"/>
 
     <TextView
         android:id="@+id/c4"
@@ -40,7 +43,8 @@
         android:layout_alignStart="@+id/c3"
         android:layout_below="@+id/c3"
         android:layout_marginTop="15dp"
-        android:text="Banca:" />
+        android:text="Banca:"
+        android:theme="@style/TextStanga"/>
 
     <TextView
         android:id="@+id/c5"
@@ -49,7 +53,8 @@
         android:layout_alignStart="@+id/c4"
         android:layout_below="@+id/c4"
         android:layout_marginTop="15dp"
-        android:text="Cod IBAN:" />
+        android:text="Cod IBAN:"
+        android:theme="@style/TextStanga"/>
 
     <TextView
         android:id="@+id/c6"
@@ -58,7 +63,8 @@
         android:layout_alignStart="@+id/c5"
         android:layout_below="@+id/c5"
         android:layout_marginTop="15dp"
-        android:text="Adresa:" />
+        android:text="Adresa:"
+        android:theme="@style/TextStanga"/>
 
 
     <TextView
@@ -69,7 +75,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="200dp"
         android:layout_marginTop="30dp"
-        android:text="Nume companie" />
+        android:text="Nume companie"
+        android:theme="@style/TextDreapta"/>
 
     <TextView
         android:id="@+id/codInC"
@@ -78,7 +85,8 @@
         android:layout_alignStart="@+id/numClient"
         android:layout_below="@+id/numClient"
         android:layout_marginTop="15dp"
-        android:text="Cod Inregistrare" />
+        android:text="Cod Inregistrare"
+        android:theme="@style/TextDreapta"/>
 
     <TextView
         android:id="@+id/codFisC"
@@ -87,7 +95,8 @@
         android:layout_alignStart="@+id/codInC"
         android:layout_below="@+id/codInC"
         android:layout_marginTop="15dp"
-        android:text="Cod Fiscal" />
+        android:text="Cod Fiscal"
+        android:theme="@style/TextDreapta"/>
 
     <TextView
         android:id="@+id/bancaC"
@@ -96,7 +105,8 @@
         android:layout_alignStart="@+id/codFisC"
         android:layout_below="@+id/codFisC"
         android:layout_marginTop="15dp"
-        android:text="Banca" />
+        android:text="Banca"
+        android:theme="@style/TextDreapta"/>
 
     <TextView
         android:id="@+id/codIBANC"
@@ -105,7 +115,8 @@
         android:layout_alignStart="@+id/bancaC"
         android:layout_below="@+id/bancaC"
         android:layout_marginTop="15dp"
-        android:text="Cod IBAN" />
+        android:text="Cod IBAN"
+        android:theme="@style/TextDreapta"/>
 
     <TextView
         android:id="@+id/adresaC"
@@ -114,26 +125,29 @@
         android:layout_alignStart="@+id/c6"
         android:layout_below="@+id/c6"
         android:layout_marginTop="15dp"
-        android:text="Adresa" />
+        android:text="Adresa"
+        android:theme="@style/TextDreapta"/>
 
     <Button
         android:id="@+id/flow_date_gen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/adresaC"
-        android:layout_marginBottom="48dp"
-        android:text="◀ Date generale" />
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="40dp"
+        android:text="◀ Date generale"
+        android:theme="@style/MyButton"/>
 
     <Button
         android:id="@+id/flow_furnizor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/flow_date_gen"
         android:layout_alignBottom="@+id/flow_date_gen"
-        android:layout_alignStart="@+id/codIBANC"
-        android:layout_marginBottom="0dp"
-        android:layout_marginStart="24dp"
-        android:text="Furnizor ▶" />
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:text="Furnizor ▶"
+        android:theme="@style/MyButton"/>
 
 
 </RelativeLayout>
