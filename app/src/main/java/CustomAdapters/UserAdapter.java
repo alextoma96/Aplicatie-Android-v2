@@ -2,6 +2,9 @@ package CustomAdapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,9 +50,11 @@ public class UserAdapter extends ArrayAdapter<Utilizator> {
         nume.setText((CharSequence) "Nume: " + list.get(position).getNume());
         username.setText((CharSequence) "Username: " + list.get(position).getUsername());
         if(list.get(position).getAngajat() == null ) {
-            angajat.setText((CharSequence) "Angajat: -");
+            String angajatText="Angajat: -";
+            angajat.setText((CharSequence) Html.fromHtml(angajatText, Html.FROM_HTML_MODE_LEGACY) );
         } else {
-            angajat.setText((CharSequence) "Angajat: " + list.get(position).getAngajat().getNume());
+            String angajatText =  "<b>Angajat:</b> ";
+            angajat.setText((CharSequence) Html.fromHtml(angajatText, Html.FROM_HTML_MODE_LEGACY) + list.get(position).getAngajat().getNume());
         }
         int listItemBackgroundPosition = position % listItemBackground.length;
         rowView.setBackgroundResource(listItemBackground[listItemBackgroundPosition]);
