@@ -44,9 +44,9 @@ public class ClientFragment extends Fragment {
         adresa.setText(vAdresa(factura));
 
 
-        Button butonFacturi = (Button) getActivity().findViewById(R.id.flow_date_gen);
+        Button butonDateGen = (Button) getActivity().findViewById(R.id.flow_date_gen);
 
-        butonFacturi.setOnClickListener(new View.OnClickListener() {
+        butonDateGen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new DateGeneraleFragment();
@@ -59,7 +59,7 @@ public class ClientFragment extends Fragment {
 
         Button butonFurizor = (Button) getActivity().findViewById(R.id.flow_furnizor);
 
-        butonFacturi.setOnClickListener(new View.OnClickListener() {
+        butonFurizor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new FurnizorFragment();
