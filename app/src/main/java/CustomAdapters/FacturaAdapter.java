@@ -58,9 +58,9 @@ public class FacturaAdapter extends ArrayAdapter<Factura> implements Constant{
         if(list.get(position).getStatusFactura() != null) {
             status.setText((CharSequence) list.get(position).getStatusFactura().getStatus());
         }
-//        if(list.get(position).getSuma())) {
-//            suma.setText((CharSequence) String.valueOf(list.get(position).getSuma()));
-//        }
+        if(Double.valueOf(list.get(position).getSuma()) != null && list.get(position).getMoneda() != null) {
+            suma.setText((CharSequence) String.valueOf(list.get(position).getSuma()) + " " + list.get(position).getMoneda().getNume());
+        }
         if(list.get(position).getClient() != null) {
             client.setText((CharSequence) list.get(position).getClient().getNume());
         }
