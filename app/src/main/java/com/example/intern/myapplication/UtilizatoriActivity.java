@@ -18,12 +18,15 @@ import java.util.ArrayList;
 
 import Commons.Factura;
 import Commons.Utilizator;
+import CustomAdapters.StatusAdapter;
+import CustomAdapters.UserAdapter;
 import Networking.HttpConnectionFacturi;
 import Networking.HttpConnectionUtilizatori;
 import Utils.Constant;
 
 public class UtilizatoriActivity extends Fragment implements Constant {
 
+    Integer imgid = R.drawable.usercard;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,8 +45,10 @@ public class UtilizatoriActivity extends Fragment implements Constant {
 
     public void initComponents() {
         lvUtilizatori = (ListView) getActivity().findViewById(R.id.lista_lv_utilizatori);
-        ArrayAdapter<Utilizator> adapter = new ArrayAdapter<Utilizator>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaUtilizatori);
-        lvUtilizatori.setAdapter(adapter);
+        //ArrayAdapter<Utilizator> adapter = new ArrayAdapter<Utilizator>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaUtilizatori);
+        final UserAdapter userAdapter = new UserAdapter(this.getActivity(), listaUtilizatori, imgid);
+
+        lvUtilizatori.setAdapter(userAdapter);
     }
 
     public void consumeHttpConnection() {

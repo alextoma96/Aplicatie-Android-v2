@@ -13,23 +13,21 @@ import com.example.intern.myapplication.R;
 
 import java.util.List;
 
-import Commons.StatusCount;
+import Commons.Utilizator;
 
 /**
  * Created by idanciu on 9/21/2017.
  */
 
-public class StatusAdapter extends ArrayAdapter<StatusCount>{
+public class UserAdapter extends ArrayAdapter<Utilizator> {
     private final Context context;
-    private List<StatusCount> list;
-    private Integer imgid[];
-
+    private List<Utilizator> list;
+    private Integer imgid;
     int[] listItemBackground = new int[] { R.layout.list_background1,
             R.layout.list_background2 };
 
-
-    public StatusAdapter(Activity context, List<StatusCount> itemname, Integer imgid[]) {
-        super(context, R.layout.status_list, itemname);
+    public UserAdapter(Activity context, List<Utilizator> itemname, Integer imgid) {
+        super(context, R.layout.user_list, itemname);
         this.context = context;
         this.list = itemname;
         this.imgid = imgid;
@@ -37,17 +35,26 @@ public class StatusAdapter extends ArrayAdapter<StatusCount>{
 
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView=inflater.inflate(R.layout.status_list, null,true);
+        View rowView=inflater.inflate(R.layout.user_list, null,true);
 
 
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-        TextView extratxt = (TextView) rowView.findViewById(R.id.Itemname);
+        TextView nume= (TextView) rowView.findViewById(R.id.tv_nume);
+        TextView username = (TextView) rowView.findViewById(R.id.tv_username);
+        TextView angajat = (TextView) rowView.findViewById(R.id.tv_angajat);
 
 
-        imageView.setImageResource(imgid[position]);
-        extratxt.setText((CharSequence) list.get(position).getStatus() + " (" + list.get(position).getNrFacturi() + " facturi)");
+        imageView.setImageResource(imgid);
+        nume.setText((CharSequence) "Nume: " + list.get(position).getNume());
+        username.setText((CharSequence) "Username: " + list.get(position).getUsername());
+        if(list.get(position).getAngajat() == null ) {
+            angajat.setText((CharSequence) "Angajat: -");
+        } else {
+            angajat.setText((CharSequence) "Angajat: " + list.get(position).getAngajat().getNume());
+        }
         int listItemBackgroundPosition = position % listItemBackground.length;
         rowView.setBackgroundResource(listItemBackground[listItemBackgroundPosition]);
+
         return rowView;
 
     };

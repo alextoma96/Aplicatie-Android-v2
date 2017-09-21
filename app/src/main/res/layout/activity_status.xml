@@ -15,6 +15,8 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lista_lv_status">
+        android:id="@+id/lista_lv_status"
+        android:divider="@layout/divider"
+        android:dividerHeight="10dp">
     </ListView>
 </RelativeLayout>
