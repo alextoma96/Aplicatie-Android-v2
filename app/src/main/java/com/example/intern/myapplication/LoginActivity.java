@@ -11,8 +11,12 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -30,6 +34,7 @@ public class LoginActivity extends Fragment {
     private EditText etusername;
     private EditText etpassword;
     private CheckBox cbrmbrcred;
+    Button btnLogin;
 
     String users=null;
     String pass=null;
@@ -37,13 +42,13 @@ public class LoginActivity extends Fragment {
 
     List<Utilizator> userList = new ArrayList<>();
 
-    private SharedPreferences preferenceSettings;
-    private SharedPreferences.Editor preferenceEditor;
-
     private String USERNAME_PREFERENCE_KEY="username";
 
     private String PASSWORD_PREFERENCE_KEY="password";
     private String CHECKBOX_PREFERENCE_KEY="checkbox";
+
+    private SharedPreferences preferenceSettings;
+    private SharedPreferences.Editor preferenceEditor;
 
     @Nullable
     @Override
@@ -56,6 +61,7 @@ public class LoginActivity extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Login");
         init();
+        setHasOptionsMenu(true);
     }
 
 
@@ -64,6 +70,7 @@ public class LoginActivity extends Fragment {
         etusername = (EditText) getActivity().findViewById(R.id.et_login_username);
         etpassword = (EditText) getActivity().findViewById(R.id.et_login_password);
         cbrmbrcred = (CheckBox) getActivity().findViewById(R.id.cb_login_remember);
+        btnLogin = (Button) getActivity().findViewById(R.id.btn_login_button);
         boolean cb;
         if(cbrmbrcred.isChecked()){
             cb=true;
@@ -83,29 +90,32 @@ public class LoginActivity extends Fragment {
             etpassword.setText(preferencePassword);
             cbrmbrcred.setChecked(true);
         }
-    }
 
-    public void logInActivity(View v){
-        final boolean cb;
-        if(v.getId()==R.id.btn_login_button){
-            if(cbrmbrcred.isChecked()){
-                cb=true;
-            }else{
-                cb=false;
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final boolean cb;
+                if(v.getId()==R.id.btn_login_button){
+                    if(cbrmbrcred.isChecked()){
+                        cb=true;
+                    }else{
+                        cb=false;
+                    }
+                    final String username=etusername.getText().toString();
+                    final String password=etpassword.getText().toString();
+                    if(validation(username, password)){
+                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        startActivity(intent);
+                        preferenceEditor.putBoolean(CHECKBOX_PREFERENCE_KEY, cb);
+                        preferenceEditor.putString(USERNAME_PREFERENCE_KEY, username);
+                        preferenceEditor.putString(PASSWORD_PREFERENCE_KEY, password);
+                        boolean successfulSave = preferenceEditor.commit();
+                    } else{
+                        Toast.makeText(getContext(),R.string.login_toast2, Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
-            final String username=etusername.getText().toString();
-            final String password=etpassword.getText().toString();
-            if(validation(username, password)){
-                Intent intent = new Intent(getContext(), MainActivity.class);
-                startActivity(intent);
-                preferenceEditor.putBoolean(CHECKBOX_PREFERENCE_KEY, cb);
-                preferenceEditor.putString(USERNAME_PREFERENCE_KEY, username);
-                preferenceEditor.putString(PASSWORD_PREFERENCE_KEY, password);
-                boolean successfulSave = preferenceEditor.commit();
-            } else{
-                Toast.makeText(getContext(),R.string.login_toast2, Toast.LENGTH_SHORT).show();
-            }
-        }
+        });
     }
 
     public boolean validation(String u, String p) {
@@ -138,4 +148,11 @@ public class LoginActivity extends Fragment {
         };
         connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/utilizator/list");
     }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.nav_logout).setVisible(false);
+        super.onPrepareOptionsMenu(menu);
+    }
+
 }

@@ -31,8 +31,8 @@
             android:label="@string/title_activity_details" />
         <fragment android:name=".SettingsActivity" />
 
-        <activity android:name=".LoginActivity" >
-        </activity>
+        <fragment android:name=".LoginActivity" >
+        </fragment>
 
         <fragment android:name=".UtilizatoriActivity" />
 

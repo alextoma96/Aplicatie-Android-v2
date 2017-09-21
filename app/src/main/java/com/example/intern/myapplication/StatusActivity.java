@@ -15,23 +15,34 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import Commons.StatusCount;
+import CustomAdapters.StatusAdapter;
 import Networking.HttpConnectionStatus;
 import Utils.Constant;
 
 public class StatusActivity extends Fragment implements Constant {
     public static String status = "";
 
+    Integer[] imgid = {
+            R.drawable.validated,
+            R.drawable.archived,
+            R.drawable.finished,
+            R.drawable.emitted,
+            R.drawable.draft,
+            R.drawable.activated
+    };
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         consumeHttpConnection();
         return inflater.inflate(R.layout.activity_status, container, false);
+
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Status factura");
+        getActivity().setTitle("Facturi per status");
     }
 
     ListView lvStatus;
@@ -39,17 +50,18 @@ public class StatusActivity extends Fragment implements Constant {
 
     public void initComponents() {
         lvStatus = (ListView) getActivity().findViewById(R.id.lista_lv_status);
-        final ArrayAdapter<StatusCount> adapter = new ArrayAdapter<StatusCount>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaStatus);
-        lvStatus.setAdapter(adapter);
+        //final ArrayAdapter<StatusCount> adapter = new ArrayAdapter<StatusCount>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaStatus);
+        final StatusAdapter statusAdapter = new StatusAdapter(this.getActivity(), listaStatus, imgid);
+        lvStatus.setAdapter(statusAdapter);
         lvStatus.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                StatusCount statusObj = adapter.getItem(position);
+                StatusCount statusObj = statusAdapter.getItem(position);
                 status = statusObj.getStatus();
-                Fragment fragment = new FacturiActivity();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.content_main, fragment);
-                ft.commit();
+                    Fragment fragment = new FacturiActivity();
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.content_main, fragment);
+                    ft.commit();
             }
         });
 
