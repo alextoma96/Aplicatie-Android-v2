@@ -86,8 +86,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_utilizatori:
                 fragment = new UtilizatoriActivity();
                 break;
-            case R.id.nav_theme_settings:
-                fragment = new ThemeSettingsActivity();
+            case R.id.nav_login:
+                fragment = new LoginActivity();
                 break;
         }
         if (fragment != null){

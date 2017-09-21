@@ -24,8 +24,8 @@
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="Setari" />
         <item
-            android:id="@+id/nav_theme_settings"
+            android:id="@+id/nav_login"
             android:icon="@drawable/ic_settings_black_24dp"
-            android:title="Theme Settings" />
+            android:title="Login" />
     </group>
 </menu>

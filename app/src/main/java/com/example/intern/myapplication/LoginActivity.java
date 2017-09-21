@@ -1,14 +1,21 @@
 package com.example.intern.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -18,7 +25,7 @@ import Commons.Utilizator;
 import Networking.HttpConnectionUtilizatori;
 import Utils.Constant;
 
-public class LoginActivity extends FragmentActivity implements Constant{
+public class LoginActivity extends Fragment {
 
     private EditText etusername;
     private EditText etpassword;
@@ -34,29 +41,36 @@ public class LoginActivity extends FragmentActivity implements Constant{
     private SharedPreferences.Editor preferenceEditor;
 
     private String USERNAME_PREFERENCE_KEY="username";
+
     private String PASSWORD_PREFERENCE_KEY="password";
     private String CHECKBOX_PREFERENCE_KEY="checkbox";
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_login, container, false);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getActivity().setTitle("Login");
         init();
     }
 
+
     private void init() {
         consumeHttpConnection();
-        etusername = (EditText) findViewById(R.id.et_login_username);
-        etpassword = (EditText) findViewById(R.id.et_login_password);
-        cbrmbrcred = (CheckBox) findViewById(R.id.cb_login_remember);
+        etusername = (EditText) getActivity().findViewById(R.id.et_login_username);
+        etpassword = (EditText) getActivity().findViewById(R.id.et_login_password);
+        cbrmbrcred = (CheckBox) getActivity().findViewById(R.id.cb_login_remember);
         boolean cb;
         if(cbrmbrcred.isChecked()){
             cb=true;
         }else{
             cb=false;
         }
-        preferenceSettings = getSharedPreferences(PREFERENCE_FILE, PREFERENCE_MODE_PRIVATE);
+        preferenceSettings = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
         preferenceEditor = preferenceSettings.edit();
         String username = etusername.getText().toString();
         String password = etpassword.getText().toString();
@@ -82,14 +96,14 @@ public class LoginActivity extends FragmentActivity implements Constant{
             final String username=etusername.getText().toString();
             final String password=etpassword.getText().toString();
             if(validation(username, password)){
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getContext(), MainActivity.class);
                 startActivity(intent);
                 preferenceEditor.putBoolean(CHECKBOX_PREFERENCE_KEY, cb);
                 preferenceEditor.putString(USERNAME_PREFERENCE_KEY, username);
                 preferenceEditor.putString(PASSWORD_PREFERENCE_KEY, password);
                 boolean successfulSave = preferenceEditor.commit();
             } else{
-                Toast.makeText(this,R.string.login_toast2, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),R.string.login_toast2, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -122,6 +136,6 @@ public class LoginActivity extends FragmentActivity implements Constant{
                 }
             }
         };
-        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/utilizator/list");
+        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/utilizator/list");
     }
 }
