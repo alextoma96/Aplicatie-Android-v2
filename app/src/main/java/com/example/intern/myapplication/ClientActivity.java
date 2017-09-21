@@ -74,7 +74,7 @@ public class ClientActivity extends Fragment implements Constant {
                 }
             }
         };
-        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "192.168.196.2:8080") + "/kepres2Web/api/rs/clientCount/list");
+        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/clientCount/list");
     }
 
 

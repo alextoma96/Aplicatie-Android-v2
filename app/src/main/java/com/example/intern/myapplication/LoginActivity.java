@@ -122,6 +122,6 @@ public class LoginActivity extends FragmentActivity implements Constant{
                 }
             }
         };
-        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.196.2:8080") + "/kepres2Web/api/rs/utilizator/list");
+        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/utilizator/list");
     }
 }
