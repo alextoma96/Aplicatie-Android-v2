@@ -92,7 +92,7 @@ public class FacturiActivity extends Fragment implements Constant{
                 }
             }
         };
-        //connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/factura/list");
-        connection.execute("https://api.myjson.com/bins/dhhft");
+        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/factura/list");
+
     }
 }

@@ -140,28 +140,25 @@
             android:id="@+id/flow_date_gen"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:text="Date genrale"
-            android:layout_marginLeft="-5dp"
-            android:layout_marginRight="-5dp"
-            android:layout_weight="1"/>
+            android:text="Date generale"
+            android:layout_weight="1"
+            android:background="#0173B9"/>
 
         <Button
             android:id="@+id/flow_clienti"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_marginLeft="-5dp"
-            android:layout_marginRight="-5dp"
             android:text="Client"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="#0173B9"/>
 
         <Button
             android:id="@+id/flow_furnizor"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_marginLeft="-5dp"
-            android:layout_marginRight="-5dp"
             android:text="Furnizor"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="#005AA0"/>
     </LinearLayout>
 
 </RelativeLayout>

@@ -79,8 +79,8 @@ public class StatusActivity extends Fragment implements Constant {
                 }
             }
         };
-       // connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/statusCount/list");
-        connection.execute("https://api.myjson.com/bins/9bg7d");
+       connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/statusCount/list");
+
     }
 
 
