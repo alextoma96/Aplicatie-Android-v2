@@ -17,7 +17,7 @@
             android:title="Facturi" />
         <item
             android:id="@+id/nav_aboutUs"
-            android:icon="@drawable/ic_tag_faces_black_24dp"
+            android:icon="@drawable/inbox"
             android:title="Mesaje" />
         <item
             android:id="@+id/nav_settings"
