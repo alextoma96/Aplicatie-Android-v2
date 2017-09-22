@@ -16,7 +16,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.intern.myapplication.FacturiActivity;
@@ -25,6 +29,8 @@ import com.example.intern.myapplication.OnSwipeTouchListener;
 import com.example.intern.myapplication.R;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import Commons.Factura;
 
@@ -54,7 +60,14 @@ public class DateGeneraleFragment extends Fragment {
         final Bundle bundle = this.getArguments();
         final Factura factura = bundle.getParcelable("object");
 
-        TextView dtEst = (TextView) getActivity().findViewById(R.id.dg1);
+        ListView date_gen = (ListView) getActivity().findViewById(R.id.lista_date_genrale);
+        List<String> listDate = new ArrayList<String>();
+        listDate.add("1");
+        listDate.add("2");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1,listDate );
+        date_gen.setAdapter(arrayAdapter);
+
+        /*TextView dtEst = (TextView) getActivity().findViewById(R.id.dg1);
         TextView dtEm = (TextView) getActivity().findViewById(R.id.dg2);
         TextView serie = (TextView) getActivity().findViewById(R.id.dg3);
         TextView responsabil = (TextView) getActivity().findViewById(R.id.dg4);
@@ -88,7 +101,7 @@ public class DateGeneraleFragment extends Fragment {
         dtScad.setText(Html.fromHtml(dtscad, Html.FROM_HTML_MODE_LEGACY));
         creatDe.setText(Html.fromHtml(creatde, Html.FROM_HTML_MODE_LEGACY));
         validatDe.setText(Html.fromHtml(valid, Html.FROM_HTML_MODE_LEGACY));
-        emisDe.setText(Html.fromHtml(emis, Html.FROM_HTML_MODE_LEGACY));
+        emisDe.setText(Html.fromHtml(emis, Html.FROM_HTML_MODE_LEGACY));*/
 
         Button butonDateGen = (Button) getActivity().findViewById(R.id.flow_date_gen);
 
