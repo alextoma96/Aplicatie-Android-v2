@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.intern.myapplication.FacturiActivity;
+import com.example.intern.myapplication.OnSwipeTouchListener;
 import com.example.intern.myapplication.R;
 
 import Commons.Factura;
@@ -89,7 +91,16 @@ public class FurnizorFragment extends Fragment {
                 ft.commit();
             }
         });
-
+        view.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
+            @Override
+            public void onSwipeRight() {
+                Fragment fragment = new ClientFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_main, fragment);
+                fragment.setArguments(bundle);
+                ft.commit();
+            }
+        });
     }
     private String vNumComp(Factura factura){
         if (factura.getIdentitateCompanie() != null && factura.getIdentitateCompanie().getNume() != null)
