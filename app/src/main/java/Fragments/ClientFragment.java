@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,19 +30,27 @@ public class ClientFragment extends Fragment {
         final Bundle bundle = this.getArguments();
         Factura factura = bundle.getParcelable("object");
 
-        TextView numComp = (TextView) getActivity().findViewById(R.id.numClient);
-        TextView codIn = (TextView) getActivity().findViewById(R.id.codInC);
-        TextView codFis = (TextView) getActivity().findViewById(R.id.codFisC);
-        TextView banca = (TextView) getActivity().findViewById(R.id.bancaC);
-        TextView codIBAN = (TextView) getActivity().findViewById(R.id.codIBANC);
-        TextView adresa = (TextView) getActivity().findViewById(R.id.adresaC);
+        TextView numComp = (TextView) getActivity().findViewById(R.id.c1);
+        TextView codIn = (TextView) getActivity().findViewById(R.id.c2);
+        TextView codFis = (TextView) getActivity().findViewById(R.id.c3);
+        TextView banca = (TextView) getActivity().findViewById(R.id.c4);
+        TextView codIBAN = (TextView) getActivity().findViewById(R.id.c5);
+        TextView adresa = (TextView) getActivity().findViewById(R.id.c6);
 
-        numComp.setText(vNumComp(factura));
-        codIn.setText(vCodIn(factura));
-        codFis.setText(vCodFis(factura));
-        banca.setText(vBanca(factura));
-        codIBAN.setText(vIBAN(factura));
-        adresa.setText(vAdresa(factura));
+
+        String numC = "<b>" + "Nume client: " + "</b>" + vNumComp(factura);
+        String codI = "<b>" + "Cod inregistrare: " + "</b>" + vCodIn(factura);
+        String codF = "<b>" + "Cod fiscal : " + "</b>" + vCodFis(factura);
+        String ban = "<b>" + "Banca: " + "</b>" + vBanca(factura);
+        String iban = "<b>" + "Cod IBAN: " + "</b>" + vIBAN(factura);
+        String adr = "<b>" + "Adresa: " + "</b>" + vAdresa(factura);
+
+        numComp.setText(Html.fromHtml(numC, Html.FROM_HTML_MODE_LEGACY));
+        codIn.setText(Html.fromHtml(codI, Html.FROM_HTML_MODE_LEGACY));
+        codFis.setText(Html.fromHtml(codF, Html.FROM_HTML_MODE_LEGACY));
+        banca.setText(Html.fromHtml(ban, Html.FROM_HTML_MODE_LEGACY));
+        codIBAN.setText(Html.fromHtml(iban, Html.FROM_HTML_MODE_LEGACY));
+        adresa.setText(Html.fromHtml(adr, Html.FROM_HTML_MODE_LEGACY));
 
 
         Button butonDateGen = (Button) getActivity().findViewById(R.id.flow_date_gen);

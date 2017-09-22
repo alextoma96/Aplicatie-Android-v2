@@ -6,237 +6,107 @@
     tools:context="Fragments.DateGeneraleFragment"
     android:background="#FFFFFF">
 
-    <TextView
-        android:id="@+id/dg1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:text="Dt. est. emitere:"
-        android:theme="@style/TextStanga"/>
 
-    <TextView
-        android:id="@+id/dg2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dg1"
-        android:layout_below="@+id/dg1"
-        android:layout_marginTop="15dp"
-        android:text="Dt. emitere:"
-        android:theme="@style/TextStanga"/>
+        <TextView
+            android:id="@+id/dg1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:theme="@style/Text"/>
 
-    <TextView
-        android:id="@+id/dg3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dg2"
-        android:layout_below="@+id/dg2"
-        android:layout_marginTop="15dp"
-        android:text="Serie factura:"
-        android:theme="@style/TextStanga"/>
+        <TextView
+            android:id="@+id/dg2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/dg1"
+            android:layout_below="@+id/dg1"
+            android:layout_marginTop="15dp"
+            android:theme="@style/Text"/>
 
-    <TextView
-        android:id="@+id/dg4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dg3"
-        android:layout_below="@+id/dg3"
-        android:layout_marginTop="15dp"
-        android:text="Responsabil:"
-        android:theme="@style/TextStanga"/>
+        <TextView
+            android:id="@+id/dg3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/dg2"
+            android:layout_below="@+id/dg2"
+            android:layout_marginTop="15dp"
+            android:theme="@style/Text"/>
 
-    <TextView
-        android:id="@+id/dg5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dg4"
-        android:layout_below="@+id/dg4"
-        android:layout_marginTop="15dp"
-        android:text="Moneda:"
-        android:theme="@style/TextStanga"/>
+        <TextView
+            android:id="@+id/dg4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/dg3"
+            android:layout_below="@+id/dg3"
+            android:layout_marginTop="15dp"
+            android:theme="@style/Text"/>
 
-    <TextView
-        android:id="@+id/dg6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dg5"
-        android:layout_below="@+id/dg5"
-        android:layout_marginTop="15dp"
-        android:text="Cota TVA:"
-        android:theme="@style/TextStanga"/>
+        <TextView
+            android:id="@+id/dg5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/dg4"
+            android:layout_below="@+id/dg4"
+            android:layout_marginTop="15dp"
+            android:theme="@style/Text"/>
 
-    <TextView
-        android:id="@+id/dg7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dg6"
-        android:layout_below="@+id/dg6"
-        android:layout_marginTop="15dp"
-        android:text="Status factura:"
-        android:theme="@style/TextStanga"/>
+        <TextView
+            android:id="@+id/dg6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/dg5"
+            android:layout_below="@+id/dg5"
+            android:layout_marginTop="15dp"
+            android:theme="@style/Text"/>
 
-    <TextView
-        android:id="@+id/dg8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dg7"
-        android:layout_below="@+id/dg7"
-        android:layout_marginTop="15dp"
-        android:text="Dt. scadenta:"
-        android:theme="@style/TextStanga"/>
+        <TextView
+            android:id="@+id/dg7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/dg6"
+            android:layout_below="@+id/dg6"
+            android:layout_marginTop="15dp"
+            android:theme="@style/Text"/>
 
-    <TextView
-        android:id="@+id/dg9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dg8"
-        android:layout_below="@+id/dg8"
-        android:layout_marginTop="15dp"
-        android:text="Creat de:"
-        android:theme="@style/TextStanga"/>
+        <TextView
+            android:id="@+id/dg8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/dg7"
+            android:layout_below="@+id/dg7"
+            android:layout_marginTop="15dp"
+            android:theme="@style/Text"/>
 
-    <TextView
-        android:id="@+id/dg10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dg9"
-        android:layout_below="@+id/dg9"
-        android:layout_marginTop="15dp"
-        android:text="Validat de:"
-        android:theme="@style/TextStanga"/>
+        <TextView
+            android:id="@+id/dg9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/dg8"
+            android:layout_below="@+id/dg8"
+            android:layout_marginTop="15dp"
+            android:theme="@style/Text"/>
 
-    <TextView
-        android:id="@+id/dg11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dg10"
-        android:layout_below="@+id/dg10"
-        android:layout_marginTop="15dp"
-        android:text="Emis de:"
-        android:theme="@style/TextStanga"/>
+        <TextView
+            android:id="@+id/dg10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/dg9"
+            android:layout_below="@+id/dg9"
+            android:layout_marginTop="15dp"
+            android:theme="@style/Text"/>
 
-    <TextView
-        android:id="@+id/dtEst"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="30dp"
-        android:text="Dt. est. emitere"
-        android:theme="@style/TextDreapta"/>
+        <TextView
+            android:id="@+id/dg11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/dg10"
+            android:layout_below="@+id/dg10"
+            android:layout_marginTop="15dp"
+            android:theme="@style/Text"/>
 
-    <TextView
-        android:id="@+id/dtEm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dtEst"
-        android:layout_below="@+id/dtEst"
-        android:layout_marginTop="15dp"
-        android:text="Dt. emitere"
-        android:theme="@style/TextDreapta"/>
-
-    <TextView
-        android:id="@+id/serieCod"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dtEm"
-        android:layout_below="@+id/dtEm"
-        android:layout_marginTop="15dp"
-        android:text="Cod"
-        android:theme="@style/TextDreapta"/>
-
-    <TextView
-        android:id="@+id/serieSec"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/serieCod"
-        android:layout_marginStart="5dp"
-        android:layout_toEndOf="@+id/serieCod"
-        android:text="sec"
-        android:theme="@style/TextDreapta"/>
-
-    <TextView
-        android:id="@+id/responsabil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/serieCod"
-        android:layout_below="@+id/serieCod"
-        android:layout_marginTop="15dp"
-        android:text="responsabil"
-        android:theme="@style/TextDreapta"/>
-
-    <TextView
-        android:id="@+id/moneda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/responsabil"
-        android:layout_below="@+id/responsabil"
-        android:layout_marginTop="15dp"
-        android:text="moneda"
-        android:theme="@style/TextDreapta"/>
-
-    <TextView
-        android:id="@+id/tva"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/moneda"
-        android:layout_below="@+id/moneda"
-        android:layout_marginTop="15dp"
-        android:text="TVA"
-        android:theme="@style/TextDreapta"/>
-
-    <TextView
-        android:id="@+id/status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tva"
-        android:layout_below="@+id/tva"
-        android:layout_marginTop="15dp"
-        android:text="status"
-        android:theme="@style/TextDreapta"/>
-
-    <TextView
-        android:id="@+id/dtScad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/status"
-        android:layout_below="@+id/status"
-        android:layout_marginTop="15dp"
-        android:text="dtScad"
-        android:theme="@style/TextDreapta"/>
-
-    <TextView
-        android:id="@+id/creatDe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dtScad"
-        android:layout_below="@+id/dtScad"
-        android:layout_marginTop="15dp"
-        android:text="creatDe"
-        android:theme="@style/TextDreapta"/>
-
-    <TextView
-        android:id="@+id/validatDe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/creatDe"
-        android:layout_below="@+id/creatDe"
-        android:layout_marginTop="15dp"
-        android:text="validatDe"
-        android:theme="@style/TextDreapta"/>
-
-    <TextView
-        android:id="@+id/emisDe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/validatDe"
-        android:layout_below="@+id/validatDe"
-        android:layout_marginTop="15dp"
-        android:text="emisDe"
-        android:theme="@style/TextDreapta"/>
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
