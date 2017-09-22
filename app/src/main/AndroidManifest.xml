@@ -23,21 +23,19 @@
             </intent-filter>
         </activity>
 
-        <fragment android:name=".FacturiActivity" />
+        <fragment android:name=".FacturiActivity" android:parentActivityName="com.example.intern.myapplication.StatusActivity" android:launchMode="singleTop"/>
 
-        <activity android:name=".FacturaDetailsActivity" />
+        <fragment android:name=".FacturaDetailsActivity" android:parentActivityName="com.example.intern.myapplication.FacturiActivity" android:launchMode="singleTop"/>
 
         <fragment
             android:name=".DetailsActivity"
             android:label="@string/title_activity_details" />
-        <fragment android:name=".SettingsActivity" />
-        <fragment android:name=".LoginActivity"></fragment>
-        <fragment android:name=".UtilizatoriActivity" />
+        <fragment android:name=".SettingsActivity"  android:parentActivityName="com.example.intern.myapplication.MainActivity" android:launchMode="singleTop"/>
+        <fragment android:name=".LoginActivity" android:parentActivityName="com.example.intern.myapplication.MainActivity" android:launchMode="singleTop" ></fragment>
+        <fragment android:name=".UtilizatoriActivity" android:parentActivityName="com.example.intern.myapplication.MainActivity" android:launchMode="singleTop"/>
         <fragment android:name=".ThemeSettingsActivity" />
-        <fragment android:name=".StatusActivity" />
+        <fragment android:name=".StatusActivity" android:parentActivityName="com.example.intern.myapplication.MainActivity" android:launchMode="singleTop"/>
         <fragment android:name=".ClientActivity" />
-
-        <activity android:name=".Login"></activity>
     </application>
 
 </manifest>
