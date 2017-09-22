@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_height="5dp"
-             android:layout_width="5dp">
+android:shape="line"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<stroke
+    android:dashGap="2dp"
+    android:dashWidth="1.5dp"
+    android:width="2dp"
+    android:color="#FF0E1216" />
 
-    <gradient
-        android:angle="270.0"
-        android:endColor="#f6fafc"
-        android:startColor="#c9dbe4" />
+<size android:height="2dp" />
 
 </shape>

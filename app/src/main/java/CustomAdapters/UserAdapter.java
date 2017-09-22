@@ -40,21 +40,17 @@ public class UserAdapter extends ArrayAdapter<Utilizator> {
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView=inflater.inflate(R.layout.user_list, null,true);
 
-
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
         TextView nume= (TextView) rowView.findViewById(R.id.tv_nume);
         TextView username = (TextView) rowView.findViewById(R.id.tv_username);
-        TextView angajat = (TextView) rowView.findViewById(R.id.tv_angajat);
 
         imageView.setImageResource(imgid);
-        nume.setText((CharSequence) "Nume: " + list.get(position).getNume());
-        username.setText((CharSequence) "Username: " + list.get(position).getUsername());
+
+        username.setText("Username: " + list.get(position).getUsername());
         if(list.get(position).getAngajat() == null ) {
-            String angajatText="Angajat: -";
-            angajat.setText((CharSequence) Html.fromHtml(angajatText, Html.FROM_HTML_MODE_LEGACY) );
+           nume.setText("Nume: " + list.get(position).getNume());
         } else {
-            String angajatText =  "<b>Angajat:</b> ";
-            angajat.setText((CharSequence) Html.fromHtml(angajatText, Html.FROM_HTML_MODE_LEGACY) + list.get(position).getAngajat().getNume());
+           nume.setText("Nume: " + list.get(position).getAngajat().getNume());
         }
 //        int listItemBackgroundPosition = position % listItemBackground.length;
 //        rowView.setBackgroundResource(listItemBackground[listItemBackgroundPosition]);

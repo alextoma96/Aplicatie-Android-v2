@@ -24,7 +24,9 @@
         <TextView
             android:id="@+id/tv_general"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="#FF0F141A"
+            android:textSize="18dp"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
@@ -36,12 +38,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_general"
-                android:layout_marginRight="15dp"/>
+                android:layout_marginRight="15dp"
+                android:textColor="#FF0F141A"
+                android:textSize="18dp"/>
+
             <TextView
                 android:id="@+id/tv_suma"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_status" />
+                android:layout_below="@+id/tv_status"
+                android:textColor="#FF0F141A"
+                android:textSize="18dp"
+                android:layout_alignParentRight="true" />
 
         </LinearLayout>
 
@@ -50,7 +58,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_below="@+id/tv_suma" />
+            android:layout_below="@+id/tv_suma"
+            android:textColor="#FF0F141A"
+            android:textSize="17dp"/>
     </LinearLayout>
 
 </LinearLayout>

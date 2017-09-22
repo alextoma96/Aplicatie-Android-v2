@@ -53,7 +53,7 @@ public class FacturaAdapter extends ArrayAdapter<Factura> implements Constant{
         imageView.setImageResource(imgid);
         if(list.get(position).getSerieFactura() != null && list.get(position).getNumar() != null && list.get(position).getDtEmitere() != null) {
             general.setText((CharSequence) "Factura nr. " + list.get(position).getSerieFactura().getCod() + " " +
-                    list.get(position).getNumar() + " din data de " + SIMPLE_DATE_FORMAT.format(list.get(position).getDtEmitere()));
+                    list.get(position).getNumar() + " din " +SIMPLE_DATE_FORMAT.format(list.get(position).getDtEmitere()));
         }
         if(list.get(position).getStatusFactura() != null) {
             status.setText((CharSequence) list.get(position).getStatusFactura().getStatus());
