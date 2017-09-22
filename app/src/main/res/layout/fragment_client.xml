@@ -13,8 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
-        android:text="Nume client:"
-        android:theme="@style/TextStanga"/>
+        android:theme="@style/Text"/>
 
     <TextView
         android:id="@+id/c2"
@@ -23,8 +22,7 @@
         android:layout_alignStart="@+id/c1"
         android:layout_below="@+id/c1"
         android:layout_marginTop="15dp"
-        android:text="Cod inregistrare:"
-        android:theme="@style/TextStanga"/>
+        android:theme="@style/Text"/>
 
     <TextView
         android:id="@+id/c3"
@@ -33,8 +31,7 @@
         android:layout_alignStart="@+id/c2"
         android:layout_below="@+id/c2"
         android:layout_marginTop="15dp"
-        android:text="Cod fiscal:"
-        android:theme="@style/TextStanga"/>
+        android:theme="@style/Text"/>
 
     <TextView
         android:id="@+id/c4"
@@ -43,8 +40,7 @@
         android:layout_alignStart="@+id/c3"
         android:layout_below="@+id/c3"
         android:layout_marginTop="15dp"
-        android:text="Banca:"
-        android:theme="@style/TextStanga"/>
+        android:theme="@style/Text"/>
 
     <TextView
         android:id="@+id/c5"
@@ -53,8 +49,7 @@
         android:layout_alignStart="@+id/c4"
         android:layout_below="@+id/c4"
         android:layout_marginTop="15dp"
-        android:text="Cod IBAN:"
-        android:theme="@style/TextStanga"/>
+        android:theme="@style/Text" />
 
     <TextView
         android:id="@+id/c6"
@@ -63,70 +58,10 @@
         android:layout_alignStart="@+id/c5"
         android:layout_below="@+id/c5"
         android:layout_marginTop="15dp"
-        android:text="Adresa:"
-        android:theme="@style/TextStanga"/>
+        android:theme="@style/Text"/>
 
 
-    <TextView
-        android:id="@+id/numClient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="30dp"
-        android:text="Nume companie"
-        android:theme="@style/TextDreapta"/>
 
-    <TextView
-        android:id="@+id/codInC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/numClient"
-        android:layout_below="@+id/numClient"
-        android:layout_marginTop="15dp"
-        android:text="Cod Inregistrare"
-        android:theme="@style/TextDreapta"/>
-
-    <TextView
-        android:id="@+id/codFisC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/codInC"
-        android:layout_below="@+id/codInC"
-        android:layout_marginTop="15dp"
-        android:text="Cod Fiscal"
-        android:theme="@style/TextDreapta"/>
-
-    <TextView
-        android:id="@+id/bancaC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/codFisC"
-        android:layout_below="@+id/codFisC"
-        android:layout_marginTop="15dp"
-        android:text="Banca"
-        android:theme="@style/TextDreapta"/>
-
-    <TextView
-        android:id="@+id/codIBANC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/bancaC"
-        android:layout_below="@+id/bancaC"
-        android:layout_marginTop="15dp"
-        android:text="Cod IBAN"
-        android:theme="@style/TextDreapta"/>
-
-    <TextView
-        android:id="@+id/adresaC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/c6"
-        android:layout_below="@+id/c6"
-        android:layout_marginTop="15dp"
-        android:text="Adresa"
-        android:theme="@style/TextDreapta"/>
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

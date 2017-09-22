@@ -1,22 +1,33 @@
 package Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.DragEvent;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.intern.myapplication.FacturiActivity;
+import com.example.intern.myapplication.MainActivity;
+import com.example.intern.myapplication.OnSwipeTouchListener;
 import com.example.intern.myapplication.R;
 
 import java.text.DateFormat;
 
 import Commons.Factura;
+
 
 public class DateGeneraleFragment extends Fragment {
 
@@ -37,38 +48,47 @@ public class DateGeneraleFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-       
+
 
         getActivity().setTitle("Date Generale");
         final Bundle bundle = this.getArguments();
         final Factura factura = bundle.getParcelable("object");
 
-        TextView dtEst = (TextView) getActivity().findViewById(R.id.dtEst);
-        TextView dtEm = (TextView) getActivity().findViewById(R.id.dtEm);
-        TextView serieCod = (TextView) getActivity().findViewById(R.id.serieCod);
-        TextView serieSec = (TextView) getActivity().findViewById(R.id.serieSec);
-        TextView responsabil = (TextView) getActivity().findViewById(R.id.responsabil);
-        TextView moneda = (TextView) getActivity().findViewById(R.id.moneda);
-        TextView TVA = (TextView) getActivity().findViewById(R.id.tva);
-        TextView status = (TextView) getActivity().findViewById(R.id.status);
-        TextView dtScad = (TextView) getActivity().findViewById(R.id.dtScad);
-        TextView creatDe = (TextView) getActivity().findViewById(R.id.creatDe);
-        TextView validatDe = (TextView) getActivity().findViewById(R.id.validatDe);
-        TextView emisDe = (TextView) getActivity().findViewById(R.id.emisDe);
+        TextView dtEst = (TextView) getActivity().findViewById(R.id.dg1);
+        TextView dtEm = (TextView) getActivity().findViewById(R.id.dg2);
+        TextView serie = (TextView) getActivity().findViewById(R.id.dg3);
+        TextView responsabil = (TextView) getActivity().findViewById(R.id.dg4);
+        TextView moneda = (TextView) getActivity().findViewById(R.id.dg5);
+        TextView TVA = (TextView) getActivity().findViewById(R.id.dg6);
+        TextView status = (TextView) getActivity().findViewById(R.id.dg7);
+        TextView dtScad = (TextView) getActivity().findViewById(R.id.dg8);
+        TextView creatDe = (TextView) getActivity().findViewById(R.id.dg9);
+        TextView validatDe = (TextView) getActivity().findViewById(R.id.dg10);
+        TextView emisDe = (TextView) getActivity().findViewById(R.id.dg11);
 
+        String dtest = "<b>" + "Dt. est. emit.: " + "</b>" + vDtEst(factura);
+        String dtem = "<b>" + "Dt. emitere.: " + "</b>" + vDtEm(factura);
+        String ser = "<b>" + "Serie factura: " + "</b>" + vSerieCod(factura) + " " + vSerieSec(factura);
+        String respon = "<b>" + "Responsabil: " + "</b>" + vResponsabil(factura);
+        String mon = "<b>" + "Moneda: " + "</b>" + vMoneda(factura);
+        String tv = "<b>" + "TVA.: " + "</b>" + vTVA(factura);
+        String stat = "<b>" + "Status: " + "</b>" + vStatus(factura);
+        String dtscad = "<b>" + "Dt. scadenta: " + "</b>" + vDtScad(factura);
+        String creatde = "<b>" + "Creat de: " + "</b>" + vCreatDe(factura);
+        String valid = "<b>" + "Validat de: " + "</b>" + vValidatDe(factura);
+        String emis = "<b>" + "Emis de: " + "</b>" + vEmisDe(factura);
 
-        dtEst.setText(vDtEst(factura));
-        dtEm.setText(vDtEm(factura));
-        serieCod.setText(vSerieCod(factura));
-        serieSec.setText(vSerieSec(factura));
-        responsabil.setText(vResponsabil(factura));
-        moneda.setText(vMoneda(factura));
-        TVA.setText(vTVA(factura));
-        status.setText(vStatus(factura));
-        dtScad.setText(vDtScad(factura));
-        creatDe.setText(vCreatDe(factura));
-        validatDe.setText(vValidatDe(factura));
-        emisDe.setText(vEmisDe(factura));
+        dtEst.setText(Html.fromHtml(dtest, Html.FROM_HTML_MODE_LEGACY));
+        dtEm.setText(Html.fromHtml(dtem, Html.FROM_HTML_MODE_LEGACY));
+        serie.setText(Html.fromHtml(ser, Html.FROM_HTML_MODE_LEGACY));
+        responsabil.setText(Html.fromHtml(respon, Html.FROM_HTML_MODE_LEGACY));
+        moneda.setText(Html.fromHtml(mon, Html.FROM_HTML_MODE_LEGACY));
+        TVA.setText(Html.fromHtml(tv, Html.FROM_HTML_MODE_LEGACY));
+        status.setText(Html.fromHtml(stat, Html.FROM_HTML_MODE_LEGACY));
+        dtScad.setText(Html.fromHtml(dtscad, Html.FROM_HTML_MODE_LEGACY));
+        creatDe.setText(Html.fromHtml(creatde, Html.FROM_HTML_MODE_LEGACY));
+        validatDe.setText(Html.fromHtml(valid, Html.FROM_HTML_MODE_LEGACY));
+        emisDe.setText(Html.fromHtml(emis, Html.FROM_HTML_MODE_LEGACY));
 
         Button butonDateGen = (Button) getActivity().findViewById(R.id.flow_date_gen);
 
@@ -109,7 +129,24 @@ public class DateGeneraleFragment extends Fragment {
             }
         });
 
-    }
+        ViewPager pager = (ViewPager) getActivity().findViewById(R.layout.fragment_date_generale);
+
+
+
+        view.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
+            @Override
+            public void onSwipeLeft() {
+                Fragment fragment = new ClientFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_main, fragment);
+                fragment.setArguments(bundle);
+                ft.commit();
+            }
+        });
+
+        }
+
+
 
     private String vDtEst(Factura factura){
         if (factura.getDtEstimata() != null)
