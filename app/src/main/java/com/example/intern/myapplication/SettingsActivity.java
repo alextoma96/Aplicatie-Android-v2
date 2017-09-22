@@ -1,46 +1,115 @@
 package com.example.intern.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.preference.PreferenceManager;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
+public class SettingsActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
-
-public class SettingsActivity extends Fragment {
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_settings, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
+        init();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Settings");
-        final EditText urlSet = (EditText) getActivity().findViewById(R.id.serverIP);
-        urlSet.setText(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "defaultStringIfNothingFound"));
+    private void init() {
+        final EditText urlSet = (EditText) findViewById(R.id.serverIP);
+        urlSet.setText(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "defaultStringIfNothingFound"));
 
-        Button buton = (Button) getActivity().findViewById(R.id.button);
+        Button buton = (Button) findViewById(R.id.button);
 
         buton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PreferenceManager.getDefaultSharedPreferences(getContext()).edit().putString("ip", urlSet.getText().toString()).apply();
-                startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("ip", urlSet.getText().toString()).apply();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
-
     }
 
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    public void displaySelectedScreen(int id){
+        Fragment fragment = null;
+        switch (id){
+            case R.id.nav_home:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_facturi:
+                Intent statusIntent = new Intent(getApplicationContext(), StatusActivity.class);
+                startActivity(statusIntent);
+                break;
+            case R.id.nav_aboutUs:
+                fragment = new DetailsActivity();
+                break;
+            case R.id.nav_settings:
+                Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(settingsIntent);
+                break;
+            case R.id.nav_utilizatori:
+                Intent userIntent = new Intent(getApplicationContext(), UtilizatoriActivity.class);
+                startActivity(userIntent);
+                break;
+            case R.id.nav_login:
+                Intent loginIntent = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(loginIntent);
+                break;
+        }
+        if (fragment != null){
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_main, fragment);
+            ft.commit();
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        displaySelectedScreen(id);
+        return true;
+    }
 }

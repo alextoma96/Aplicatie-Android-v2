@@ -2,13 +2,11 @@ package com.example.intern.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,11 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.webkit.WebView;
-
-import Fragments.ArticoleFragment;
-
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -80,19 +74,23 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
                 break;
             case R.id.nav_facturi:
-                fragment = new StatusActivity();
+                Intent statusIntent = new Intent(getApplicationContext(), StatusActivity.class);
+                startActivity(statusIntent);
                 break;
             case R.id.nav_aboutUs:
                fragment = new DetailsActivity();
                 break;
             case R.id.nav_settings:
-                fragment = new SettingsActivity();
+                Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(settingsIntent);
                 break;
             case R.id.nav_utilizatori:
-                fragment = new UtilizatoriActivity();
+                Intent userIntent = new Intent(getApplicationContext(), UtilizatoriActivity.class);
+                startActivity(userIntent);
                 break;
             case R.id.nav_login:
-                fragment = new LoginActivity();
+                Intent loginIntent = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(loginIntent);
                 break;
         }
         if (fragment != null){
@@ -110,21 +108,5 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         displaySelectedScreen(id);
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.nav_logout :
-                Fragment fragment = new LoginActivity();
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.content_main, fragment);
-                ft.commit();
-                break;
-            case R.id.nav_back:
-                NavUtils.navigateUpFromSameTask(this);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

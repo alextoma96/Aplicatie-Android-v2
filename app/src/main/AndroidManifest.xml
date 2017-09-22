@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppThemeMarsala">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -23,19 +23,40 @@
             </intent-filter>
         </activity>
 
-        <fragment android:name=".FacturiActivity" android:parentActivityName="com.example.intern.myapplication.StatusActivity" android:launchMode="singleTop"/>
+        <activity android:name=".FacturiActivity"
+                  android:parentActivityName="com.example.intern.myapplication.StatusActivity"
+                  android:launchMode="singleTop"
+                  android:label="@string/facturi_activity"
+                  android:theme="@style/AppTheme">
+        </activity>
 
         <fragment android:name=".FacturaDetailsActivity" android:parentActivityName="com.example.intern.myapplication.FacturiActivity" android:launchMode="singleTop"/>
 
         <fragment
             android:name=".DetailsActivity"
             android:label="@string/title_activity_details" />
-        <fragment android:name=".SettingsActivity"  android:parentActivityName="com.example.intern.myapplication.MainActivity" android:launchMode="singleTop"/>
-        <fragment android:name=".LoginActivity" android:parentActivityName="com.example.intern.myapplication.MainActivity" android:launchMode="singleTop" ></fragment>
-        <fragment android:name=".UtilizatoriActivity" android:parentActivityName="com.example.intern.myapplication.MainActivity" android:launchMode="singleTop"/>
-        <fragment android:name=".ThemeSettingsActivity" />
-        <fragment android:name=".StatusActivity" android:parentActivityName="com.example.intern.myapplication.MainActivity" android:launchMode="singleTop"/>
-        <fragment android:name=".ClientActivity" />
+
+        <activity android:name=".SettingsActivity"
+                  android:label="@string/settings_activity"
+                  android:theme="@style/AppTheme">
+        </activity>
+
+        <activity android:name=".LoginActivity"
+                  android:label="@string/login_activity"
+                  android:theme="@style/AppTheme">
+        </activity>
+
+        <activity android:name=".UtilizatoriActivity"
+                  android:label="@string/utilizatori_activity"
+                  android:theme="@style/AppTheme">
+        </activity>
+
+        <activity android:name=".StatusActivity"
+                  android:parentActivityName="com.example.intern.myapplication.MainActivity"
+                  android:launchMode="singleTop"
+                  android:label="@string/status_activity"
+                  android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>

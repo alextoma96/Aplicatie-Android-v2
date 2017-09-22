@@ -3,23 +3,22 @@ package com.example.intern.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.preference.PreferenceManager;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -27,9 +26,10 @@ import java.util.List;
 
 import Commons.Utilizator;
 import Networking.HttpConnectionUtilizatori;
-import Utils.Constant;
 
-public class LoginActivity extends Fragment {
+
+public class LoginActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private EditText etusername;
     private EditText etpassword;
@@ -50,41 +50,45 @@ public class LoginActivity extends Fragment {
     private SharedPreferences preferenceSettings;
     private SharedPreferences.Editor preferenceEditor;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_login, container, false);
-    }
+
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Login");
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
         init();
-        setHasOptionsMenu(true);
-    }
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
 
     private void init() {
         consumeHttpConnection();
-        etusername = (EditText) getActivity().findViewById(R.id.et_login_username);
-        etpassword = (EditText) getActivity().findViewById(R.id.et_login_password);
-        cbrmbrcred = (CheckBox) getActivity().findViewById(R.id.cb_login_remember);
-        btnLogin = (Button) getActivity().findViewById(R.id.btn_login_button);
+        etusername = (EditText) findViewById(R.id.et_login_username);
+        etpassword = (EditText) findViewById(R.id.et_login_password);
+        cbrmbrcred = (CheckBox) findViewById(R.id.cb_login_remember);
+        btnLogin = (Button) findViewById(R.id.btn_login_button);
         boolean cb;
         if(cbrmbrcred.isChecked()){
             cb=true;
         }else{
             cb=false;
         }
-        preferenceSettings = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+        preferenceSettings = this.getSharedPreferences("pref", Context.MODE_PRIVATE);
         preferenceEditor = preferenceSettings.edit();
         String username = etusername.getText().toString();
         String password = etpassword.getText().toString();
         boolean preferenceCb=preferenceSettings.getBoolean(CHECKBOX_PREFERENCE_KEY, cb);
         String preferenceUsername = preferenceSettings.getString(USERNAME_PREFERENCE_KEY, username);
         String preferencePassword = preferenceSettings.getString(PASSWORD_PREFERENCE_KEY, password);
-        Log.d(preferenceUsername, preferencePassword);
         if (preferenceUsername != null && preferencePassword != null && preferenceCb==true) {
             etusername.setText(preferenceUsername);
             etpassword.setText(preferencePassword);
@@ -104,14 +108,13 @@ public class LoginActivity extends Fragment {
                     final String username=etusername.getText().toString();
                     final String password=etpassword.getText().toString();
                     if(validation(username, password)){
-                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         preferenceEditor.putBoolean(CHECKBOX_PREFERENCE_KEY, cb);
                         preferenceEditor.putString(USERNAME_PREFERENCE_KEY, username);
                         preferenceEditor.putString(PASSWORD_PREFERENCE_KEY, password);
-                        boolean successfulSave = preferenceEditor.commit();
                     } else{
-                        Toast.makeText(getContext(),R.string.login_toast2, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),R.string.login_toast2, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -141,18 +144,69 @@ public class LoginActivity extends Fragment {
                 if (utilizators != null) {
                     userList.addAll(utilizators);
                 }
-                for(Utilizator u : userList) {
-                    Log.i("user", u.getNume());
-                }
             }
         };
-        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/utilizator/list");
+        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/utilizator/list");
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.nav_logout).setVisible(false);
-        super.onPrepareOptionsMenu(menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 
+    public void displaySelectedScreen(int id){
+        Fragment fragment = null;
+        switch (id){
+            case R.id.nav_home:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_facturi:
+                Intent statusIntent = new Intent(getApplicationContext(), StatusActivity.class);
+                startActivity(statusIntent);
+                break;
+            case R.id.nav_aboutUs:
+                fragment = new DetailsActivity();
+                break;
+            case R.id.nav_settings:
+                Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(settingsIntent);
+                break;
+            case R.id.nav_utilizatori:
+                Intent userIntent = new Intent(getApplicationContext(), UtilizatoriActivity.class);
+                startActivity(userIntent);
+                break;
+            case R.id.nav_login:
+                Intent loginIntent = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(loginIntent);
+                break;
+        }
+        if (fragment != null){
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_main, fragment);
+            ft.commit();
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        displaySelectedScreen(id);
+        return true;
+    }
 }

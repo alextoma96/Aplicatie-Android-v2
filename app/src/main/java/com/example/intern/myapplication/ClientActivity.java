@@ -52,10 +52,7 @@ public class ClientActivity extends Fragment implements Constant {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ClientCount clientObj = adapter.getItem(position);
                 client = clientObj.getNume();
-                Fragment fragment = new FacturiActivity();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.content_main, fragment);
-                ft.commit();
+
             }
         });
 

@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">KepRes 2.0</string>
+    <string name="login_activity">Login</string>
+    <string name="settings_activity">Setari</string>
+    <string name="status_activity">Factura per status</string>
+    <string name="facturi_activity">Facturi</string>
+    <string name="utilizatori_activity">Utilizatori</string>
+
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
