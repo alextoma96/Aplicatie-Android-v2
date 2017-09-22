@@ -27,7 +27,7 @@ import Utils.Constant;
  * Created by intern on 9/22/2017.
  */
 
-public class HttpConnectionMesaj extends AsyncTask<String, void, ArrayList<Mesaj>> implements Constant{
+public class HttpConnectionMesaj extends AsyncTask<String, Void, ArrayList<Mesaj>> implements Constant{
 
     URL url;
     HttpURLConnection connection;
@@ -69,31 +69,18 @@ public class HttpConnectionMesaj extends AsyncTask<String, void, ArrayList<Mesaj
         ArrayList<Mesaj> listaMesaje = new ArrayList<>();
         JSONArray jsonArray = new JSONArray(JSONString);
         for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject jsonUtilizator = jsonArray.getJSONObject(i);
-            String nume = jsonUtilizator.getString("nume");
-            String username = jsonUtilizator.getString("username");
-            String parola = jsonUtilizator.getString("parola");
+            JSONObject jsonMesj = jsonArray.getJSONObject(i);
+            String titlu = jsonMesj.getString("titlu");
+            String continut = jsonMesj.getString("continut");
+            String trimis = jsonMesj.getString("trimis");
+            String citit = jsonMesj.getString("citit");
 
-            Angajat angajat = null;
-            if(!jsonUtilizator.isNull("angajat")) {
-                JSONObject jsonAngajat = jsonUtilizator.getJSONObject("angajat");
-                angajat = parseAngajat(jsonAngajat);
-            }
-            Utilizator utilizator = new Utilizator(nume, username, parola, angajat);
-            listaUtilizatori.add(utilizator);
+
         }
-        for(Utilizator u : listaUtilizatori) {
-            Log.i("utilizator", u.getNume());
+        for(Mesaj u : listaMesaje) {
+            Log.i("mesj", u.getTitlu());
         }
-        return listaUtilizatori;
+        return listaMesaje;
     }
 
-    private Angajat parseAngajat(JSONObject object) throws JSONException {
-        String email = object.getString("email");
-        String cod = object.getString("cod");
-        String telefon = object.getString("telefon");
-        String nume = object.getString("nume");
-        String memo = object.getString("memo");
-        return new Angajat(cod, nume, memo, email, telefon);
-    }
 }

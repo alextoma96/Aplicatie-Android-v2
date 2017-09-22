@@ -60,10 +60,11 @@ public class Mesaj implements Parcelable {
 
     @Override
     public String toString() {
-        String utilizator = "Titlu: " + titlu +
+        String mesaj = "Titlu: " + titlu +
                 ", \nContinut: " + continut +
                 ", \nTrimis: " + trimis +
                 ",\nCitit: " + citit ;
 
+        return mesaj;
     }
 }
