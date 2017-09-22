@@ -64,8 +64,8 @@ public class FacturaAdapter extends ArrayAdapter<Factura> implements Constant{
         if(list.get(position).getClient() != null) {
             client.setText((CharSequence) list.get(position).getClient().getNume());
         }
-        int listItemBackgroundPosition = position % listItemBackground.length;
-        rowView.setBackgroundResource(listItemBackground[listItemBackgroundPosition]);
+//        int listItemBackgroundPosition = position % listItemBackground.length;
+//        rowView.setBackgroundResource(listItemBackground[listItemBackgroundPosition]);
         return rowView;
 
     };

@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.intern.myapplication.FacturiActivity;
+import com.example.intern.myapplication.OnSwipeTouchListener;
 import com.example.intern.myapplication.R;
 
 import Commons.Factura;
@@ -85,6 +87,26 @@ public class ClientFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new ClientFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_main, fragment);
+                fragment.setArguments(bundle);
+                ft.commit();
+            }
+        });
+
+        view.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
+            @Override
+            public void onSwipeLeft() {
+                Fragment fragment = new FurnizorFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_main, fragment);
+                fragment.setArguments(bundle);
+                ft.commit();
+            }
+
+            @Override
+            public void onSwipeRight() {
+                Fragment fragment = new DateGeneraleFragment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.content_main, fragment);
                 fragment.setArguments(bundle);

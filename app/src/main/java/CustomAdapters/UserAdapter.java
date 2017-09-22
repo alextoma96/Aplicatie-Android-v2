@@ -56,8 +56,8 @@ public class UserAdapter extends ArrayAdapter<Utilizator> {
             String angajatText =  "<b>Angajat:</b> ";
             angajat.setText((CharSequence) Html.fromHtml(angajatText, Html.FROM_HTML_MODE_LEGACY) + list.get(position).getAngajat().getNume());
         }
-        int listItemBackgroundPosition = position % listItemBackground.length;
-        rowView.setBackgroundResource(listItemBackground[listItemBackgroundPosition]);
+//        int listItemBackgroundPosition = position % listItemBackground.length;
+//        rowView.setBackgroundResource(listItemBackground[listItemBackgroundPosition]);
 
         return rowView;
 

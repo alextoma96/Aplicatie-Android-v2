@@ -46,8 +46,8 @@ public class StatusAdapter extends ArrayAdapter<StatusCount>{
 
         imageView.setImageResource(imgid[position]);
         extratxt.setText((CharSequence) list.get(position).getStatus() + " (" + list.get(position).getNrFacturi() + " facturi)");
-        int listItemBackgroundPosition = position % listItemBackground.length;
-        rowView.setBackgroundResource(listItemBackground[listItemBackgroundPosition]);
+//        int listItemBackgroundPosition = position % listItemBackground.length;
+//        rowView.setBackgroundResource(listItemBackground[listItemBackgroundPosition]);
         return rowView;
 
     };
