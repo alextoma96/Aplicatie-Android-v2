@@ -13,14 +13,16 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:weightSum="1">
 
+
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="73dp"
+        android:layout_width="74dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1.01"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:scaleType="fitXY"
-        app:srcCompat="@mipmap/logo" />
+        app:srcCompat="@mipmap/logo"
+        android:layout_weight="0.83" />
+
 
     <TextView
         android:layout_width="match_parent"

@@ -6,107 +6,14 @@
     tools:context="Fragments.DateGeneraleFragment"
     android:background="#FFFFFF">
 
-
-        <TextView
-            android:id="@+id/dg1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
-            android:theme="@style/Text"/>
-
-        <TextView
-            android:id="@+id/dg2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/dg1"
-            android:layout_below="@+id/dg1"
-            android:layout_marginTop="15dp"
-            android:theme="@style/Text"/>
-
-        <TextView
-            android:id="@+id/dg3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/dg2"
-            android:layout_below="@+id/dg2"
-            android:layout_marginTop="15dp"
-            android:theme="@style/Text"/>
-
-        <TextView
-            android:id="@+id/dg4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/dg3"
-            android:layout_below="@+id/dg3"
-            android:layout_marginTop="15dp"
-            android:theme="@style/Text"/>
-
-        <TextView
-            android:id="@+id/dg5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/dg4"
-            android:layout_below="@+id/dg4"
-            android:layout_marginTop="15dp"
-            android:theme="@style/Text"/>
-
-        <TextView
-            android:id="@+id/dg6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/dg5"
-            android:layout_below="@+id/dg5"
-            android:layout_marginTop="15dp"
-            android:theme="@style/Text"/>
-
-        <TextView
-            android:id="@+id/dg7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/dg6"
-            android:layout_below="@+id/dg6"
-            android:layout_marginTop="15dp"
-            android:theme="@style/Text"/>
-
-        <TextView
-            android:id="@+id/dg8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/dg7"
-            android:layout_below="@+id/dg7"
-            android:layout_marginTop="15dp"
-            android:theme="@style/Text"/>
-
-        <TextView
-            android:id="@+id/dg9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/dg8"
-            android:layout_below="@+id/dg8"
-            android:layout_marginTop="15dp"
-            android:theme="@style/Text"/>
-
-        <TextView
-            android:id="@+id/dg10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/dg9"
-            android:layout_below="@+id/dg9"
-            android:layout_marginTop="15dp"
-            android:theme="@style/Text"/>
-
-        <TextView
-            android:id="@+id/dg11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/dg10"
-            android:layout_below="@+id/dg10"
-            android:layout_marginTop="15dp"
-            android:theme="@style/Text"/>
-
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_buttons"
+        android:id="@+id/lista_date_genrale"
+        android:cacheColorHint="#00000000"
+        android:divider="@layout/divider"
+        android:dividerHeight="10dp"></ListView>
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -115,6 +22,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="-5dp"
         android:weightSum="3"
+        android:id="@+id/bottom_buttons"
         >
     <Button
         android:id="@+id/flow_date_gen"
@@ -140,5 +48,7 @@
         android:layout_weight="1"
         android:background="#0173B9"/>
 </LinearLayout>
+
+
 
 </RelativeLayout>
