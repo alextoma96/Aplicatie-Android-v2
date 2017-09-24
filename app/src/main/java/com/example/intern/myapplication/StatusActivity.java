@@ -89,7 +89,7 @@ public class StatusActivity extends AppCompatActivity
                 }
             }
         };
-        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/statusCount/list");
+        connection.execute("https://api.myjson.com/bins/mmj49");
 
     }
 

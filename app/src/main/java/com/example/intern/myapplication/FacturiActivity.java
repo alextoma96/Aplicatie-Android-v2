@@ -23,7 +23,9 @@ import java.util.ArrayList;
 
 import Commons.Factura;
 import CustomAdapters.FacturaAdapter;
+import Fragments.ClientFragment;
 import Fragments.DateGeneraleFragment;
+import Fragments.FurnizorFragment;
 import Networking.HttpConnectionFacturi;
 
 public class FacturiActivity extends AppCompatActivity
@@ -35,10 +37,17 @@ public class FacturiActivity extends AppCompatActivity
     ListView lvFacturi;
     ArrayList<Factura> listaFacturi = new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facturi);
+        Button butonDateGen = (Button) findViewById(R.id.flow_date_gen);
+        Button butonClienti = (Button) findViewById(R.id.flow_clienti);
+        Button butonFurizor = (Button) findViewById(R.id.flow_furnizor);
+        butonDateGen.setVisibility(View.GONE);
+        butonClienti.setVisibility(View.GONE);
+        butonFurizor.setVisibility(View.GONE);
         consumeHttpConnection();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -67,20 +76,16 @@ public class FacturiActivity extends AppCompatActivity
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                     Bundle bundle = new Bundle();
 
-                /*bundle.putString("dtEstEm", listaFacturi.get((int) id).getDtEstimata().toString().substring(0,10));
-                bundle.putString("dtEm", listaFacturi.get((int) id).getDtEmitere().toString().substring(0,10));
-                bundle.putString("serieFac", listaFacturi.get((int) id).getSerieFactura().getCod().toString() + listaFacturi.get((int) id).getSerieFactura().getSecventa().toString());
-                bundle.putString("responsabil", listaFacturi.get((int) id).getAngajat().getNume());
-                bundle.putString("moneda", listaFacturi.get((int) id).getMoneda().getNume());
-                bundle.putString("TVA", listaFacturi.get((int) id).getCotaTVA().getNume());*/
-
                     bundle.putParcelable("object", listaFacturi.get(position));
                     fragment.setArguments(bundle);
-                    ft.replace(R.id.content_main, fragment);
+                    ft.replace(R.id.activity_facturi_list, fragment);
                     ft.commit();
                 }
             });
+
         }
+
+
     }
 
     public void consumeHttpConnection() {
@@ -94,7 +99,7 @@ public class FacturiActivity extends AppCompatActivity
                 }
             }
         };
-        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/factura/list");
+        connection.execute("https://api.myjson.com/bins/1adho1");
 
     }
     @Override

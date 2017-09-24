@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.Spanned;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.DragEvent;
@@ -44,64 +46,44 @@ public class DateGeneraleFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_date_generale, container, false);
     }
 
-    @Override
-    public void onCreate(Bundle saveInstancesState){
-        super.onCreate(saveInstancesState);
-        //setContentView(R.id.fragment_date_generale);
 
-    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         getActivity().setTitle("Date Generale");
         final Bundle bundle = this.getArguments();
         final Factura factura = bundle.getParcelable("object");
 
+        Spanned dtest = Html.fromHtml("Dt. est. emit. : "+ "<br> <b>" + vDtEst(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned dtem = Html.fromHtml("Dt. emitere. : "+ "<br> <b>" + vDtEm(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned ser = Html.fromHtml("Serie factura : "+ "<br> <b>" + vSerieCod(factura) + " " + vSerieSec(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned respon = Html.fromHtml("Responsabil : "+ "<br> <b>" + vResponsabil(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned mon = Html.fromHtml("Moneda : "+ "<br> <b>" + vMoneda(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned tv = Html.fromHtml("T.V.A. : "+ "<br> <b>" + vTVA(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned stat = Html.fromHtml("Status facura : "+ "<br> <b>" + vStatus(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned dtscad = Html.fromHtml("Dt. scadenta : "+ "<br> <b>" + vDtScad(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned creatde = Html.fromHtml("Creat de : "+ "<br> <b>" + vCreatDe(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned valid = Html.fromHtml("Validat de : "+ "<br> <b>" + vValidatDe(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned emis = Html.fromHtml("Emis de : "+ "<br> <b>" + vEmisDe(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+
+
         ListView date_gen = (ListView) getActivity().findViewById(R.id.lista_date_genrale);
-        List<String> listDate = new ArrayList<String>();
-        listDate.add("1");
-        listDate.add("2");
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1,listDate );
+        List<Spanned> listDate = new ArrayList<Spanned>();
+        listDate.add(dtest);
+        listDate.add(dtem);
+        listDate.add(ser);
+        listDate.add(respon);
+        listDate.add(mon);
+        listDate.add(tv);
+        listDate.add(stat);
+        listDate.add(dtscad);
+        listDate.add(creatde);
+        listDate.add(valid);
+        listDate.add(emis);
+        ArrayAdapter<Spanned> arrayAdapter = new ArrayAdapter<Spanned>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1,listDate );
         date_gen.setAdapter(arrayAdapter);
-
-        /*TextView dtEst = (TextView) getActivity().findViewById(R.id.dg1);
-        TextView dtEm = (TextView) getActivity().findViewById(R.id.dg2);
-        TextView serie = (TextView) getActivity().findViewById(R.id.dg3);
-        TextView responsabil = (TextView) getActivity().findViewById(R.id.dg4);
-        TextView moneda = (TextView) getActivity().findViewById(R.id.dg5);
-        TextView TVA = (TextView) getActivity().findViewById(R.id.dg6);
-        TextView status = (TextView) getActivity().findViewById(R.id.dg7);
-        TextView dtScad = (TextView) getActivity().findViewById(R.id.dg8);
-        TextView creatDe = (TextView) getActivity().findViewById(R.id.dg9);
-        TextView validatDe = (TextView) getActivity().findViewById(R.id.dg10);
-        TextView emisDe = (TextView) getActivity().findViewById(R.id.dg11);
-
-        String dtest = "<b>" + "Dt. est. emit.: " + "</b>" + vDtEst(factura);
-        String dtem = "<b>" + "Dt. emitere.: " + "</b>" + vDtEm(factura);
-        String ser = "<b>" + "Serie factura: " + "</b>" + vSerieCod(factura) + " " + vSerieSec(factura);
-        String respon = "<b>" + "Responsabil: " + "</b>" + vResponsabil(factura);
-        String mon = "<b>" + "Moneda: " + "</b>" + vMoneda(factura);
-        String tv = "<b>" + "TVA.: " + "</b>" + vTVA(factura);
-        String stat = "<b>" + "Status: " + "</b>" + vStatus(factura);
-        String dtscad = "<b>" + "Dt. scadenta: " + "</b>" + vDtScad(factura);
-        String creatde = "<b>" + "Creat de: " + "</b>" + vCreatDe(factura);
-        String valid = "<b>" + "Validat de: " + "</b>" + vValidatDe(factura);
-        String emis = "<b>" + "Emis de: " + "</b>" + vEmisDe(factura);
-
-        dtEst.setText(Html.fromHtml(dtest, Html.FROM_HTML_MODE_LEGACY));
-        dtEm.setText(Html.fromHtml(dtem, Html.FROM_HTML_MODE_LEGACY));
-        serie.setText(Html.fromHtml(ser, Html.FROM_HTML_MODE_LEGACY));
-        responsabil.setText(Html.fromHtml(respon, Html.FROM_HTML_MODE_LEGACY));
-        moneda.setText(Html.fromHtml(mon, Html.FROM_HTML_MODE_LEGACY));
-        TVA.setText(Html.fromHtml(tv, Html.FROM_HTML_MODE_LEGACY));
-        status.setText(Html.fromHtml(stat, Html.FROM_HTML_MODE_LEGACY));
-        dtScad.setText(Html.fromHtml(dtscad, Html.FROM_HTML_MODE_LEGACY));
-        creatDe.setText(Html.fromHtml(creatde, Html.FROM_HTML_MODE_LEGACY));
-        validatDe.setText(Html.fromHtml(valid, Html.FROM_HTML_MODE_LEGACY));
-        emisDe.setText(Html.fromHtml(emis, Html.FROM_HTML_MODE_LEGACY));*/
 
         Button butonDateGen = (Button) getActivity().findViewById(R.id.flow_date_gen);
 
@@ -110,7 +92,7 @@ public class DateGeneraleFragment extends Fragment {
             public void onClick(View v) {
                 Fragment fragment = new DateGeneraleFragment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.content_main, fragment);
+                ft.replace(R.id.activity_facturi_list, fragment);
                 fragment.setArguments(bundle);
                 ft.commit();
             }
@@ -123,7 +105,7 @@ public class DateGeneraleFragment extends Fragment {
             public void onClick(View v) {
                 Fragment fragment = new FurnizorFragment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.content_main, fragment);
+                ft.replace(R.id.activity_facturi_list, fragment);
                 fragment.setArguments(bundle);
                 ft.commit();
             }
@@ -136,22 +118,21 @@ public class DateGeneraleFragment extends Fragment {
             public void onClick(View v) {
                 Fragment fragment = new ClientFragment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.content_main, fragment);
+                ft.replace(R.id.activity_facturi_list, fragment);
                 fragment.setArguments(bundle);
                 ft.commit();
             }
         });
 
-        ViewPager pager = (ViewPager) getActivity().findViewById(R.layout.fragment_date_generale);
 
 
 
-        view.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
+        date_gen.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
             @Override
             public void onSwipeLeft() {
                 Fragment fragment = new ClientFragment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.content_main, fragment);
+                ft.replace(R.id.activity_facturi_list, fragment);
                 fragment.setArguments(bundle);
                 ft.commit();
             }

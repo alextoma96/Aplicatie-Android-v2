@@ -5,60 +5,14 @@
     tools:context="Fragments.FurnizorFragment"
     android:background="#FFFFFF">
 
-    <TextView
-        android:id="@+id/f1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:theme="@style/Text"/>
-
-    <TextView
-        android:id="@+id/f2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/f1"
-        android:layout_below="@+id/f1"
-        android:layout_marginTop="15dp"
-        android:theme="@style/Text"/>
-
-    <TextView
-        android:id="@+id/f3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/f2"
-        android:layout_below="@+id/f2"
-        android:layout_marginTop="15dp"
-        android:theme="@style/Text"/>
-
-    <TextView
-        android:id="@+id/f4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/f3"
-        android:layout_below="@+id/f3"
-        android:layout_marginTop="15dp"
-        android:theme="@style/Text"/>
-
-    <TextView
-        android:id="@+id/f5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/f4"
-        android:layout_below="@+id/f4"
-        android:layout_marginTop="15dp"
-        android:theme="@style/Text"/>
-
-    <TextView
-        android:id="@+id/f6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/f5"
-        android:layout_below="@+id/f5"
-        android:layout_marginTop="15dp"
-        android:theme="@style/Text"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_buttons"
+        android:id="@+id/lista_furnizor"
+        android:cacheColorHint="#00000000"
+        android:divider="@layout/divider"
+        android:dividerHeight="10dp"></ListView>
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

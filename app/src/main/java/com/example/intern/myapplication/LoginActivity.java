@@ -146,7 +146,7 @@ public class LoginActivity extends AppCompatActivity
                 }
             }
         };
-        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.8.98") + "/kepres204/api/rs/utilizator/list");
+        connection.execute("https://api.myjson.com/bins/198rm9");
     }
 
     @Override
