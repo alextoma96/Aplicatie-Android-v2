@@ -95,11 +95,13 @@ public class HttpConnectionFacturi extends AsyncTask <String, Void, ArrayList<Fa
             JSONObject jsonStatusFactura = jsonFactura.getJSONObject("statusFactura");
             StatusFactura statusFactura = parseStatusFactura(jsonStatusFactura);
 
-            Date dtScadenta = new Date();
-//           if(!jsonFactura.getString("dtScadenta").isEmpty()) {
-//              String dtScadentaString = jsonFactura.getString("dtScadenta");
-//              dtScadenta = dateFormat.parse(dtScadentaString);
-//          }
+            String dtScadenta;
+           if(!jsonFactura.getString("dtScadenta").isEmpty()) {
+              String dtScadentaString = jsonFactura.getString("dtScadenta");
+             // Long timeInMillis = Long.valueOf(dtScadentaString);
+               //Log.i("dtScad", String.valueOf(timeInMillis));
+
+          }
 
             Date dtEmitere = new Date();
 //          if(!jsonFactura.isNull("dtEmitere")) {
@@ -152,7 +154,7 @@ public class HttpConnectionFacturi extends AsyncTask <String, Void, ArrayList<Fa
 //          Factura factura = new Factura(serieFactura, numar, dtEstimata, dtEmitere, dtScadenta, suma, tva, total,
 //                                        memo, responsabil, creatDe, validatDe, emisDe, moneda, statusFactura, client,
 //                                        identitateCompanie, cotaTVA, observatii);
-            Factura factura = new Factura(serieFactura, numar, dtEstimata, dtEmitere, dtScadenta, suma, tva, total,
+            Factura factura = new Factura(serieFactura, numar, dtEstimata, dtEmitere, null, suma, tva, total,
                                           memo, responsabil, creatDe, validatDe, emisDe, moneda, statusFactura, client,
                                           identitateCompanie, cotaTVA, observatii);
             if((factura.getStatusFactura().getStatus().equals(StatusActivity.status))) {

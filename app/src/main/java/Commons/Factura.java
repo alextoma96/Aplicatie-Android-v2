@@ -82,7 +82,7 @@ public class Factura implements Parcelable{
     public SerieFactura getSerieFactura() { return serieFactura; }
     public Factura setSerieFactura(SerieFactura serieFactura) { this.serieFactura = serieFactura; return this; }
 
-    public String getNumar() { return numar; }
+    public String getNumar() { if(numar != null) {return numar; } else { return ""; }}
     public Factura setNumar(String numar) { this.numar = numar; return this; }
 
     public Date getDtEmitere() { return dtEmitere; }

@@ -21,16 +21,54 @@
         android:layout_gravity="center_horizontal"
         android:paddingLeft="20dp">
 
-        <TextView
-            android:id="@+id/tv_general"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FF0F141A"
-            android:textSize="18dp"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_factura_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0F141A"
+                android:textSize="17dp"/>
+
+            <TextView
+                android:id="@+id/tv_serie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0F141A"
+                android:textSize="17dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_nr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0F141A"
+                android:textSize="17dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_din"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0F141A"
+                android:textSize="17dp"/>
+
+            <TextView
+                android:id="@+id/tv_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0F141A"
+                android:textSize="17dp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
             <TextView
@@ -38,18 +76,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_general"
-                android:layout_marginRight="15dp"
                 android:textColor="#FF0F141A"
-                android:textSize="18dp"/>
+                android:textSize="17dp"
+                android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/tv_suma"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/rlRight"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_status"
-                android:textColor="#FF0F141A"
-                android:textSize="18dp"
-                android:layout_alignParentRight="true" />
+                android:gravity="right">
+
+                <TextView
+                    android:id="@+id/tv_suma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FF0F141A"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -60,7 +105,7 @@
             android:layout_marginBottom="10dp"
             android:layout_below="@+id/tv_suma"
             android:textColor="#FF0F141A"
-            android:textSize="17dp"/>
+            android:textSize="17dp" />
     </LinearLayout>
 
 </LinearLayout>

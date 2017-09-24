@@ -41,16 +41,20 @@ public class UserAdapter extends ArrayAdapter<Utilizator> {
         View rowView=inflater.inflate(R.layout.user_list, null,true);
 
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
+        TextView numeLabel= (TextView) rowView.findViewById(R.id.tv_nume_label);
         TextView nume= (TextView) rowView.findViewById(R.id.tv_nume);
+        TextView usernameLabel= (TextView) rowView.findViewById(R.id.tv_username_label);
         TextView username = (TextView) rowView.findViewById(R.id.tv_username);
 
         imageView.setImageResource(imgid);
 
-        username.setText("Username: " + list.get(position).getUsername());
+        usernameLabel.setText("Username: ");
+        username.setText(list.get(position).getUsername());
+        numeLabel.setText("Nume: ");
         if(list.get(position).getAngajat() == null ) {
-           nume.setText("Nume: " + list.get(position).getNume());
+           nume.setText(list.get(position).getNume());
         } else {
-           nume.setText("Nume: " + list.get(position).getAngajat().getNume());
+           nume.setText(list.get(position).getAngajat().getNume());
         }
 //        int listItemBackgroundPosition = position % listItemBackground.length;
 //        rowView.setBackgroundResource(listItemBackground[listItemBackgroundPosition]);

@@ -46,6 +46,19 @@ public class StatusAdapter extends ArrayAdapter<StatusCount>{
 
         imageView.setImageResource(imgid[position]);
         extratxt.setText((CharSequence) list.get(position).getStatus() + " (" + list.get(position).getNrFacturi() + " facturi)");
+//        if(list.get(position).getStatus().equals("VALIDAT")) {
+//            extratxt.setTextColor(context.getResources().getColor(R.color.colorValidat));
+//        } else if(list.get(position).getStatus().equals("DRAFT")) {
+//            extratxt.setTextColor(context.getResources().getColor(R.color.colorDraft));
+//        } else  if(list.get(position).getStatus().equals("FINALIZAT")) {
+//            extratxt.setTextColor(context.getResources().getColor(R.color.colorFinalizat));
+//        } else  if(list.get(position).getStatus().equals("ACTIVAT")) {
+//            extratxt.setTextColor(context.getResources().getColor(R.color.colorActiv));
+//        } else  if(list.get(position).getStatus().equals("ARHIVAT")) {
+//            extratxt.setTextColor(context.getResources().getColor(R.color.colorArhivat));
+//        } else  if(list.get(position).getStatus().equals("EMIS")) {
+//            extratxt.setTextColor(context.getResources().getColor(R.color.colorEmis));
+//        }
 //        int listItemBackgroundPosition = position % listItemBackground.length;
 //        rowView.setBackgroundResource(listItemBackground[listItemBackgroundPosition]);
         return rowView;

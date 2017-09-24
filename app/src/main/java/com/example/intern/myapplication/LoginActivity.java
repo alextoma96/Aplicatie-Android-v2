@@ -26,6 +26,7 @@ import java.util.List;
 
 import Commons.Utilizator;
 import Networking.HttpConnectionUtilizatori;
+import Utils.Constant;
 
 
 public class LoginActivity extends AppCompatActivity
@@ -82,7 +83,7 @@ public class LoginActivity extends AppCompatActivity
         }else{
             cb=false;
         }
-        preferenceSettings = this.getSharedPreferences("pref", Context.MODE_PRIVATE);
+        preferenceSettings = this.getSharedPreferences(Constant.PREFERENCE_FILE, Constant.PREFERENCE_MODE_PRIVATE);
         preferenceEditor = preferenceSettings.edit();
         String username = etusername.getText().toString();
         String password = etpassword.getText().toString();
@@ -190,6 +191,10 @@ public class LoginActivity extends AppCompatActivity
             case R.id.nav_login:
                 Intent loginIntent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(loginIntent);
+                break;
+            case R.id.nav_logout:
+                Intent logoutIntent = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(logoutIntent);
                 break;
         }
         if (fragment != null){

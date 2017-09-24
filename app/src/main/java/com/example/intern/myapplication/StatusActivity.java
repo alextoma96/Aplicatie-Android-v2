@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import Commons.StatusCount;
 import CustomAdapters.StatusAdapter;
@@ -134,6 +135,10 @@ public class StatusActivity extends AppCompatActivity
             case R.id.nav_login:
                 Intent loginIntent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(loginIntent);
+                break;
+            case R.id.nav_logout:
+                Intent logoutIntent = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(logoutIntent);
                 break;
         }
         if (fragment != null){
