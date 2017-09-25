@@ -24,13 +24,14 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import Commons.Angajat;
 import Commons.Utilizator;
 import Networking.HttpConnectionUtilizatori;
 import Utils.Constant;
 
 
 public class LoginActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, Constant {
 
     private EditText etusername;
     private EditText etpassword;
@@ -39,15 +40,10 @@ public class LoginActivity extends AppCompatActivity
 
     String users=null;
     String pass=null;
-    Integer id=null;
+//    Integer id=null;
+//    Angajat angajat;
 
     List<Utilizator> userList = new ArrayList<>();
-
-    private String USERNAME_PREFERENCE_KEY="username";
-
-    private String PASSWORD_PREFERENCE_KEY="password";
-    private String CHECKBOX_PREFERENCE_KEY="checkbox";
-
     private SharedPreferences preferenceSettings;
     private SharedPreferences.Editor preferenceEditor;
 
@@ -57,7 +53,7 @@ public class LoginActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        init();
+        consumeHttpConnection();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -72,7 +68,6 @@ public class LoginActivity extends AppCompatActivity
     }
 
     private void init() {
-        consumeHttpConnection();
         etusername = (EditText) findViewById(R.id.et_login_username);
         etpassword = (EditText) findViewById(R.id.et_login_password);
         cbrmbrcred = (CheckBox) findViewById(R.id.cb_login_remember);
@@ -109,11 +104,13 @@ public class LoginActivity extends AppCompatActivity
                     final String username=etusername.getText().toString();
                     final String password=etpassword.getText().toString();
                     if(validation(username, password)){
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
                         preferenceEditor.putBoolean(CHECKBOX_PREFERENCE_KEY, cb);
                         preferenceEditor.putString(USERNAME_PREFERENCE_KEY, username);
                         preferenceEditor.putString(PASSWORD_PREFERENCE_KEY, password);
+                        //preferenceEditor.putInt(ANGAJAT_PREFERENCE_KEY, angajat.getId());
+                        preferenceEditor.commit();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
                     } else{
                         Toast.makeText(getApplicationContext(),R.string.login_toast2, Toast.LENGTH_SHORT).show();
                     }
@@ -127,6 +124,7 @@ public class LoginActivity extends AppCompatActivity
             if (u.equals(user.getUsername()) && p.equals(user.getParola())) {
                 users=user.getUsername();
                 pass=user.getParola();
+                //angajat = user.getAngajat();
             }
         }
         if(users!=null && pass!=null){
@@ -142,12 +140,13 @@ public class LoginActivity extends AppCompatActivity
             @Override
             protected void onPostExecute(ArrayList<Utilizator> utilizators) {
                 super.onPostExecute(utilizators);
+                init();
                 if (utilizators != null) {
                     userList.addAll(utilizators);
                 }
             }
         };
-        connection.execute("https://api.myjson.com/bins/15w6kh");
+        connection.execute("http://192.168.8.98/kepres205/api/rs/utilizator/list");
     }
 
     @Override

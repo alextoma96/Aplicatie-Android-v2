@@ -46,6 +46,7 @@ public class MessageContentActivity extends AppCompatActivity
     public void init() {
         TextView tvMessageContent = (TextView) findViewById(R.id.tv_message_content);
         CharSequence mesaj = (CharSequence) getIntent().getSerializableExtra("mesaj");
+        Log.i("m", mesaj.toString());
         tvMessageContent.setText(mesaj);
     }
     @Override

@@ -13,4 +13,8 @@ public interface Constant {
     public String FACTURA_KEY = "factura";
     public static final int PREFERENCE_MODE_PRIVATE = 0;
     public static final String PREFERENCE_FILE = "UserPreferenceFile";
+    public static final String USERNAME_PREFERENCE_KEY = "username";
+    public static final String PASSWORD_PREFERENCE_KEY = "password";
+    public static final String CHECKBOX_PREFERENCE_KEY = "checkbox";
+    public static final String ANGAJAT_PREFERENCE_KEY = "checkbox";
 }

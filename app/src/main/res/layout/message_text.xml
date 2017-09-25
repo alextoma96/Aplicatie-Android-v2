@@ -35,11 +35,12 @@
         <TextView
             android:id="@+id/tv_message_content"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="fill_parent"
             android:gravity="center"
             android:text="@string/tv_home_appRights"
             android:textStyle="bold"
-            android:textSize="17dp"/>
+            android:textSize="17dp"
+            android:textColor="#FF1B1B1B"/>
     </RelativeLayout>
 
 

@@ -1,6 +1,7 @@
 package com.example.intern.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -31,9 +32,10 @@ import Networking.HttpConnectionAngajat;
 import Networking.HttpConnectionDestinatarMesaj;
 import Networking.HttpConnectionFacturi;
 import Networking.HttpConnectionMesaj;
+import Utils.Constant;
 
 public class MesajeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, Constant {
 
     Integer imgid = R.drawable.readmessage;
     ListView lvMesaje;
@@ -66,10 +68,21 @@ public class MesajeActivity extends AppCompatActivity
         lvMesaje = (ListView) findViewById(R.id.lista_lv_mesaje);
         if (listaMesaje != null) {
             //ArrayAdapter<Factura> adapter = new ArrayAdapter<Factura>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaFacturi);
+//            SharedPreferences preferenceSettings = this.getSharedPreferences(PREFERENCE_FILE, PREFERENCE_MODE_PRIVATE);
+//            SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
+//            Integer idAngajat = preferenceSettings.getInt(ANGAJAT_PREFERENCE_KEY, 0);
+//            Log.i("chacha", idAngajat.toString());
+//            for(DestinatarMesaj d: listaDestinatari) {
+//                if(d.getIdAngajat() != idAngajat) {
+//                    Integer idMesaj = d.getIdMesaj();
+//                    for(Mesaj m : listaMesaje) {
+//                        if(m.getId() == idMesaj) {
+//                            listaMesaje.remove(m);
+//                        }
+//                    }
+//                }
+//            }
             final MesajAdapter mesajAdapter = new MesajAdapter(this, listaMesaje, imgid);
-            for(Mesaj m : listaMesaje) {
-                Log.i("m", m.getTitlu());
-            }
             lvMesaje.setAdapter(mesajAdapter);
 
             lvMesaje.setOnItemClickListener(new AdapterView.OnItemClickListener() {
