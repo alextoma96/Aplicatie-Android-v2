@@ -35,8 +35,7 @@ import Networking.HttpConnectionMesaj;
 public class MesajeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Integer imgid[] = {R.drawable.factura,
-                       R.drawable.draft};
+    Integer imgid = R.drawable.readmessage;
     ListView lvMesaje;
     ArrayList<Mesaj> listaMesaje = new ArrayList<>();
     ArrayList<DestinatarMesaj> listaDestinatari = new ArrayList<>();
@@ -72,6 +71,16 @@ public class MesajeActivity extends AppCompatActivity
                 Log.i("m", m.getTitlu());
             }
             lvMesaje.setAdapter(mesajAdapter);
+
+            lvMesaje.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(getApplicationContext(), MessageContentActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("object", listaMesaje.get(position));
+                    startActivity(intent);
+                }
+            });
         }
     }
 

@@ -16,6 +16,7 @@ import java.util.List;
 
 import Commons.Mesaj;
 import Commons.StatusCount;
+import Utils.Constant;
 
 /**
  * Created by idanciu on 9/25/2017.
@@ -24,13 +25,13 @@ import Commons.StatusCount;
 public class MesajAdapter extends ArrayAdapter<Mesaj> {
     private final Context context;
     private List<Mesaj> list;
-    private Integer imgid[];
+    private Integer imgid;
 
     int[] listItemBackground = new int[] { R.layout.list_background1,
             R.layout.list_background2 };
 
 
-    public MesajAdapter(Activity context, List<Mesaj> itemname, Integer imgid[]) {
+    public MesajAdapter(Activity context, List<Mesaj> itemname, Integer imgid) {
         super(context, R.layout.mesaj_list, itemname);
         this.context = context;
         this.list = itemname;
@@ -45,23 +46,21 @@ public class MesajAdapter extends ArrayAdapter<Mesaj> {
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
         TextView titluLabel = (TextView) rowView.findViewById(R.id.tv_mesaj_titlu_label);
         TextView titlu = (TextView) rowView.findViewById(R.id.tv_mesaj_titlu);
+        TextView dataLabel = (TextView) rowView.findViewById(R.id.tv_data_label);
         TextView data = (TextView) rowView.findViewById(R.id.tv_data);
-        TextView continutLabel = (TextView) rowView.findViewById(R.id.tv_mesaj_continut_label);
-        TextView continut = (TextView) rowView.findViewById(R.id.tv_continut);
         TextView expeditorLabel = (TextView) rowView.findViewById(R.id.tv_expeditor_label);
         TextView expeditor = (TextView) rowView.findViewById(R.id.tv_expeditor);
 
 
-        imageView.setImageResource(imgid[position]);
+        imageView.setImageResource(imgid);
         titluLabel.setText("Titlu: ");
         titlu.setText((CharSequence) list.get(position).getTitlu());
         if(data != null) {
-            data.setText((CharSequence) String.valueOf(list.get(position).getData()));
+            dataLabel.setText("Data: ");
+            data.setText((CharSequence) Constant.SIMPLE_DATE_FORMAT.format(list.get(position).getData()));
         } else {
             data.setText("");
         }
-        continutLabel.setText("Mesaj: ");
-        continut.setText((CharSequence) list.get(position).getContinut());
         expeditorLabel.setText("Expeditor: ");
         expeditor.setText((CharSequence) list.get(position).getExpeditor().getNume());
         return rowView;

@@ -87,15 +87,18 @@
                 android:value="com.example.intern.myapplication.MainActivity" />
             >>
         </activity>
-        <activity android:name=".MesajeActivity"
-                  android:label="@string/mesaje_activity"
-                  android:launchMode="singleTop"
-                  android:parentActivityName=".MainActivity"
-                  android:theme="@style/AppTheme">
+        <activity
+            android:name=".MesajeActivity"
+            android:label="@string/mesaje_activity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.intern.myapplication.MainActivity" />
-            >>></activity>
+            >>>
+        </activity>
+        <activity android:name=".MessageContentActivity"></activity>
     </application>
 
 </manifest>
