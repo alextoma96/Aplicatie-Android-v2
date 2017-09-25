@@ -40,8 +40,8 @@ public class LoginActivity extends AppCompatActivity
 
     String users=null;
     String pass=null;
-//    Integer id=null;
-//    Angajat angajat;
+    Integer id=null;
+    Angajat angajat;
 
     List<Utilizator> userList = new ArrayList<>();
     private SharedPreferences preferenceSettings;
@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity
         etpassword = (EditText) findViewById(R.id.et_login_password);
         cbrmbrcred = (CheckBox) findViewById(R.id.cb_login_remember);
         btnLogin = (Button) findViewById(R.id.btn_login_button);
-        boolean cb;
+        boolean cb = false;
         if(cbrmbrcred.isChecked()){
             cb=true;
         }else{
@@ -107,7 +107,9 @@ public class LoginActivity extends AppCompatActivity
                         preferenceEditor.putBoolean(CHECKBOX_PREFERENCE_KEY, cb);
                         preferenceEditor.putString(USERNAME_PREFERENCE_KEY, username);
                         preferenceEditor.putString(PASSWORD_PREFERENCE_KEY, password);
-                        //preferenceEditor.putInt(ANGAJAT_PREFERENCE_KEY, angajat.getId());
+                        if(angajat != null) {
+                            preferenceEditor.putInt(ANGAJAT_PREFERENCE_KEY, angajat.getId());
+                        }
                         preferenceEditor.commit();
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
@@ -124,7 +126,7 @@ public class LoginActivity extends AppCompatActivity
             if (u.equals(user.getUsername()) && p.equals(user.getParola())) {
                 users=user.getUsername();
                 pass=user.getParola();
-                //angajat = user.getAngajat();
+                angajat = user.getAngajat();
             }
         }
         if(users!=null && pass!=null){
@@ -146,7 +148,8 @@ public class LoginActivity extends AppCompatActivity
                 }
             }
         };
-        connection.execute("http://192.168.8.98/kepres205/api/rs/utilizator/list");
+       // connection.execute("http://192.168.8.98/kepres205/api/rs/utilizator/list");
+        connection.execute("https://api.myjson.com/bins/8q0ll");
     }
 
     @Override

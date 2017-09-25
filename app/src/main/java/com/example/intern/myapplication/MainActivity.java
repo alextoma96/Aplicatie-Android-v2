@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import Utils.Constant;
 
@@ -94,8 +95,15 @@ public class MainActivity extends AppCompatActivity
                 startActivity(loginIntent);
                 break;
             case R.id.nav_mesaj:
-                Intent mesajIntent = new Intent(getApplicationContext(), MesajeActivity.class);
-                startActivity(mesajIntent);
+                SharedPreferences preferenceSettings = this.getSharedPreferences(PREFERENCE_FILE, PREFERENCE_MODE_PRIVATE);
+                String username = preferenceSettings.getString(USERNAME_PREFERENCE_KEY, "");
+                Log.i("chichi", username);
+                if(username != null) {
+                    Intent mesajIntent = new Intent(getApplicationContext(), MesajeActivity.class);
+                    startActivity(mesajIntent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Pentru a vizualiza mesajele trebuie sa fiti logat!", Toast.LENGTH_LONG).show();
+                }
                 break;
         }
         if (fragment != null){

@@ -36,11 +36,13 @@
             android:id="@+id/tv_message_content"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:gravity="center"
+            android:gravity="left"
             android:text="@string/tv_home_appRights"
             android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#FF1B1B1B"/>
+            android:textSize="20dp"
+            android:textColor="#FF1B1B1B"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
     </RelativeLayout>
 
 

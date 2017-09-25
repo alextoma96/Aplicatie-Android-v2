@@ -16,5 +16,5 @@ public interface Constant {
     public static final String USERNAME_PREFERENCE_KEY = "username";
     public static final String PASSWORD_PREFERENCE_KEY = "password";
     public static final String CHECKBOX_PREFERENCE_KEY = "checkbox";
-    public static final String ANGAJAT_PREFERENCE_KEY = "checkbox";
+    public static final String ANGAJAT_PREFERENCE_KEY = "angajat";
 }

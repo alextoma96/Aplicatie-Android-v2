@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,13 +23,14 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import Commons.StatusCount;
 import CustomAdapters.StatusAdapter;
 import Networking.HttpConnectionStatus;
 
 public class StatusActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     public static String status = "";
     ListView lvStatus;
@@ -61,9 +63,35 @@ public class StatusActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+
+
     private void init() {
         lvStatus = (ListView) findViewById(R.id.lista_lv_status);
         //final ArrayAdapter<StatusCount> adapter = new ArrayAdapter<StatusCount>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaStatus);
+        for(StatusCount s : listaStatus) {
+            switch(s.getStatus()) {
+                case "DRAFT":
+                    s.setSorter(0);
+                    break;
+                case "VALIDAT":
+                    s.setSorter(1);
+                    break;
+                case "ARHIVAT":
+                    s.setSorter(2);
+                    break;
+                case "FINALIZAT":
+                    s.setSorter(3);
+                    break;
+                case "ACTIVAT":
+                    s.setSorter(4);
+                    break;
+                case "EMIS":
+                    s.setSorter(5);
+                    break;
+            }
+            Log.i("status", s.getSorter().toString());
+        }
+        Collections.sort(listaStatus, StatusCount.DESCENDING_COMPARATOR);
         final StatusAdapter statusAdapter = new StatusAdapter(this, listaStatus, imgid);
         lvStatus.setAdapter(statusAdapter);
         lvStatus.setOnItemClickListener(new AdapterView.OnItemClickListener() {

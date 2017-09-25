@@ -3,6 +3,8 @@ package Commons;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Comparator;
+
 /**
  * Created by idanciu on 9/12/2017.
  */
@@ -10,6 +12,10 @@ import android.os.Parcelable;
 public class StatusCount implements Parcelable{
     private String status;
     private Integer nrFacturi;
+    private Integer sorter;
+
+    public Integer getSorter() { return sorter; }
+    public void setSorter(Integer sorter) { this.sorter = sorter; }
 
     public StatusCount(String status, Integer nrFacturi) {
         this.status = status;
@@ -54,4 +60,11 @@ public class StatusCount implements Parcelable{
         dest.writeString(status);
         dest.writeInt(nrFacturi);
     }
+
+
+    public static final Comparator<StatusCount> DESCENDING_COMPARATOR = new Comparator<StatusCount>() {
+        public int compare(StatusCount s1, StatusCount s2) {
+            return s1.getSorter() - s2.getSorter();
+        }
+    };
 }

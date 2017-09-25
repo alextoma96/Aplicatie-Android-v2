@@ -41,15 +41,12 @@ public class MesajeActivity extends AppCompatActivity
     ListView lvMesaje;
     ArrayList<Mesaj> listaMesaje = new ArrayList<>();
     ArrayList<DestinatarMesaj> listaDestinatari = new ArrayList<>();
-    ArrayList<Angajat> listaAngajati = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mesaje);
         consumeHttpConnectionDestinatari();
-        consumeHttpConnectionAngajati();
         consumeHttpConnectionMesaj();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -68,20 +65,22 @@ public class MesajeActivity extends AppCompatActivity
         lvMesaje = (ListView) findViewById(R.id.lista_lv_mesaje);
         if (listaMesaje != null) {
             //ArrayAdapter<Factura> adapter = new ArrayAdapter<Factura>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaFacturi);
-//            SharedPreferences preferenceSettings = this.getSharedPreferences(PREFERENCE_FILE, PREFERENCE_MODE_PRIVATE);
-//            SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
-//            Integer idAngajat = preferenceSettings.getInt(ANGAJAT_PREFERENCE_KEY, 0);
-//            Log.i("chacha", idAngajat.toString());
-//            for(DestinatarMesaj d: listaDestinatari) {
-//                if(d.getIdAngajat() != idAngajat) {
-//                    Integer idMesaj = d.getIdMesaj();
-//                    for(Mesaj m : listaMesaje) {
-//                        if(m.getId() == idMesaj) {
-//                            listaMesaje.remove(m);
-//                        }
-//                    }
-//                }
-//            }
+            SharedPreferences preferenceSettings = this.getSharedPreferences(PREFERENCE_FILE, PREFERENCE_MODE_PRIVATE);
+            Integer idAngajat = preferenceSettings.getInt(ANGAJAT_PREFERENCE_KEY, 0);
+            Log.i("idAng", idAngajat.toString());
+            for(DestinatarMesaj d: listaDestinatari) {
+                Log.i("destID", d.getIdAngajat().toString());
+                if(d.getIdAngajat() != idAngajat) {
+                    Integer idMesaj = d.getIdMesaj();
+                    Log.i("idMesaj", idMesaj.toString());
+                    for(Mesaj m : listaMesaje) {
+                        Log.i("idMesajListaaaa", m.getId().toString());
+                        if(m.getId() == idMesaj) {
+                            listaMesaje.remove(m);
+                        }
+                    }
+                }
+            }
             final MesajAdapter mesajAdapter = new MesajAdapter(this, listaMesaje, imgid);
             lvMesaje.setAdapter(mesajAdapter);
 
@@ -106,22 +105,8 @@ public class MesajeActivity extends AppCompatActivity
                 }
             }
         };
-        connection.execute("http://192.168.8.98/kepres205/api/rs/destinatarmesaj/list");
-
-    }
-
-    public void consumeHttpConnectionAngajati() {
-        HttpConnectionAngajat connection = new HttpConnectionAngajat() {
-            @Override
-            protected void onPostExecute(ArrayList<Angajat> angajats) {
-                super.onPostExecute(angajats);
-                if(angajats != null) {
-                    listaAngajati.addAll(angajats);
-                }
-            }
-        };
-        connection.execute("http://192.168.8.98/kepres205/api/rs/angajat/list");
-
+        //connection.execute("http://192.168.8.98/kepres205/api/rs/destinatarmesaj/list");
+        connection.execute("https://api.myjson.com/bins/6efc9");
     }
 
     public void consumeHttpConnectionMesaj() {
@@ -136,8 +121,8 @@ public class MesajeActivity extends AppCompatActivity
                 }
             }
         };
-        connection.execute("http://192.168.8.98/kepres205/api/rs/mesaj/list");
-
+       // connection.execute("http://192.168.8.98/kepres205/api/rs/mesaj/list");
+        connection.execute("https://api.myjson.com/bins/b3r0p");
     }
     @Override
     public void onBackPressed() {
