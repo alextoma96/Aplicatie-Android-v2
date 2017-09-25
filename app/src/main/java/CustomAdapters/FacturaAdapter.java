@@ -48,7 +48,6 @@ public class FacturaAdapter extends ArrayAdapter<Factura> implements Constant{
         TextView facturaLabel = (TextView) rowView.findViewById(R.id.tv_factura_label);
         TextView serie = (TextView) rowView.findViewById(R.id.tv_serie);
         TextView numar = (TextView) rowView.findViewById(R.id.tv_nr);
-        TextView din = (TextView) rowView.findViewById(R.id.tv_din);
         TextView data = (TextView) rowView.findViewById(R.id.tv_data);
         TextView status = (TextView) rowView.findViewById(R.id.tv_status);
         TextView suma = (TextView) rowView.findViewById(R.id.tv_suma);
@@ -56,7 +55,7 @@ public class FacturaAdapter extends ArrayAdapter<Factura> implements Constant{
 
 
         imageView.setImageResource(imgid);
-        facturaLabel.setText("Factura nr. ");
+        facturaLabel.setText("Fact. nr. ");
         if(list.get(position).getSerieFactura() != null) {
             serie.setText(list.get(position).getSerieFactura().getCod());
             if(list.get(position).getSerieFactura().getSecventa() != null) {
@@ -69,7 +68,6 @@ public class FacturaAdapter extends ArrayAdapter<Factura> implements Constant{
         }
 
         if(list.get(position).getDtEmitere() != null) {
-            din.setText(" din ");
             data.setText(SIMPLE_DATE_FORMAT.format(list.get(position).getDtEmitere()));
         } else {
             data.setText("");

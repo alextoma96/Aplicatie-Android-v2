@@ -3,28 +3,37 @@ package Commons;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Date;
+
 /**
  * Created by intern on 9/22/2017.
  */
 
 public class Mesaj implements Parcelable {
+    private Integer id;
+    private Long data;
     private String titlu;
     private String continut;
     private String trimis;
     private String citit;
+    private Angajat expeditor;
 
-    public Mesaj(String titlu, String continut, String trimis, String citit) {
+    public Mesaj(Integer id, Long data, String titlu, String continut, String trimis, String citit, Angajat expeditor) {
+        this.id = id;
+        this.data = data;
         this.titlu = titlu;
         this.continut = continut;
         this.trimis = trimis;
         this.citit = citit;
+        this.expeditor = expeditor;
     }
 
     protected Mesaj(Parcel in) {
+        id = in.readInt();
+        data = in.readLong();
         titlu = in.readString();
         continut = in.readString();
-        trimis = in.readString();
-        citit = in.readString();
+        expeditor = in.readParcelable(Angajat.class.getClassLoader());
     }
 
     public static final Creator<Mesaj> CREATOR = new Creator<Mesaj>() {
@@ -34,6 +43,15 @@ public class Mesaj implements Parcelable {
         @Override
         public Mesaj[] newArray(int size) { return new Mesaj[size]; }
     };
+
+    public Long getData() { return data; }
+    public Mesaj setData(Long data) { this.data = data; return this;}
+
+    public Angajat getExpeditor() { return expeditor; }
+    public Mesaj setExpeditor(Angajat expeditor) { this.expeditor = expeditor; return this;}
+
+    public Integer getId() { return id; }
+    public Mesaj setId(Integer id) { this.id = id; return this;}
 
     public String getTitlu() { return titlu; }
     public Mesaj setTitlu(String titlu) { this.titlu = titlu; return this;}
@@ -52,19 +70,13 @@ public class Mesaj implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeLong(data);
         dest.writeString(titlu);
         dest.writeString(continut);
         dest.writeString(trimis);
         dest.writeString(citit);
+        dest.writeParcelable(expeditor, flags);
     }
 
-    @Override
-    public String toString() {
-        String mesaj = "Titlu: " + titlu +
-                ", \nContinut: " + continut +
-                ", \nTrimis: " + trimis +
-                ",\nCitit: " + citit ;
-
-        return mesaj;
-    }
 }

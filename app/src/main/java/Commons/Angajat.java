@@ -8,6 +8,7 @@ import android.os.Parcelable;
  */
 
 public class Angajat implements Parcelable{
+    private Integer id;
     private String cod;
     private String nume;
     private String memo;
@@ -15,6 +16,7 @@ public class Angajat implements Parcelable{
     private String telefon;
 
     public Angajat(Parcel in) {
+        id = in.readInt();
         cod = in.readString();
         nume = in.readString();
         memo = in.readString();
@@ -22,13 +24,17 @@ public class Angajat implements Parcelable{
         telefon = in.readString();
     }
 
-    public Angajat(String cod, String nume, String memo, String email, String telefon) {
+    public Angajat(Integer id, String cod, String nume, String memo, String email, String telefon) {
+        this.id = id;
         this.cod = cod;
         this.nume = nume;
         this.memo = memo;
         this.email = email;
         this.telefon = telefon;
     }
+
+    public Integer getId() { return id; }
+    public Angajat setId(Integer id) { this.id = id; return this;}
 
     public String getCod() { return cod; }
     public Angajat setCod(String cod) { this.cod = cod; return this;}
@@ -69,6 +75,7 @@ public class Angajat implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
         dest.writeString(cod);
         dest.writeString(nume);
         dest.writeString(memo);

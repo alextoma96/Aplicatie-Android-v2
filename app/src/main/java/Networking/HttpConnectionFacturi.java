@@ -80,7 +80,7 @@ public class HttpConnectionFacturi extends AsyncTask <String, Void, ArrayList<Fa
         ArrayList<Factura> listaFacturi = new ArrayList<>();
         JSONArray jsonArray = new JSONArray(JSONString);
         for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonFactura = jsonArray.getJSONObject(i);
+            JSONObject jsonFactura = jsonArray.getJSONObject(i);
             Double total = jsonFactura.getDouble("total");
             Double tva = jsonFactura.getDouble("tva");
             String numar = jsonFactura.getString("numar");
@@ -150,10 +150,6 @@ public class HttpConnectionFacturi extends AsyncTask <String, Void, ArrayList<Fa
                 JSONObject jsonCreatDe = jsonFactura.getJSONObject("creatDe");
                 creatDe = parseAngajat(jsonCreatDe);
             }
-
-//          Factura factura = new Factura(serieFactura, numar, dtEstimata, dtEmitere, dtScadenta, suma, tva, total,
-//                                        memo, responsabil, creatDe, validatDe, emisDe, moneda, statusFactura, client,
-//                                        identitateCompanie, cotaTVA, observatii);
             Factura factura = new Factura(serieFactura, numar, dtEstimata, dtEmitere, null, suma, tva, total,
                                           memo, responsabil, creatDe, validatDe, emisDe, moneda, statusFactura, client,
                                           identitateCompanie, cotaTVA, observatii);
@@ -177,12 +173,13 @@ public class HttpConnectionFacturi extends AsyncTask <String, Void, ArrayList<Fa
     }
 
     private Angajat parseAngajat(JSONObject object) throws JSONException {
+        Integer id = object.getInt("id");
         String email = object.getString("email");
         String cod = object.getString("cod");
         String telefon = object.getString("telefon");
         String nume = object.getString("nume");
         String memo = object.getString("memo");
-        return new Angajat(cod, nume, memo, email, telefon);
+        return new Angajat(id, cod, nume, memo, email, telefon);
     }
 
     private Client parseClient(JSONObject object) throws JSONException {

@@ -114,10 +114,6 @@ public class UtilizatoriActivity extends AppCompatActivity
                 Intent loginIntent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(loginIntent);
                 break;
-            case R.id.nav_logout:
-                Intent logoutIntent = new Intent(getApplicationContext(),LoginActivity.class);
-                startActivity(logoutIntent);
-                break;
         }
         if (fragment != null){
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

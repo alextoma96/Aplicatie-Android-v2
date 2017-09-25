@@ -31,14 +31,12 @@ public class HttpConnectionMesaj extends AsyncTask<String, Void, ArrayList<Mesaj
 
     URL url;
     HttpURLConnection connection;
-    SimpleDateFormat dateFormat = SIMPLE_DATE_FORMAT;
 
     @Override
     protected ArrayList<Mesaj> doInBackground(String... params) {
         StringBuilder stringBuilder = new StringBuilder();
         try {
             url = new URL(params[0]);
-            Log.i("url", url.toString());
             connection = (HttpURLConnection) url.openConnection();
             InputStream inputStream = connection.getInputStream();
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -70,17 +68,30 @@ public class HttpConnectionMesaj extends AsyncTask<String, Void, ArrayList<Mesaj
         JSONArray jsonArray = new JSONArray(JSONString);
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonMesj = jsonArray.getJSONObject(i);
+            Integer id = jsonMesj.getInt("id");
+            Long data = jsonMesj.getLong("data");
+            JSONObject jsonAngajat = jsonMesj.getJSONObject("angajat");
+            Angajat expeditor = parseAngajat(jsonAngajat);
             String titlu = jsonMesj.getString("titlu");
             String continut = jsonMesj.getString("continut");
             String trimis = jsonMesj.getString("trimis");
             String citit = jsonMesj.getString("citit");
 
+            Mesaj mesaj = new Mesaj(id, data, titlu, continut, trimis, citit, expeditor);
+            listaMesaje.add(mesaj);
 
         }
-        for(Mesaj u : listaMesaje) {
-            Log.i("mesj", u.getTitlu());
-        }
         return listaMesaje;
+    }
+
+    private Angajat parseAngajat(JSONObject object) throws JSONException {
+        Integer id = object.getInt("id");
+        String email = object.getString("email");
+        String cod = object.getString("cod");
+        String telefon = object.getString("telefon");
+        String nume = object.getString("nume");
+        String memo = object.getString("memo");
+        return new Angajat(id, cod, nume, memo, email, telefon);
     }
 
 }
