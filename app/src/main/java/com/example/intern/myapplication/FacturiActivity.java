@@ -42,12 +42,8 @@ public class FacturiActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facturi);
-        Button butonDateGen = (Button) findViewById(R.id.flow_date_gen);
-        Button butonClienti = (Button) findViewById(R.id.flow_clienti);
-        Button butonFurizor = (Button) findViewById(R.id.flow_furnizor);
-        butonDateGen.setVisibility(View.GONE);
-        butonClienti.setVisibility(View.GONE);
-        butonFurizor.setVisibility(View.GONE);
+
+
         consumeHttpConnection();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -99,7 +95,7 @@ public class FacturiActivity extends AppCompatActivity
                 }
             }
         };
-        connection.execute("http://192.168.8.98/kepres205/api/rs/factura/list");
+        connection.execute("https://api.myjson.com/bins/ndlnl");
 
     }
     @Override

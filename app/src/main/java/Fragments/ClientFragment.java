@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Commons.Factura;
+import CustomAdapters.DateGeneraleAdapter;
 
 public class ClientFragment extends Fragment {
 
@@ -30,6 +31,14 @@ public class ClientFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_client, container, false);
     }
+    Integer[] imgid = {
+            R.drawable.nume_client,
+            R.drawable.cod_inregistrare,
+            R.drawable.cod_fiscal,
+            R.drawable.banca,
+            R.drawable.cod_iban,
+            R.drawable.adresa
+    };
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -38,12 +47,12 @@ public class ClientFragment extends Fragment {
         final Bundle bundle = this.getArguments();
         Factura factura = bundle.getParcelable("object");
 
-        Spanned numc = Html.fromHtml("Nume companie : "+ "<br> <b>" + vNumComp(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
-        Spanned codi = Html.fromHtml("Cod inregistrare: "+ "<br> <b>" + vCodIn(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
-        Spanned codf = Html.fromHtml("Cod fiscal : "+ "<br> <b>" + vCodFis(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
-        Spanned banca = Html.fromHtml("Banca : "+ "<br> <b>" + vBanca(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
-        Spanned iban = Html.fromHtml("Cod IBAN : "+ "<br> <b>" + vIBAN(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
-        Spanned adr = Html.fromHtml("Adresa : "+ "<br> <b>" + vAdresa(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned numc = Html.fromHtml("Nume companie"+ "<br> <b>" + vNumComp(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned codi = Html.fromHtml("Cod inregistrare"+ "<br> <b>" + vCodIn(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned codf = Html.fromHtml("Cod fiscal"+ "<br> <b>" + vCodFis(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned banca = Html.fromHtml("Banca"+ "<br> <b>" + vBanca(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned iban = Html.fromHtml("Cod IBAN"+ "<br> <b>" + vIBAN(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned adr = Html.fromHtml("Adresa"+ "<br> <b>" + vAdresa(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
 
         ListView date_gen = (ListView) getActivity().findViewById(R.id.lista_client);
         List<Spanned> listClient = new ArrayList<Spanned>();
@@ -53,7 +62,8 @@ public class ClientFragment extends Fragment {
         listClient.add(banca);
         listClient.add(iban);
         listClient.add(adr);
-        ArrayAdapter<Spanned> arrayAdapter = new ArrayAdapter<Spanned>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1,listClient );
+        //ArrayAdapter<Spanned> arrayAdapter = new ArrayAdapter<Spanned>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1,listClient );
+        final DateGeneraleAdapter arrayAdapter = new DateGeneraleAdapter(getActivity(), listClient, imgid);
         date_gen.setAdapter(arrayAdapter);
 
 
