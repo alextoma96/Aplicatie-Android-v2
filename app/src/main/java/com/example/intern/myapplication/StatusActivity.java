@@ -90,7 +90,7 @@ public class StatusActivity extends AppCompatActivity
                 }
             }
         };
-        connection.execute("https://api.myjson.com/bins/mmj49");
+        connection.execute("http://192.168.8.98/kepres205/api/rs/statusCount/list");
 
     }
 

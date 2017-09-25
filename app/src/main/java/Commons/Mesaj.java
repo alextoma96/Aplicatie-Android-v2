@@ -11,14 +11,14 @@ import java.util.Date;
 
 public class Mesaj implements Parcelable {
     private Integer id;
-    private Long data;
+    private Date data;
     private String titlu;
     private String continut;
     private String trimis;
     private String citit;
-    private Angajat expeditor;
+    private Utilizator expeditor;
 
-    public Mesaj(Integer id, Long data, String titlu, String continut, String trimis, String citit, Angajat expeditor) {
+    public Mesaj(Integer id, Date data, String titlu, String continut, String trimis, String citit, Utilizator expeditor) {
         this.id = id;
         this.data = data;
         this.titlu = titlu;
@@ -30,10 +30,9 @@ public class Mesaj implements Parcelable {
 
     protected Mesaj(Parcel in) {
         id = in.readInt();
-        data = in.readLong();
         titlu = in.readString();
         continut = in.readString();
-        expeditor = in.readParcelable(Angajat.class.getClassLoader());
+        expeditor = in.readParcelable(Utilizator.class.getClassLoader());
     }
 
     public static final Creator<Mesaj> CREATOR = new Creator<Mesaj>() {
@@ -44,11 +43,11 @@ public class Mesaj implements Parcelable {
         public Mesaj[] newArray(int size) { return new Mesaj[size]; }
     };
 
-    public Long getData() { return data; }
-    public Mesaj setData(Long data) { this.data = data; return this;}
+    public Date getData() { return data; }
+    public Mesaj setData(Date data) { this.data = data; return this;}
 
-    public Angajat getExpeditor() { return expeditor; }
-    public Mesaj setExpeditor(Angajat expeditor) { this.expeditor = expeditor; return this;}
+    public Utilizator getExpeditor() { return expeditor; }
+    public Mesaj setExpeditor(Utilizator expeditor) { this.expeditor = expeditor; return this;}
 
     public Integer getId() { return id; }
     public Mesaj setId(Integer id) { this.id = id; return this;}
@@ -71,7 +70,6 @@ public class Mesaj implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
-        dest.writeLong(data);
         dest.writeString(titlu);
         dest.writeString(continut);
         dest.writeString(trimis);

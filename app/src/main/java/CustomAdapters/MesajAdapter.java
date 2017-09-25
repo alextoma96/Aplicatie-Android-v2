@@ -2,6 +2,7 @@ package CustomAdapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,16 +43,24 @@ public class MesajAdapter extends ArrayAdapter<Mesaj> {
 
 
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
+        TextView titluLabel = (TextView) rowView.findViewById(R.id.tv_mesaj_titlu_label);
         TextView titlu = (TextView) rowView.findViewById(R.id.tv_mesaj_titlu);
         TextView data = (TextView) rowView.findViewById(R.id.tv_data);
+        TextView continutLabel = (TextView) rowView.findViewById(R.id.tv_mesaj_continut_label);
         TextView continut = (TextView) rowView.findViewById(R.id.tv_continut);
         TextView expeditorLabel = (TextView) rowView.findViewById(R.id.tv_expeditor_label);
         TextView expeditor = (TextView) rowView.findViewById(R.id.tv_expeditor);
 
 
         imageView.setImageResource(imgid[position]);
+        titluLabel.setText("Titlu: ");
         titlu.setText((CharSequence) list.get(position).getTitlu());
-        data.setText((CharSequence) String.valueOf(list.get(position).getData()));
+        if(data != null) {
+            data.setText((CharSequence) String.valueOf(list.get(position).getData()));
+        } else {
+            data.setText("");
+        }
+        continutLabel.setText("Mesaj: ");
         continut.setText((CharSequence) list.get(position).getContinut());
         expeditorLabel.setText("Expeditor: ");
         expeditor.setText((CharSequence) list.get(position).getExpeditor().getNume());

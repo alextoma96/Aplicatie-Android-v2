@@ -1,5 +1,6 @@
 package Networking;
 
+import android.icu.text.DateFormat;
 import android.icu.text.DateTimePatternGenerator;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -95,19 +96,23 @@ public class HttpConnectionFacturi extends AsyncTask <String, Void, ArrayList<Fa
             JSONObject jsonStatusFactura = jsonFactura.getJSONObject("statusFactura");
             StatusFactura statusFactura = parseStatusFactura(jsonStatusFactura);
 
-            String dtScadenta;
-           if(!jsonFactura.getString("dtScadenta").isEmpty()) {
-              String dtScadentaString = jsonFactura.getString("dtScadenta");
-             // Long timeInMillis = Long.valueOf(dtScadentaString);
-               //Log.i("dtScad", String.valueOf(timeInMillis));
+            Date dtScadenta = null;
+           if(!jsonFactura.isNull("dtScadenta")) {
+               Long dtScadentaLong = jsonFactura.getLong("dtScadenta");
+               Calendar calendar = Calendar.getInstance();
+               calendar.setTimeInMillis(dtScadentaLong);
+               String dtScadentaString = dateFormat.format(calendar.getTime());
+               dtScadenta = dateFormat.parse(dtScadentaString);
+           }
 
+            Date dtEmitere = null;
+          if(!jsonFactura.isNull("dtEmitere")) {
+              Long dtEmitereLong = jsonFactura.getLong("dtEmitere");
+              Calendar calendar = Calendar.getInstance();
+              calendar.setTimeInMillis(dtEmitereLong);
+              String dtEmitereString = dateFormat.format(calendar.getTime());
+              dtEmitere = dateFormat.parse(dtEmitereString);
           }
-
-            Date dtEmitere = new Date();
-//          if(!jsonFactura.isNull("dtEmitere")) {
-//            String dtEmitereString = jsonFactura.getString("dtEmitere");
-//            dtEmitere = dateFormat.parse(dtEmitereString);
-//          }
 
             Angajat validatDe = null;
             if(!jsonFactura.isNull("validatDe")) {
@@ -127,11 +132,14 @@ public class HttpConnectionFacturi extends AsyncTask <String, Void, ArrayList<Fa
                 responsabil = parseAngajat(jsonAngajat);
             }
 
-            String dtEstimataString = jsonFactura.getString("dtEstimata");
-            Date dtEstimata = new Date();
-//          if(dtEmitereString != null) {
-//             dtEstimata = dateFormat.parse(dtEstimataString);
-//          }
+            Date dtEstimata = null;
+          if(!jsonFactura.isNull("dtEstimata")) {
+              Long dtEstimataLong = jsonFactura.getLong("dtEstimata");
+              Calendar calendar = Calendar.getInstance();
+              calendar.setTimeInMillis(dtEstimataLong);
+              String dtEstimataString = dateFormat.format(calendar.getTime());
+              dtEstimata = dateFormat.parse(dtEstimataString);
+          }
 
             JSONObject jsonClient = jsonFactura.getJSONObject("client");
             Client client = parseClient(jsonClient);

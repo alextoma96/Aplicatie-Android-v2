@@ -17,9 +17,12 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import Commons.Angajat;
 import Commons.Mesaj;
+import Commons.SerieFactura;
 import Commons.Utilizator;
 import Utils.Constant;
 
@@ -69,9 +72,20 @@ public class HttpConnectionMesaj extends AsyncTask<String, Void, ArrayList<Mesaj
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonMesj = jsonArray.getJSONObject(i);
             Integer id = jsonMesj.getInt("id");
-            Long data = jsonMesj.getLong("data");
-            JSONObject jsonAngajat = jsonMesj.getJSONObject("angajat");
-            Angajat expeditor = parseAngajat(jsonAngajat);
+            Date data = null;
+            if(!jsonMesj.isNull("data")) {
+                Long dataLong = jsonMesj.getLong("data");
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(dataLong);
+                String dataString = Constant.SIMPLE_DATE_FORMAT.format(calendar.getTime());
+                data = Constant.SIMPLE_DATE_FORMAT.parse(dataString);
+            }
+            Utilizator expeditor = null;
+            if(!jsonMesj.isNull("expeditor")) {
+                JSONObject jsonUtilizator = jsonMesj.getJSONObject("expeditor");
+                expeditor = parseUtilizator(jsonUtilizator);
+            }
+
             String titlu = jsonMesj.getString("titlu");
             String continut = jsonMesj.getString("continut");
             String trimis = jsonMesj.getString("trimis");
@@ -84,14 +98,10 @@ public class HttpConnectionMesaj extends AsyncTask<String, Void, ArrayList<Mesaj
         return listaMesaje;
     }
 
-    private Angajat parseAngajat(JSONObject object) throws JSONException {
-        Integer id = object.getInt("id");
-        String email = object.getString("email");
-        String cod = object.getString("cod");
-        String telefon = object.getString("telefon");
+    private Utilizator parseUtilizator(JSONObject object) throws JSONException {
         String nume = object.getString("nume");
-        String memo = object.getString("memo");
-        return new Angajat(id, cod, nume, memo, email, telefon);
+        return new Utilizator(nume, null, null, null);
     }
+
 
 }

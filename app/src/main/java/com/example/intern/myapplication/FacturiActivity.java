@@ -99,7 +99,7 @@ public class FacturiActivity extends AppCompatActivity
                 }
             }
         };
-        connection.execute("https://api.myjson.com/bins/1adho1");
+        connection.execute("http://192.168.8.98/kepres205/api/rs/factura/list");
 
     }
     @Override

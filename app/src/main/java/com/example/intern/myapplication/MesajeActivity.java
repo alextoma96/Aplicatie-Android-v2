@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,12 +20,14 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import Commons.Angajat;
 import Commons.DestinatarMesaj;
 import Commons.Factura;
 import Commons.Mesaj;
 import CustomAdapters.FacturaAdapter;
 import CustomAdapters.MesajAdapter;
 import Fragments.DateGeneraleFragment;
+import Networking.HttpConnectionAngajat;
 import Networking.HttpConnectionDestinatarMesaj;
 import Networking.HttpConnectionFacturi;
 import Networking.HttpConnectionMesaj;
@@ -37,6 +40,7 @@ public class MesajeActivity extends AppCompatActivity
     ListView lvMesaje;
     ArrayList<Mesaj> listaMesaje = new ArrayList<>();
     ArrayList<DestinatarMesaj> listaDestinatari = new ArrayList<>();
+    ArrayList<Angajat> listaAngajati = new ArrayList<>();
 
 
     @Override
@@ -44,6 +48,7 @@ public class MesajeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mesaje);
         consumeHttpConnectionDestinatari();
+        consumeHttpConnectionAngajati();
         consumeHttpConnectionMesaj();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -63,6 +68,9 @@ public class MesajeActivity extends AppCompatActivity
         if (listaMesaje != null) {
             //ArrayAdapter<Factura> adapter = new ArrayAdapter<Factura>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaFacturi);
             final MesajAdapter mesajAdapter = new MesajAdapter(this, listaMesaje, imgid);
+            for(Mesaj m : listaMesaje) {
+                Log.i("m", m.getTitlu());
+            }
             lvMesaje.setAdapter(mesajAdapter);
         }
     }
@@ -81,6 +89,20 @@ public class MesajeActivity extends AppCompatActivity
 
     }
 
+    public void consumeHttpConnectionAngajati() {
+        HttpConnectionAngajat connection = new HttpConnectionAngajat() {
+            @Override
+            protected void onPostExecute(ArrayList<Angajat> angajats) {
+                super.onPostExecute(angajats);
+                if(angajats != null) {
+                    listaAngajati.addAll(angajats);
+                }
+            }
+        };
+        connection.execute("http://192.168.8.98/kepres205/api/rs/angajat/list");
+
+    }
+
     public void consumeHttpConnectionMesaj() {
         HttpConnectionMesaj connection = new HttpConnectionMesaj() {
             @Override
@@ -89,6 +111,7 @@ public class MesajeActivity extends AppCompatActivity
                 super.onPostExecute(mesajs);
                 if(mesajs != null) {
                     listaMesaje.addAll(mesajs);
+
                 }
             }
         };
