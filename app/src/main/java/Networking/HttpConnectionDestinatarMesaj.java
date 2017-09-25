@@ -1,29 +1,8 @@
 package Networking;
 
-import android.util.Log;
-
-import com.example.intern.myapplication.StatusActivity;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
-import Commons.Angajat;
-import Commons.CotaTVA;
-import Commons.DestinatarMesaj;
-import Commons.Mesaj;
-import Commons.Moneda;
 
 import static Utils.Constant.SIMPLE_DATE_FORMAT;
 
@@ -37,7 +16,9 @@ public class HttpConnectionDestinatarMesaj  {
     HttpURLConnection connection;
     SimpleDateFormat dateFormat = SIMPLE_DATE_FORMAT;
 
-    @Override
+
+
+    /*@Override
     protected ArrayList<DestinatarMesaj> doInBackground(String... params) {
         StringBuilder stringBuilder = new StringBuilder();
         try {
@@ -69,12 +50,22 @@ public class HttpConnectionDestinatarMesaj  {
         return null;
     }
 
-    private ArrayList<DestinatarMesaj> parseHttpResponse(String JSONString) throws JSONException, ParseException {
+    private ArrayList<Mesaj> parseHttpResponse(String JSONString) throws JSONException, ParseException {
+        ArrayList<Mesaj> listaMesaje = new ArrayList<>();
+        JSONArray jsonArray = new JSONArray(JSONString);
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonMesj = jsonArray.getJSONObject(i);
+            String titlu = jsonMesj.getString("titlu");
+            String continut = jsonMesj.getString("continut");
+            String trimis = jsonMesj.getString("trimis");
+            String citit = jsonMesj.getString("citit");
+
         ArrayList<DestinatarMesaj> listaDestinatarMesaj = new ArrayList<>();
         JSONArray jsonArray = new JSONArray(JSONString);
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonDestinatarMesaj = jsonArray.getJSONObject(i);
             Integer id = jsonDestinatarMesaj.getInt("id");
+
 
 
             JSONObject jsonMesaj = jsonMesaj.getJSONObject("mesaj");
@@ -94,6 +85,7 @@ public class HttpConnectionDestinatarMesaj  {
         String continut = object.getString("continut");
         String trimis = object.getString("trimis");
         String citit = object.getString("citit");
+        return  new Mesaj(titlu, continut, trimis, citit);
     }
     private Angajat parseAngajat(JSONObject object) throws JSONException {
         String email = object.getString("email");
@@ -103,5 +95,5 @@ public class HttpConnectionDestinatarMesaj  {
         String memo = object.getString("memo");
         return new Angajat(cod, nume, memo, email, telefon);
     }
-
+    */
 }
