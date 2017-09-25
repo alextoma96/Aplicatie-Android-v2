@@ -77,9 +77,6 @@ public class MainActivity extends AppCompatActivity
                 Intent statusIntent = new Intent(getApplicationContext(), StatusActivity.class);
                 startActivity(statusIntent);
                 break;
-            case R.id.nav_aboutUs:
-               fragment = new DetailsActivity();
-                break;
             case R.id.nav_settings:
                 Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivity(settingsIntent);
@@ -91,6 +88,10 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_login:
                 Intent loginIntent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(loginIntent);
+                break;
+            case R.id.nav_mesaj:
+                Intent mesajIntent = new Intent(getApplicationContext(), MesajeActivity.class);
+                startActivity(mesajIntent);
                 break;
         }
         if (fragment != null){

@@ -1,8 +1,6 @@
 package com.example.intern.myapplication;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,30 +8,43 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import Commons.Utilizator;
-import CustomAdapters.UserAdapter;
-import Networking.HttpConnectionUtilizatori;
+import Commons.DestinatarMesaj;
+import Commons.Factura;
+import Commons.Mesaj;
+import CustomAdapters.FacturaAdapter;
+import CustomAdapters.MesajAdapter;
+import Fragments.DateGeneraleFragment;
+import Networking.HttpConnectionDestinatarMesaj;
+import Networking.HttpConnectionFacturi;
+import Networking.HttpConnectionMesaj;
 
-public class UtilizatoriActivity extends AppCompatActivity
+public class MesajeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Integer imgid = R.drawable.usercard;
-    ListView lvUtilizatori;
-    ArrayList<Utilizator> listaUtilizatori = new ArrayList<>();
+    Integer imgid[] = {R.drawable.factura,
+                       R.drawable.draft};
+    ListView lvMesaje;
+    ArrayList<Mesaj> listaMesaje = new ArrayList<>();
+    ArrayList<DestinatarMesaj> listaDestinatari = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_utilizatori);
-        consumeHttpConnection();
+        setContentView(R.layout.activity_mesaje);
+        consumeHttpConnectionDestinatari();
+        consumeHttpConnectionMesaj();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -48,30 +59,42 @@ public class UtilizatoriActivity extends AppCompatActivity
     }
 
     private void init() {
-        lvUtilizatori = (ListView) findViewById(R.id.lista_lv_utilizatori);
-        //ArrayAdapter<Utilizator> adapter = new ArrayAdapter<Utilizator>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaUtilizatori);
-        final UserAdapter userAdapter = new UserAdapter(this, listaUtilizatori, imgid);
-
-        lvUtilizatori.setAdapter(userAdapter);
+        lvMesaje = (ListView) findViewById(R.id.lista_lv_mesaje);
+        if (listaMesaje != null) {
+            //ArrayAdapter<Factura> adapter = new ArrayAdapter<Factura>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaFacturi);
+            final MesajAdapter mesajAdapter = new MesajAdapter(this, listaMesaje, imgid);
+            lvMesaje.setAdapter(mesajAdapter);
+        }
     }
 
-    public void consumeHttpConnection() {
-        HttpConnectionUtilizatori connection = new HttpConnectionUtilizatori() {
+    public void consumeHttpConnectionDestinatari() {
+        HttpConnectionDestinatarMesaj connection = new HttpConnectionDestinatarMesaj() {
             @Override
-            protected void onPostExecute(ArrayList<Utilizator> utilizators) {
-                init();
-                super.onPostExecute(utilizators);
-                if (utilizators != null) {
-                    listaUtilizatori.addAll(utilizators);
-                } else {
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_lvUtilizatori), Toast.LENGTH_SHORT).show();
+            protected void onPostExecute(ArrayList<DestinatarMesaj> dest) {
+                super.onPostExecute(dest);
+                if(dest != null) {
+                    listaDestinatari.addAll(dest);
                 }
             }
         };
+        connection.execute("http://192.168.8.98/kepres205/api/rs/destinatarmesaj/list");
 
-        connection.execute("https://api.myjson.com/bins/198rm9");
     }
 
+    public void consumeHttpConnectionMesaj() {
+        HttpConnectionMesaj connection = new HttpConnectionMesaj() {
+            @Override
+            protected void onPostExecute(ArrayList<Mesaj> mesajs) {
+                init();
+                super.onPostExecute(mesajs);
+                if(mesajs != null) {
+                    listaMesaje.addAll(mesajs);
+                }
+            }
+        };
+        connection.execute("http://192.168.8.98/kepres205/api/rs/mesaj/list");
+
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -112,9 +135,10 @@ public class UtilizatoriActivity extends AppCompatActivity
                 startActivity(loginIntent);
                 break;
             case R.id.nav_mesaj:
-                Intent mesajIntent = new Intent(getApplicationContext(), MesajeActivity.class);
+                Intent mesajIntent = new Intent(getApplicationContext(),MesajeActivity.class);
                 startActivity(mesajIntent);
                 break;
+
         }
         if (fragment != null){
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

@@ -88,11 +88,12 @@ public class HttpConnectionUtilizatori extends AsyncTask<String, Void, ArrayList
     }
 
     private Angajat parseAngajat(JSONObject object) throws JSONException {
+        Integer id = object.getInt("id");
         String email = object.getString("email");
         String cod = object.getString("cod");
         String telefon = object.getString("telefon");
         String nume = object.getString("nume");
         String memo = object.getString("memo");
-        return new Angajat(cod, nume, memo, email, telefon);
+        return new Angajat(id, cod, nume, memo, email, telefon);
     }
 }

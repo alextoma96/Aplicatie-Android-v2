@@ -23,63 +23,79 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".FacturiActivity"
-                  android:launchMode="singleTop"
-                  android:label="@string/facturi_activity"
-                  android:theme="@style/AppTheme"
-                  android:parentActivityName="com.example.intern.myapplication.StatusActivity" >
+        <activity
+            android:name=".FacturiActivity"
+            android:label="@string/facturi_activity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".StatusActivity"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.intern.myapplication.StatusActivity" />>
+                android:value="com.example.intern.myapplication.StatusActivity" />
+            >
         </activity>
 
-        <fragment android:name=".FacturaDetailsActivity" android:parentActivityName="com.example.intern.myapplication.FacturiActivity" android:launchMode="singleTop"/>
-
+        <fragment
+            android:name=".FacturaDetailsActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName="com.example.intern.myapplication.FacturiActivity" />
         <fragment
             android:name=".DetailsActivity"
             android:label="@string/title_activity_details" />
 
-
-        <activity android:name=".SettingsActivity"
-                  android:label="@string/settings_activity"
-                  android:theme="@style/AppTheme"
-                  android:launchMode="singleTop"
-                  android:parentActivityName="com.example.intern.myapplication.MainActivity" >
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/settings_activity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.intern.myapplication.MainActivity" />>>
+                android:value="com.example.intern.myapplication.MainActivity" />
+            >>
         </activity>
-
-        <activity android:name=".LoginActivity"
-                  android:label="@string/login_activity"
-                  android:theme="@style/AppTheme"
-                  android:launchMode="singleTop"
-                  android:parentActivityName="com.example.intern.myapplication.MainActivity" >
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/login_activity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.intern.myapplication.MainActivity" />>>
+                android:value="com.example.intern.myapplication.MainActivity" />
+            >>
         </activity>
-
-        <activity android:name=".UtilizatoriActivity"
-                  android:label="@string/utilizatori_activity"
-                  android:theme="@style/AppTheme"
-                  android:launchMode="singleTop"
-                  android:parentActivityName="com.example.intern.myapplication.MainActivity" >
+        <activity
+            android:name=".UtilizatoriActivity"
+            android:label="@string/utilizatori_activity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.intern.myapplication.MainActivity" />>>>
+                android:value="com.example.intern.myapplication.MainActivity" />
+            >>>
         </activity>
-
-        <activity android:name=".StatusActivity"
-                  android:launchMode="singleTop"
-                  android:label="@string/status_activity"
-                  android:theme="@style/AppTheme"
-            android:parentActivityName="com.example.intern.myapplication.MainActivity" >
+        <activity
+            android:name=".StatusActivity"
+            android:label="@string/status_activity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.intern.myapplication.MainActivity" />>>
+                android:value="com.example.intern.myapplication.MainActivity" />
+            >>
         </activity>
+        <activity android:name=".MesajeActivity"
+                  android:label="@string/mesaje_activity"
+                  android:launchMode="singleTop"
+                  android:parentActivityName=".MainActivity"
+                  android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.intern.myapplication.MainActivity" />
+            >>></activity>
     </application>
 
 </manifest>
