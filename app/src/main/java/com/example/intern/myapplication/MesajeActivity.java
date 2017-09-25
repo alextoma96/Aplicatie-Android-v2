@@ -76,8 +76,7 @@ public class MesajeActivity extends AppCompatActivity
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent intent = new Intent(getApplicationContext(), MessageContentActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable("object", listaMesaje.get(position));
+                    intent.putExtra("mesaj", (CharSequence)  listaMesaje.get(position).getContinut());
                     startActivity(intent);
                 }
             });

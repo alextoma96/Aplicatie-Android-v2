@@ -2,6 +2,7 @@ package com.example.intern.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
@@ -30,9 +32,7 @@ public class MessageContentActivity extends AppCompatActivity
         setContentView(R.layout.activity_message_content);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         init();
-        
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -45,8 +45,8 @@ public class MessageContentActivity extends AppCompatActivity
 
     public void init() {
         TextView tvMessageContent = (TextView) findViewById(R.id.tv_message_content);
-        Mesaj mesaj = getIntent().getParcelableExtra("object");
-        tvMessageContent.setText((CharSequence) mesaj.getContinut());
+        CharSequence mesaj = (CharSequence) getIntent().getSerializableExtra("mesaj");
+        tvMessageContent.setText(mesaj);
     }
     @Override
     public void onBackPressed() {
