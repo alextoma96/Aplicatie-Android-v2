@@ -147,7 +147,7 @@ public class LoginActivity extends AppCompatActivity
                 }
             }
         };
-        connection.execute("http://192.168.8.98/kepres205/api/rs/utilizator/list");
+        connection.execute("https://api.myjson.com/bins/15w6kh");
     }
 
     @Override

@@ -35,9 +35,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Commons.Factura;
+import CustomAdapters.DateGeneraleAdapter;
+import Utils.Constant;
 
 
-public class DateGeneraleFragment extends Fragment {
+public class DateGeneraleFragment extends Fragment implements Constant {
 
 
     @Nullable
@@ -46,7 +48,19 @@ public class DateGeneraleFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_date_generale, container, false);
     }
 
-
+    Integer[] imgid = {
+            R.drawable.data_estimata,
+            R.drawable.data_emitere,
+            R.drawable.serie,
+            R.drawable.responsabil,
+            R.drawable.moneda,
+            R.drawable.tva,
+            R.drawable.status_factura,
+            R.drawable.data_scadenta,
+            R.drawable.creat_de,
+            R.drawable.validat_de,
+            R.drawable.emis_de
+    };
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -56,17 +70,17 @@ public class DateGeneraleFragment extends Fragment {
         final Bundle bundle = this.getArguments();
         final Factura factura = bundle.getParcelable("object");
 
-        Spanned dtest = Html.fromHtml("Dt. est. emit. : "+ "<br> <b>" + vDtEst(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
-        Spanned dtem = Html.fromHtml("Dt. emitere. : "+ "<br> <b>" + vDtEm(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
-        Spanned ser = Html.fromHtml("Serie factura : "+ "<br> <b>" + vSerieCod(factura) + " " + vSerieSec(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
-        Spanned respon = Html.fromHtml("Responsabil : "+ "<br> <b>" + vResponsabil(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
-        Spanned mon = Html.fromHtml("Moneda : "+ "<br> <b>" + vMoneda(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
-        Spanned tv = Html.fromHtml("T.V.A. : "+ "<br> <b>" + vTVA(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
-        Spanned stat = Html.fromHtml("Status facura : "+ "<br> <b>" + vStatus(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
-        Spanned dtscad = Html.fromHtml("Dt. scadenta : "+ "<br> <b>" + vDtScad(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
-        Spanned creatde = Html.fromHtml("Creat de : "+ "<br> <b>" + vCreatDe(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
-        Spanned valid = Html.fromHtml("Validat de : "+ "<br> <b>" + vValidatDe(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
-        Spanned emis = Html.fromHtml("Emis de : "+ "<br> <b>" + vEmisDe(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned dtest = Html.fromHtml("Dt. est. emit."+ "<br> <b>" + vDtEst(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned dtem = Html.fromHtml("Dt. emitere."+ "<br> <b>" + vDtEm(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned ser = Html.fromHtml("Serie factura"+ "<br> <b>" + vSerieCod(factura) + " " + vSerieSec(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned respon = Html.fromHtml("Responsabil"+ "<br> <b>" + vResponsabil(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned mon = Html.fromHtml("Moneda"+ "<br> <b>" + vMoneda(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned tv = Html.fromHtml("T.V.A."+ "<br> <b>" + vTVA(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned stat = Html.fromHtml("Status facura"+ "<br> <b>" + vStatus(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned dtscad = Html.fromHtml("Dt. scadenta"+ "<br> <b>" + vDtScad(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned creatde = Html.fromHtml("Creat de"+ "<br> <b>" + vCreatDe(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned valid = Html.fromHtml("Validat de"+ "<br> <b>" + vValidatDe(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
+        Spanned emis = Html.fromHtml("Emis de"+ "<br> <b>" + vEmisDe(factura) + "</b>", Html.FROM_HTML_MODE_LEGACY);
 
 
         ListView date_gen = (ListView) getActivity().findViewById(R.id.lista_date_genrale);
@@ -82,10 +96,12 @@ public class DateGeneraleFragment extends Fragment {
         listDate.add(creatde);
         listDate.add(valid);
         listDate.add(emis);
-        ArrayAdapter<Spanned> arrayAdapter = new ArrayAdapter<Spanned>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1,listDate );
+        //ArrayAdapter<Spanned> arrayAdapter = new ArrayAdapter<Spanned>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1,listDate );
+        final DateGeneraleAdapter arrayAdapter = new DateGeneraleAdapter(getActivity(), listDate, imgid);
         date_gen.setAdapter(arrayAdapter);
 
         Button butonDateGen = (Button) getActivity().findViewById(R.id.flow_date_gen);
+
 
        butonDateGen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,13 +160,14 @@ public class DateGeneraleFragment extends Fragment {
 
     private String vDtEst(Factura factura){
         if (factura.getDtEstimata() != null)
-            return DateFormat.getDateInstance().format(factura.getDtEstimata());
+
+            return SIMPLE_DATE_FORMAT.format(factura.getDtEstimata());
         else
             return "Nu exista inregistrare";
     }
     private String vDtEm(Factura factura){
         if (factura.getDtEmitere() != null)
-            return DateFormat.getDateInstance().format(factura.getDtEmitere());
+            return SIMPLE_DATE_FORMAT.format(factura.getDtEmitere());
         else
             return "Nu exista inregistrare";
     }
@@ -192,7 +209,7 @@ public class DateGeneraleFragment extends Fragment {
     }
     private String vDtScad(Factura factura){
         if (factura.getDtScadenta() != null)
-            return DateFormat.getDateInstance().format(factura.getDtScadenta());
+            return SIMPLE_DATE_FORMAT.format(factura.getDtScadenta());
         else
             return "Nu exista inregistrare";
     }
