@@ -2,6 +2,7 @@ package com.example.intern.myapplication;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -106,7 +107,7 @@ public class MesajeActivity extends AppCompatActivity
             }
         };
         //connection.execute("http://192.168.8.98/kepres205/api/rs/destinatarmesaj/list");
-        connection.execute("https://api.myjson.com/bins/6efc9");
+        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.8.98/kepres205") + "/api/rs/destinatarmesaj/list");
     }
 
     public void consumeHttpConnectionMesaj() {
@@ -122,7 +123,7 @@ public class MesajeActivity extends AppCompatActivity
             }
         };
        // connection.execute("http://192.168.8.98/kepres205/api/rs/mesaj/list");
-        connection.execute("https://api.myjson.com/bins/b3r0p");
+        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.8.98/kepres205") + "/api/rs/mesaj/list");
     }
     @Override
     public void onBackPressed() {

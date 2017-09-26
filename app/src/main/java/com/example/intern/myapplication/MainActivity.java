@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity
     public void initIP(){
         Context context = getApplicationContext();
         if (PreferenceManager.getDefaultSharedPreferences(context).getString("ip", "defaultStringIfNothingFound") == "defaultStringIfNothingFound")
-            PreferenceManager.getDefaultSharedPreferences(context).edit().putString("ip", "192.168.8.98").apply();
+            PreferenceManager.getDefaultSharedPreferences(context).edit().putString("ip", "192.168.8.98/kepres205").apply();
+
     }
 
     @Override

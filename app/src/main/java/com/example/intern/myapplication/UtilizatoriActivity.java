@@ -69,7 +69,7 @@ public class UtilizatoriActivity extends AppCompatActivity
             }
         };
 
-        connection.execute("https://api.myjson.com/bins/189wzl");
+        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.8.98/kepres205") + "/api/rs/utilizator/list");
     }
 
     @Override

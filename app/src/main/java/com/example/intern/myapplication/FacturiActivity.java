@@ -95,7 +95,7 @@ public class FacturiActivity extends AppCompatActivity
                 }
             }
         };
-        connection.execute("https://api.myjson.com/bins/ndlnl");
+        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.8.98/kepres205") + "/api/rs/factura/list");
 
     }
     @Override

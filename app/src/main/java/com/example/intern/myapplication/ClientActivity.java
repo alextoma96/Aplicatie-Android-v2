@@ -71,7 +71,7 @@ public class ClientActivity extends Fragment implements Constant {
                 }
             }
         };
-        connection.execute("https://api.myjson.com/bins/gjo9d");
+        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ip", "192.168.8.98/kepres205") + "/api/rs/client/list");
     }
 
 

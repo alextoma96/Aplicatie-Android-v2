@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="IP server:"
+            android:text="URL server:"
             android:textStyle="bold"
             android:layout_below="@id/iv_ip"/>
 
@@ -64,7 +64,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/serverIP"
             android:layout_marginTop="10dp"
-            android:text="Salveaza IP"
+            android:text="Salveaza"
             android:background="@layout/button_shape"
             android:textColor="#FFFFFF"
             android:padding="10dp"

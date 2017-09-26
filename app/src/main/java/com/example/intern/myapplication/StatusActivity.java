@@ -68,30 +68,7 @@ public class StatusActivity extends AppCompatActivity
     private void init() {
         lvStatus = (ListView) findViewById(R.id.lista_lv_status);
         //final ArrayAdapter<StatusCount> adapter = new ArrayAdapter<StatusCount>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaStatus);
-        for(StatusCount s : listaStatus) {
-            switch(s.getStatus()) {
-                case "DRAFT":
-                    s.setSorter(0);
-                    break;
-                case "VALIDAT":
-                    s.setSorter(1);
-                    break;
-                case "ARHIVAT":
-                    s.setSorter(2);
-                    break;
-                case "FINALIZAT":
-                    s.setSorter(3);
-                    break;
-                case "ACTIVAT":
-                    s.setSorter(4);
-                    break;
-                case "EMIS":
-                    s.setSorter(5);
-                    break;
-            }
-            Log.i("status", s.getSorter().toString());
-        }
-        Collections.sort(listaStatus, StatusCount.DESCENDING_COMPARATOR);
+
         final StatusAdapter statusAdapter = new StatusAdapter(this, listaStatus, imgid);
         lvStatus.setAdapter(statusAdapter);
         lvStatus.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -118,8 +95,32 @@ public class StatusActivity extends AppCompatActivity
                 }
             }
         };
-        connection.execute("https://api.myjson.com/bins/15s3yp");
-
+        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.8.98/kepres205") + "/api/rs/statusCount/list");
+        for(StatusCount s : listaStatus) {
+            switch(s.getStatus()) {
+                case "DRAFT":
+                    s.setSorter(0);
+                    break;
+                case "VALIDAT":
+                    s.setSorter(1);
+                    break;
+                case "ARHIVAT":
+                    s.setSorter(2);
+                    break;
+                case "FINALIZAT":
+                    s.setSorter(3);
+                    break;
+                case "ACTIVAT":
+                    s.setSorter(4);
+                    break;
+                case "EMIS":
+                    s.setSorter(5);
+                    break;
+            }
+            Log.i("status", s.getSorter().toString());
+        }
+        Collections.sort(listaStatus, StatusCount.DESCENDING_COMPARATOR);
+        //connection.execute("http://192.168.8.98/kepres205/api/rs/statusCount/list");
     }
 
     @Override
