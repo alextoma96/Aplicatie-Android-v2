@@ -145,7 +145,6 @@ public class Factura implements Parcelable{
                 ", serie/nr.: " + serieFactura.getCod() + " " + numar +
                 ", total: " + total +
                 ", moneda: " + moneda.getCod() +
-//                ", responsabil: " + angajat.getNume() +
                 ", status: " + statusFactura.getStatus();
     }
 

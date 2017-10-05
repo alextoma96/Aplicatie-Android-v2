@@ -24,7 +24,7 @@ import Utils.Constant;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Constant {
 
-
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +46,11 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        context = getApplicationContext();
     }
 
+    public static Context getContext(){ return context; }
 
     public void initIP(){
         Context context = getApplicationContext();

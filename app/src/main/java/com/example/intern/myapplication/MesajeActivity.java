@@ -41,13 +41,11 @@ public class MesajeActivity extends AppCompatActivity
     Integer imgid = R.drawable.readmessage;
     ListView lvMesaje;
     ArrayList<Mesaj> listaMesaje = new ArrayList<>();
-    ArrayList<DestinatarMesaj> listaDestinatari = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mesaje);
-        consumeHttpConnectionDestinatari();
         consumeHttpConnectionMesaj();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -64,50 +62,17 @@ public class MesajeActivity extends AppCompatActivity
 
     private void init() {
         lvMesaje = (ListView) findViewById(R.id.lista_lv_mesaje);
-        if (listaMesaje != null) {
-            //ArrayAdapter<Factura> adapter = new ArrayAdapter<Factura>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaFacturi);
-            SharedPreferences preferenceSettings = this.getSharedPreferences(PREFERENCE_FILE, PREFERENCE_MODE_PRIVATE);
-            Integer idAngajat = preferenceSettings.getInt(ANGAJAT_PREFERENCE_KEY, 0);
-            Log.i("idAng", idAngajat.toString());
-            for(DestinatarMesaj d: listaDestinatari) {
-                Log.i("destID", d.getIdAngajat().toString());
-                if(d.getIdAngajat() != idAngajat) {
-                    Integer idMesaj = d.getIdMesaj();
-                    Log.i("idMesaj", idMesaj.toString());
-                    for(Mesaj m : listaMesaje) {
-                        Log.i("idMesajListaaaa", m.getId().toString());
-                        if(m.getId() == idMesaj) {
-                            listaMesaje.remove(m);
-                        }
-                    }
-                }
-            }
-            final MesajAdapter mesajAdapter = new MesajAdapter(this, listaMesaje, imgid);
-            lvMesaje.setAdapter(mesajAdapter);
+        final MesajAdapter mesajAdapter = new MesajAdapter(this, listaMesaje, imgid);
+        lvMesaje.setAdapter(mesajAdapter);
 
-            lvMesaje.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(getApplicationContext(), MessageContentActivity.class);
-                    intent.putExtra("mesaj", (CharSequence)  listaMesaje.get(position).getContinut());
-                    startActivity(intent);
-                }
-            });
-        }
-    }
-
-    public void consumeHttpConnectionDestinatari() {
-        HttpConnectionDestinatarMesaj connection = new HttpConnectionDestinatarMesaj() {
+        lvMesaje.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            protected void onPostExecute(ArrayList<DestinatarMesaj> dest) {
-                super.onPostExecute(dest);
-                if(dest != null) {
-                    listaDestinatari.addAll(dest);
-                }
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), MessageContentActivity.class);
+                intent.putExtra("mesaj", (CharSequence) listaMesaje.get(position).getContinut());
+                startActivity(intent);
             }
-        };
-        //connection.execute("http://192.168.8.98/kepres205/api/rs/destinatarmesaj/list");
-        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.8.98/kepres205") + "/api/rs/destinatarmesaj/list");
+        });
     }
 
     public void consumeHttpConnectionMesaj() {
@@ -122,8 +87,7 @@ public class MesajeActivity extends AppCompatActivity
                 }
             }
         };
-       // connection.execute("http://192.168.8.98/kepres205/api/rs/mesaj/list");
-        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.8.98/kepres205") + "/api/rs/mesaj/list");
+        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ip", "192.168.8.98/kepres206") + "/api/rs/mesaj/list");
     }
     @Override
     public void onBackPressed() {

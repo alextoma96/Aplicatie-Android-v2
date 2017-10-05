@@ -1,7 +1,10 @@
 package Networking;
 
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
+
+import com.example.intern.myapplication.MainActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,6 +24,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import Commons.Angajat;
+import Commons.DestinatarMesaj;
 import Commons.Mesaj;
 import Commons.SerieFactura;
 import Commons.Utilizator;
@@ -34,6 +38,22 @@ public class HttpConnectionMesaj extends AsyncTask<String, Void, ArrayList<Mesaj
 
     URL url;
     HttpURLConnection connection;
+    ArrayList<DestinatarMesaj> listaDestinatari = new ArrayList<>();
+
+
+    public void consumeHttpConnectionDestinatari() {
+        HttpConnectionDestinatarMesaj connection = new HttpConnectionDestinatarMesaj() {
+            @Override
+            protected void onPostExecute(DestinatarMesaj dest) {
+                super.onPostExecute(dest);
+                if(dest != null) {
+                    //listaDestinatari.addAll(dest);
+                }
+            }
+        };
+        connection.execute("http://" + PreferenceManager.getDefaultSharedPreferences(MainActivity.getContext()).getString("ip", "192.168.8.98/kepres20") + "/api/rs/destinatarmesaj/list");
+    }
+
 
     @Override
     protected ArrayList<Mesaj> doInBackground(String... params) {
@@ -67,32 +87,37 @@ public class HttpConnectionMesaj extends AsyncTask<String, Void, ArrayList<Mesaj
     }
 
     private ArrayList<Mesaj> parseHttpResponse(String JSONString) throws JSONException, ParseException {
+        consumeHttpConnectionDestinatari();
         ArrayList<Mesaj> listaMesaje = new ArrayList<>();
         JSONArray jsonArray = new JSONArray(JSONString);
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonMesj = jsonArray.getJSONObject(i);
             Integer id = jsonMesj.getInt("id");
-            Date data = null;
-            if(!jsonMesj.isNull("data")) {
-                Long dataLong = jsonMesj.getLong("data");
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(dataLong);
-                String dataString = Constant.SIMPLE_DATE_FORMAT.format(calendar.getTime());
-                data = Constant.SIMPLE_DATE_FORMAT.parse(dataString);
-            }
-            Utilizator expeditor = null;
-            if(!jsonMesj.isNull("expeditor")) {
-                JSONObject jsonUtilizator = jsonMesj.getJSONObject("expeditor");
-                expeditor = parseUtilizator(jsonUtilizator);
-            }
+            for(DestinatarMesaj d : listaDestinatari) {
+                if(d.getIdMesaj() == id) {
+                    Date data = null;
+                    if(!jsonMesj.isNull("data")) {
+                        Long dataLong = jsonMesj.getLong("data");
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTimeInMillis(dataLong);
+                        String dataString = Constant.SIMPLE_DATE_FORMAT.format(calendar.getTime());
+                        data = Constant.SIMPLE_DATE_FORMAT.parse(dataString);
+                    }
+                    Utilizator expeditor = null;
+                    if(!jsonMesj.isNull("expeditor")) {
+                        JSONObject jsonUtilizator = jsonMesj.getJSONObject("expeditor");
+                        expeditor = parseUtilizator(jsonUtilizator);
+                    }
 
-            String titlu = jsonMesj.getString("titlu");
-            String continut = jsonMesj.getString("continut");
-            String trimis = jsonMesj.getString("trimis");
-            String citit = jsonMesj.getString("citit");
+                    String titlu = jsonMesj.getString("titlu");
+                    String continut = jsonMesj.getString("continut");
+                    String trimis = jsonMesj.getString("trimis");
+                    String citit = jsonMesj.getString("citit");
 
-            Mesaj mesaj = new Mesaj(id, data, titlu, continut, trimis, citit, expeditor);
-            listaMesaje.add(mesaj);
+                    Mesaj mesaj = new Mesaj(id, data, titlu, continut, trimis, citit, expeditor);
+                    listaMesaje.add(mesaj);
+                }
+            }
 
         }
         return listaMesaje;

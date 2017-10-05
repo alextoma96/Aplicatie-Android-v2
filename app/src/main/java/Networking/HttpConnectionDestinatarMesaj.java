@@ -1,6 +1,10 @@
 package Networking;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.util.Log;
+
+import com.example.intern.myapplication.MainActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,13 +34,13 @@ import static Utils.Constant.SIMPLE_DATE_FORMAT;
  * Created by intern on 9/22/2017.
  */
 
-public class HttpConnectionDestinatarMesaj  extends AsyncTask<String, Void, ArrayList<DestinatarMesaj>> implements Constant {
+public class HttpConnectionDestinatarMesaj  extends AsyncTask<String, Void, DestinatarMesaj> implements Constant {
 
     URL url;
     HttpURLConnection connection;
 
     @Override
-    protected ArrayList<DestinatarMesaj> doInBackground(String... params) {
+    protected DestinatarMesaj doInBackground(String... params) {
         StringBuilder stringBuilder = new StringBuilder();
         try {
             url = new URL(params[0]);
@@ -66,19 +70,22 @@ public class HttpConnectionDestinatarMesaj  extends AsyncTask<String, Void, Arra
         return null;
     }
 
-    private ArrayList<DestinatarMesaj> parseHttpResponse(String JSONString) throws JSONException, ParseException {
-        ArrayList<DestinatarMesaj> listaDestinatari = new ArrayList<>();
+    private DestinatarMesaj parseHttpResponse(String JSONString) throws JSONException, ParseException {
+        DestinatarMesaj destinatarMesaj = null;
         JSONArray jsonArray = new JSONArray(JSONString);
         for (int i = 0; i < jsonArray.length(); i++) {
+            SharedPreferences preferenceSettings = MainActivity.getContext().getSharedPreferences(PREFERENCE_FILE, PREFERENCE_MODE_PRIVATE);
+            Integer idAngajat = preferenceSettings.getInt(ANGAJAT_PREFERENCE_KEY, 0);
             JSONObject jsonDestinatar = jsonArray.getJSONObject(i);
-            JSONObject jsonMesaj = jsonDestinatar.getJSONObject("mesaj");
-            Integer idMesaj = jsonMesaj.getInt("id");
             JSONObject jsonAngajat = jsonDestinatar.getJSONObject("destinatar");
             Integer idDestinatar = jsonAngajat.getInt("id");
-            DestinatarMesaj destinatarMesaj = new DestinatarMesaj(idMesaj, idDestinatar);
-            listaDestinatari.add(destinatarMesaj);
+            if(idDestinatar == idAngajat) {
+                JSONObject jsonMesaj = jsonDestinatar.getJSONObject("mesaj");
+                Integer idMesaj = jsonMesaj.getInt("id");
+                destinatarMesaj = new DestinatarMesaj(idMesaj, idDestinatar);
+            }
         }
-        return listaDestinatari;
+        Log.i("destinatar", String.valueOf(destinatarMesaj.getIdAngajat()));
+        return destinatarMesaj;
     }
-
 }
